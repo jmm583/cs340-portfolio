@@ -16,7 +16,7 @@ CREATE OR REPLACE TABLE Orders(
 );
 CREATE OR REPLACE TABLE Statuses(
     statusID int AUTO_INCREMENT,
-    statusName varchar(25) NOT NULL,
+    statusName varchar(25) NOT NULL UNIQUE,
     PRIMARY KEY(StatusID)
 );
 CREATE OR REPLACE TABLE OrderStatuses(
@@ -33,14 +33,14 @@ CREATE OR REPLACE TABLE Manufacturers(
     manufacturerID int AUTO_INCREMENT,
     brandName varchar(50),
     country varchar(50),
-    contactEmail varchar(254),
+    contactEmail varchar(254) UNIQUE,
     contactPhone varchar(25),
     PRIMARY KEY(manufacturerID)
 
 );
 CREATE TABLE ProductTypes (
     productTypeID int AUTO_INCREMENT,
-    typeName varchar(50) NOT NULL,
+    typeName varchar(50) NOT NULL UNIQUE,
     PRIMARY KEY (productTypeID)
 );
  
@@ -51,7 +51,7 @@ CREATE TABLE Products (
     name varchar(50) NOT NULL,
     price decimal(12,2),
     description varchar(100),
-    SKU varchar(50),
+    SKU varchar(50) UNIQUE,
     PRIMARY KEY (productID),
     FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID),
     FOREIGN KEY (productTypeID) REFERENCES ProductTypes(productTypeID)
