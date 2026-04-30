@@ -1,0 +1,1 @@
+DROP TABLES OrderProducts, Statuses, Orders, OrderStatuses, Customers, Manufacturers, ProductTypes, Products
