@@ -137,7 +137,7 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
     );
 
 INSERT INTO Orders(customerID, complete, totalCost) VALUES
-    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), false, 64.99),
+    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), true, 64.99),
     ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false, 42.99),
     ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false, 59.99 );
 
