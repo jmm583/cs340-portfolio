@@ -1,5 +1,4 @@
 INSERT INTO Customers (firstName, lastName, email, phone) VALUES 
-    ('Han', 'Solo', 'hansolo@mfalcon.com', '0000000000'),
     ('Luke', 'Skywalker', 'lukeskywalker@jedi.com', '0000000000'),
     ('Ben', 'Kenobi', 'obiwan@jedi.com', '0000000000'),
     ('Leia', 'Skywalker', 'leiaskywalker@rebels.com', '0000000000');
@@ -9,7 +8,7 @@ INSERT INTO Manufacturers (manufacturerID, brandName, country, contactEmail, con
     (2, 'Powell Peralta', 'USA', 'info@powell-peralta.com', '805-555-7391'),
     (3, 'Independent Truck Company', 'USA', 'info@independenttrucks.com', '510-555-6032'),
     (4, 'Mob Grip', 'USA', 'support@mobgrip.com', '310-555-7824'),
-    (5, 'Anti Hero Skateboards', 'USA', 'info@antiheroskateboards.com', '415-555-2648');
+    (5, 'Bones Bearings ', 'USA', 'info@bonesbearings.com', '415-555-2648');
 
 INSERT INTO ProductTypes (typeName) VALUES
     ('deck'),
@@ -60,11 +59,11 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
         '748213M'
     );
 
-INSERT INTO Orders(customerID, complete) VALUES
-    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), false),
-    ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false),
-    ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false ),
-    ((Select customerID from Customers where firstName='Han' and lastName='Solo'), false);
+INSERT INTO Orders(customerID, complete, totalCost) VALUES
+    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), false, 64.99),
+    ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false, 42.99),
+    ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false, 59.99 );
+
 
 INSERT INTO OrderProducts(orderID, productID, quantity) VALUES 
     (   
@@ -81,12 +80,8 @@ INSERT INTO OrderProducts(orderID, productID, quantity) VALUES
         (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Ben' and lastName='Kenobi')), 
         (Select productID FROM Products where SKU = '412659Z'),
         1
-    ),
-    (   
-        (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Han' and lastName='Solo')), 
-        (Select productID FROM Products where SKU = '748213M'),
-        1
     );
+
 INSERT INTO Statuses(statusName) VALUES 
     ("Ordered"),
     ("Shipped"),
@@ -99,7 +94,6 @@ INSERT INTO OrderStatuses(orderID, statusDate, statusID) VALUES
         '2026-01-02',
         (Select statusID from Statuses where statusName='Ordered') 
     ),
-
     (
         (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Leia' and lastName='Skywalker')),
         '2026-01-02',
@@ -115,5 +109,4 @@ INSERT INTO OrderStatuses(orderID, statusDate, statusID) VALUES
         '2026-01-08',
         (Select statusID from Statuses where statusName='Completed') 
     );
-
 
