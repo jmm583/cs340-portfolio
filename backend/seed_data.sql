@@ -59,10 +59,10 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
         '748213M'
     );
 
-INSERT INTO Orders(customerID, complete) VALUES
-    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), false),
-    ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false),
-    ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false ),
+INSERT INTO Orders(customerID, complete, totalCost) VALUES
+    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), false, 64.99),
+    ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false, 42.99),
+    ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false, 59.99 );
 
 
 INSERT INTO OrderProducts(orderID, productID, quantity) VALUES 
@@ -80,7 +80,8 @@ INSERT INTO OrderProducts(orderID, productID, quantity) VALUES
         (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Ben' and lastName='Kenobi')), 
         (Select productID FROM Products where SKU = '412659Z'),
         1
-    )
+    );
+
 INSERT INTO Statuses(statusName) VALUES 
     ("Ordered"),
     ("Shipped"),
