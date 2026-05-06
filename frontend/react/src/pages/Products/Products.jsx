@@ -2,7 +2,7 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import { getProducts, deleteProducts } from "../../components/apiClient";
+import { getProducts, deleteProduct } from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 
 function Products({setItemToEdit}) {
@@ -20,7 +20,7 @@ function Products({setItemToEdit}) {
     };
     const onDelete = (item) => {
 
-        deleteProducts(item);
+        deleteProduct(item);
         loadProducts();
     };
     useEffect(() => {
@@ -31,7 +31,7 @@ function Products({setItemToEdit}) {
         <>
 
             <h1>Products</h1>
-
+            <p><a href="/products/create">Add Product</a></p>
             <table>
                 <thead>
                     <tr>

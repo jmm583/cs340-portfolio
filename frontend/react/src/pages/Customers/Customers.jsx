@@ -19,9 +19,10 @@ function Customers({setItemToEdit}) {
     };
     const onDelete = (item) => {
 
-        deleteOrderStatuses(item);
+        deleteCustomer(item);
         loadCustomers();
     };
+    
     useEffect(() => {
         loadCustomers();
         
@@ -30,7 +31,7 @@ function Customers({setItemToEdit}) {
         <>
 
             <h1>Customers</h1>
-
+            <p><a href="/customers/create">Add Customer</a></p>
             <table>
                 <thead>
                     <tr>

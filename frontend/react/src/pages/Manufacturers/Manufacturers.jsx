@@ -4,7 +4,7 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getManufacturers, deleteManufacturers} from "../../components/apiClient";
+import {getManufacturers, deleteManufacturer} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 
 
@@ -22,7 +22,7 @@ function Manufacturers({setItemToEdit}) {
     };
     const onDelete = (item) => {
 
-        deleteManufacturers(item);
+        deleteManufacturer(item);
         loadManufacturers();
     };
     useEffect(() => {
@@ -33,6 +33,7 @@ function Manufacturers({setItemToEdit}) {
     return (
         <>
             <h1>Manufacturers</h1>
+            <p><a href="/manufacturers/create">Add Manufacturer</a></p>
 
             <table>
                 <thead>

@@ -30,6 +30,7 @@ function Statuses({setItemToEdit}){
     return(
         <>
             <h1>Statuses</h1>
+            <p><a href="/statuses/create"> Add Status</a></p>
 
             <table>
                 <thead>

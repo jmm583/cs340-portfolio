@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getOrders, deleteOrders} from "../../components/apiClient";
+import {getOrders, deleteOrder} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 
 function Orders({setItemToEdit}){
@@ -19,7 +19,7 @@ function Orders({setItemToEdit}){
     };
     const onDelete = (item) => {
 
-        deleteOrders(item);
+        deleteOrder(item);
         loadOrders();
     };
     useEffect(() => {
@@ -32,6 +32,7 @@ function Orders({setItemToEdit}){
       
         <>
             <h1>Orders</h1>
+            <p><a href='/orders/create'>Add Order</a></p>
 
             <table>
                 <thead>

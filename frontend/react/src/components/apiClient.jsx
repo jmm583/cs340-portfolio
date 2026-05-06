@@ -90,10 +90,13 @@ const getData = async function () {
 function getProducts() {
     return sampleData["Products"];
 }
-function deleteProducts(item) {
+function deleteProduct(item) {
     const itemIndex = sampleData["Products"].find(item);
 
     sampleData["Products"].splice(itemIndex, 1);
+}
+function createProduct(customer) {
+    sampleData["Products"].push(customer);
 }
 
 // Customer Fuctions
@@ -106,17 +109,20 @@ function deleteCustomer(item) {
     sampleData["Customers"].splice(customer, 1);
 }
 function createCustomer(customer) {
-    sampleData["Customers"].append(customer);
+    sampleData["Customers"].push(customer);
 }
 
 // Manufacturer Functions
 function getManufacturers() {
     return sampleData["Manufacturers"]
 }
-function deleteManufacturers(item) {
+function deleteManufacturer(item) {
     const itemIndex = sampleData["Manufacturers"].find(item);
 
     sampleData["Manufacturers"].splice(itemIndex, 1);
+}
+function createManufacturer(item) {
+    sampleData["Manufacturers"].push(item);
 }
 
 // Statuses Functions
@@ -128,25 +134,34 @@ function deleteStatuses(item) {
 
     sampleData["Statuses"].splice(itemIndex, 1);
 }
+function createStatuses(item) {
+    sampleData["Statuses"].push(item);
+}
 
 // Order Functions
 function getOrders() {
     return sampleData["Orders"]
 }
-function deleteOrders(item) {
+function deleteOrder(item) {
     const itemIndex = sampleData["Orders"].find(item);
 
     sampleData["Orders"].splice(itemIndex, 1);
+}
+function createOrder(item) {
+    sampleData["Orders"].push(item);
 }
 
 // ProductTypes Functions
 function getProductTypes() {
     return sampleData["ProductTypes"]
 }
-function deleteProductTypes(item) {
+function deleteProductType(item) {
     const itemIndex = sampleData["ProductTypes"].find(item);
 
     sampleData["ProductTypes"].splice(itemIndex, 1);
+}
+function createProductType(item) {
+    sampleData["ProductTypes"].push(item);
 }
 
 // OrderStatuses Functions
@@ -158,18 +173,23 @@ function deleteOrderStatuses(item) {
 
     sampleData["OrderStatuses"].splice(itemIndex, 1);
 }
+function createOrderStatuses(item) {
+    sampleData["OrderStatuses"].push(item);
+}
 
 // OrderProducts Functions
 function getOrderProducts() {
     return sampleData["OrderProducts"]
 }
 
-function deleteOrderProducts(item) {
+function deleteOrderProduct(item) {
     const itemIndex = sampleData["OrderProducts"].find(item);
 
     sampleData["OrderProducts"].splice(itemIndex, 1);
 }
-
+function createOrderProduct(item) {
+    sampleData["OrderProducts"].push(item);
+}
 
 
 export default getData;
@@ -179,25 +199,32 @@ export {
     createCustomer,
 
     getManufacturers, 
-    deleteManufacturers,
+    deleteManufacturer,
+    createManufacturer,
 
     getOrderProducts, 
-    deleteOrderProducts, 
+    deleteOrderProduct, 
+    createOrderProduct, 
 
     getOrders,
-    deleteOrders, 
+    deleteOrder,
+    createOrder, 
 
     getProductTypes, 
-    deleteProductTypes,
+    deleteProductType,
+    createProductType,
 
     getProducts, 
-    deleteProducts,
+    deleteProduct,
+    createProduct,
 
     getStatuses, 
     deleteStatuses, 
+    createStatuses,
 
     getOrderStatuses,
     deleteOrderStatuses, 
+    createOrderStatuses
     
     
 

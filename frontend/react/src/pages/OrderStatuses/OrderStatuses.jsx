@@ -31,6 +31,7 @@ function OrderStatuses({setItemToEdit}) {
       
         <>
             <h1>OrderStatuses</h1>
+            <p><a href='/ordersstatuses/create'>Add OrderStatus</a></p>
 
             <table>
                 <thead>
