@@ -1,25 +1,25 @@
 import { useState } from "react";
 
 function OrderEdit({order}){
-    const [orderID, setorderID] = useState(order.orderID);
-    const [customerID, setcustomerID] = useState(order.customerID);
-    const [complete, setcomplete] = useState(order.complete);
-    const [totalCost, settotalCost] = useState(order.totalCost);
+    const [orderID, setOrderID] = useState(order.orderID);
+    const [customerID, setCustomerID] = useState(order.customerID);
+    const [complete, setComplete] = useState(order.complete);
+    const [totalCost, setTotalCost] = useState(order.totalCost);
 
     return (
-        <>
+        <><h1>Edit Order</h1>
             <form>
                 <label htmlFor="orderID">orderID</label>
-                <input name="orderID" type="number" value={orderID}  onChange={setorderID}/>
+                <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/>
 
                 <label htmlFor="customerID">customerID</label>
-                <input name="customerID" type="number" value={customerID} onChange={setcustomerID} />
+                <input name="customerID" type="number" value={customerID} onChange={setCustomerID} />
 
                 <label htmlFor="complete">complete</label>
-                <input name="complete" type="checkbox" value={complete} onChange={setcomplete} />
+                <input name="complete" type="checkbox" value={complete} onChange={setComplete} />
 
                 <label htmlFor="totalCost">totalCost</label>
-                <input name="totalCost" type="text" value={totalCost} onChange={settotalCost} />
+                <input name="totalCost" type="text" value={totalCost} onChange={setTotalCost} />
                 <button>Save</button>
             </form>
         </>

@@ -7,7 +7,7 @@ function ManufacturersEdit({itemToEdit}) {
     const [contactEmail, setcontactEmail] = useState(itemToEdit.contactEmail);
     const [contactPhone, setcontactPhone] = useState(itemToEdit.contactPhone);
     return (
-        <>
+        <><h1>Edit Manufacturer</h1>
             <form>
                 <label htmlFor="manufacturerID">manufacturerID:</label>
                 <input name="manufacturerID" type="number" value={manufacturerID} onChange={setmanufacturerID} />

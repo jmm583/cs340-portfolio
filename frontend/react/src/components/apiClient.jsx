@@ -16,33 +16,33 @@ const sampleData = {
     ,
     "OrderProducts":
     [
-    {"orderProductsID":"1","orderID":"1","productID":"1","quantity":"2"},
-    {"orderProductsID":"2","orderID":"3","productID":"2","quantity":"4"},
-    {"orderProductsID":"3","orderID":"2","productID":"3","quantity":"1"}
+    {"orderProductsID":"1","orderID":"1", "Customer":"Leia Skywalker","productID":"1", "productName":"Classic Dot Deck 8.25","quantity":"2"},
+    {"orderProductsID":"2","orderID":"3", "Customer":"Luke Skywalker","productID":"2", "productName":"Dragon Formula Wheels 54mm", "quantity":"4"},
+    {"orderProductsID":"3","orderID":"2", "Customer":"Ben Kenobi","productID":"3", "productName":"Stage 11 Standard Trucks", "quantity":"1"}
     ]
     ,
     "Orders":
     [
-    {"orderID":"1","customerID":"3","complete":"1","totalCost":"64.99"},
-    {"orderID":"2","customerID":"2","complete":"0","totalCost":"42.99"},
-    {"orderID":"3","customerID":"1","complete":"0","totalCost":"59.99"}
+    {"orderID":"1","customerID":"3", "fullName":"Leia Skywalker","complete":"1","totalCost":"64.99"},
+    {"orderID":"2","customerID":"2", "fullName":"Ben Kenobi","complete":"0","totalCost":"42.99"},
+    {"orderID":"3","customerID":"1", "fullName":"Luke Skywalker","complete":"0","totalCost":"59.99"}
     ]
     ,
     "OrderStatuses":
     [
-    {"orderStatusID":"1","orderID":"1","statusID":"1","statusDate":"2026-01-02"},
-    {"orderStatusID":"2","orderID":"1","statusID":"2","statusDate":"2026-01-02"},
-    {"orderStatusID":"3","orderID":"1","statusID":"3","statusDate":"2026-01-07"},
-    {"orderStatusID":"4","orderID":"1","statusID":"4","statusDate":"2026-01-08"}
+    {"orderStatusID":"1","orderID":"1","statusID":"1", "statusName":"Ordered","statusDate":"2026-01-02"},
+    {"orderStatusID":"2","orderID":"1","statusID":"2", "statusName":"Shipped","statusDate":"2026-01-02"},
+    {"orderStatusID":"3","orderID":"1","statusID":"3", "statusName":"Delivered","statusDate":"2026-01-07"},
+    {"orderStatusID":"4","orderID":"1","statusID":"4", "statusName":"Completed","statusDate":"2026-01-08"}
     ]
     ,
     "Products":
     [
-    {"productID":"1","manufacturerID":"1","productTypeID":"1","name":"Classic Dot Deck 8.25","price":"64.99","description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
-    {"productID":"2","manufacturerID":"2","productTypeID":"2","name":"Dragon Formula Wheels 54mm","price":"42.99","description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
-    {"productID":"3","manufacturerID":"3","productTypeID":"5","name":"Stage 11 Standard Trucks","price":"59.99","description":"Independent Stage 11 trucks","SKU":"412659Z"},
-    {"productID":"4","manufacturerID":"2","productTypeID":"3","name":"Bones Reds Bearings","price":"21.99","description":"Bones Reds skateboard bearings","SKU":"638204T"},
-    {"productID":"5","manufacturerID":"4","productTypeID":"4","name":"Mob Black Griptape","price":"11.99","description":"Mob black skateboard griptape","SKU":"748213M"}
+    {"productID":"1","manufacturerID":"1", "brandName":"Santa Cruz Skateboards","productTypeID":"1","typeName":"deck", "name":"Classic Dot Deck 8.25","price":"64.99","description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
+    {"productID":"2","manufacturerID":"2","brandName":"Powell Peralta", "productTypeID":"2","typeName":"wheels", "name":"Dragon Formula Wheels 54mm","price":"42.99","description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
+    {"productID":"3","manufacturerID":"3","brandName":"Independent Truck Company", "productTypeID":"5","typeName":"trucks","name":"Stage 11 Standard Trucks","price":"59.99","description":"Independent Stage 11 trucks","SKU":"412659Z"},
+    {"productID":"4","manufacturerID":"2","brandName":"Powell Peralta","productTypeID":"3","typeName":"bearings", "name":"Bones Reds Bearings","price":"21.99","description":"Bones Reds skateboard bearings","SKU":"638204T"},
+    {"productID":"5","manufacturerID":"4","brandName":"Mob Grip", "productTypeID":"4","typeName":"griptape", "name":"Mob Black Griptape","price":"11.99","description":"Mob black skateboard griptape","SKU":"748213M"}
     ]
 
     ,"ProductTypes":
@@ -85,86 +85,120 @@ const getData = async function () {
         console.log(error);
     }
 };
+
+// Product Functions
 function getProducts() {
     return sampleData["Products"];
-}
-export function getCustomers() {
-    return sampleData["Customers"]
-}
-function getManufacturers() {
-    return sampleData["Manufacturers"]
-}
-function getStatuses() {
-    return sampleData["Statuses"]
-}
-function getOrders() {
-    return sampleData["Orders"]
-}
-function getProductTypes() {
-    return sampleData["ProductTypes"]
-}
-function getOrderStatuses() {
-    return sampleData["OrderStatuses"]
-}
-function getOrderProducts() {
-    return sampleData["OrderProducts"]
-}
-function deleteCustomer(item) {
-    const customer = sampleData["Customers"].find(item);
-
-    sampleData["Customers"].splice(customer, 1);
-}
-function deleteStatuses(item) {
-    const itemIndex = sampleData["Statuses"].find(item);
-
-    sampleData["Statuses"].splice(itemIndex, 1);
-}
-function deleteOrders(item) {
-    const itemIndex = sampleData["Orders"].find(item);
-
-    sampleData["Orders"].splice(itemIndex, 1);
-}
-function deleteOrderStatuses(item) {
-    const itemIndex = sampleData["OrderStatuses"].find(item);
-
-    sampleData["OrderStatuses"].splice(itemIndex, 1);
-}
-function deleteOrderProducts(item) {
-    const itemIndex = sampleData["OrderProducts"].find(item);
-
-    sampleData["OrderProducts"].splice(itemIndex, 1);
-}
-function deleteManufacturers(item) {
-    const itemIndex = sampleData["Manufacturers"].find(item);
-
-    sampleData["Manufacturers"].splice(itemIndex, 1);
 }
 function deleteProducts(item) {
     const itemIndex = sampleData["Products"].find(item);
 
     sampleData["Products"].splice(itemIndex, 1);
 }
+
+// Customer Fuctions
+function getCustomers() {
+    return sampleData["Customers"]
+}
+function deleteCustomer(item) {
+    const customer = sampleData["Customers"].find(item);
+
+    sampleData["Customers"].splice(customer, 1);
+}
+function createCustomer(customer) {
+    sampleData["Customers"].append(customer);
+}
+
+// Manufacturer Functions
+function getManufacturers() {
+    return sampleData["Manufacturers"]
+}
+function deleteManufacturers(item) {
+    const itemIndex = sampleData["Manufacturers"].find(item);
+
+    sampleData["Manufacturers"].splice(itemIndex, 1);
+}
+
+// Statuses Functions
+function getStatuses() {
+    return sampleData["Statuses"]
+}
+function deleteStatuses(item) {
+    const itemIndex = sampleData["Statuses"].find(item);
+
+    sampleData["Statuses"].splice(itemIndex, 1);
+}
+
+// Order Functions
+function getOrders() {
+    return sampleData["Orders"]
+}
+function deleteOrders(item) {
+    const itemIndex = sampleData["Orders"].find(item);
+
+    sampleData["Orders"].splice(itemIndex, 1);
+}
+
+// ProductTypes Functions
+function getProductTypes() {
+    return sampleData["ProductTypes"]
+}
 function deleteProductTypes(item) {
     const itemIndex = sampleData["ProductTypes"].find(item);
 
     sampleData["ProductTypes"].splice(itemIndex, 1);
 }
+
+// OrderStatuses Functions
+function getOrderStatuses() {
+    return sampleData["OrderStatuses"]
+}
+function deleteOrderStatuses(item) {
+    const itemIndex = sampleData["OrderStatuses"].find(item);
+
+    sampleData["OrderStatuses"].splice(itemIndex, 1);
+}
+
+// OrderProducts Functions
+function getOrderProducts() {
+    return sampleData["OrderProducts"]
+}
+
+function deleteOrderProducts(item) {
+    const itemIndex = sampleData["OrderProducts"].find(item);
+
+    sampleData["OrderProducts"].splice(itemIndex, 1);
+}
+
+
+
 export default getData;
 export { 
-    getManufacturers, 
-    getOrderProducts, 
-    getOrders, 
-    getProductTypes, 
-    getProducts, 
-    getStatuses, 
-    getOrderStatuses, 
+    getCustomers, 
     deleteCustomer, 
-    deleteStatuses, 
-    deleteOrders, 
-    deleteOrderStatuses, 
-    deleteOrderProducts, 
+    createCustomer,
+
+    getManufacturers, 
     deleteManufacturers,
+
+    getOrderProducts, 
+    deleteOrderProducts, 
+
+    getOrders,
+    deleteOrders, 
+
+    getProductTypes, 
+    deleteProductTypes,
+
+    getProducts, 
     deleteProducts,
-    deleteProductTypes
+
+    getStatuses, 
+    deleteStatuses, 
+
+    getOrderStatuses,
+    deleteOrderStatuses, 
+    
+    
 
 };

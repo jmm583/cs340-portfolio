@@ -8,7 +8,7 @@ function CustomerEdit({customer}) {
     const [phone, setPhone] = useState([customer.phone]);
 
     return (
-        <>
+        <><h1>Edit Customer</h1>
             <form>
                 <label htmlFor="firstName">firstName</label>
                 <input name="firstName" type="text" value={firstName} onChange={setfirstName}/>

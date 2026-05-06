@@ -5,7 +5,7 @@ function StatusesEdit({status}){
     const [statusID, setStatusID] = useState(status.statusID);
     const [statusName, setStatusName] = useState(status.statusName);
     return(
-        <>
+        <><h1>Edit Statuses</h1>
             <form>
                 <label htmlFor="statusID">statusID</label>
                 <input name = "statusID" type="text" value={statusID} onChange={setStatusID}/>
