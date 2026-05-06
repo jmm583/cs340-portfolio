@@ -109,5 +109,62 @@ function getOrderStatuses() {
 function getOrderProducts() {
     return sampleData["OrderProducts"]
 }
+function deleteCustomer(item) {
+    const customer = sampleData["Customers"].find(item);
+
+    sampleData["Customers"].splice(customer, 1);
+}
+function deleteStatuses(item) {
+    const itemIndex = sampleData["Statuses"].find(item);
+
+    sampleData["Statuses"].splice(itemIndex, 1);
+}
+function deleteOrders(item) {
+    const itemIndex = sampleData["Orders"].find(item);
+
+    sampleData["Orders"].splice(itemIndex, 1);
+}
+function deleteOrderStatuses(item) {
+    const itemIndex = sampleData["OrderStatuses"].find(item);
+
+    sampleData["OrderStatuses"].splice(itemIndex, 1);
+}
+function deleteOrderProducts(item) {
+    const itemIndex = sampleData["OrderProducts"].find(item);
+
+    sampleData["OrderProducts"].splice(itemIndex, 1);
+}
+function deleteManufacturers(item) {
+    const itemIndex = sampleData["Manufacturers"].find(item);
+
+    sampleData["Manufacturers"].splice(itemIndex, 1);
+}
+function deleteProducts(item) {
+    const itemIndex = sampleData["Products"].find(item);
+
+    sampleData["Products"].splice(itemIndex, 1);
+}
+function deleteProductTypes(item) {
+    const itemIndex = sampleData["ProductTypes"].find(item);
+
+    sampleData["ProductTypes"].splice(itemIndex, 1);
+}
 export default getData;
-export { getManufacturers, getOrderProducts, getOrders, getProductTypes, getProducts, getStatuses, getOrderStatuses};
+export { 
+    getManufacturers, 
+    getOrderProducts, 
+    getOrders, 
+    getProductTypes, 
+    getProducts, 
+    getStatuses, 
+    getOrderStatuses, 
+    deleteCustomer, 
+    deleteStatuses, 
+    deleteOrders, 
+    deleteOrderStatuses, 
+    deleteOrderProducts, 
+    deleteManufacturers,
+    deleteProducts,
+    deleteProductTypes
+
+};

@@ -1,22 +1,32 @@
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { useState } from 'react';
 import Home from './pages/Home';
 
-import Manufacturers from './pages/Manufacturers';
-import Products  from './pages/Products';
-import ProductTypes from './pages/ProductTypes';
+import Manufacturers from './pages/Manufacturers/Manufacturers';
+import ManufacturersEdit from './pages/Manufacturers/ManufacturersEdit';
+import Products  from './pages/Products/Products';
+import ProductsEdit  from './pages/Products/ProductsEdit';
+import ProductTypes from './pages/ProductTypes/ProductTypes';
+import ProductTypesEdit from './pages/ProductTypes/ProductTypesEdit';
 import Customers from './pages/Customers/Customers';
+import CustomerEdit from './pages/Customers/CustomerEdit';
 import Statuses from './pages/Statuses/Statuses';
+import StatusesEdit from './pages/Statuses/StatusesEdit';
 import Orders from './pages/Orders/Orders';
+import OrderEdit from './pages/Orders/OrderEdit';
 import OrderStatuses from './pages/OrderStatuses/OrderStatuses';
+import OrderStatusEdit from './pages/OrderStatuses/OrderStatusEdit';
 import OrderProducts from './pages/OrderProducts/OrderProducts';
+import OrderProductEdit from './pages/OrderProducts/OrderProductsEdit';
 import NavBar from './components/NavBar';
 
 
 
 
 function App() {
+  const [itemToEdit, setItemToEdit] = useState();
 
   return (
     <>
@@ -29,14 +39,29 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/customers" element={<Customers/>}></Route>
-            <Route path="/products" element={<Products/>}></Route>
-            <Route path="/manufacturers" element={<Manufacturers/>}></Route>
-            <Route path="/statuses" element={<Statuses />}></Route>
-            <Route path="/producttypes" element={<ProductTypes />}></Route>
-            <Route path="/orders" element={<Orders />}></Route>
-            <Route path="/ordersstatuses" element={<OrderStatuses />}></Route>
-            <Route path="/orderproducts" element={<OrderProducts />}></Route>
+            <Route path="/customers" element={<Customers setItemToEdit={setItemToEdit}/>}></Route>
+            <Route path="/customers/edit" element={<CustomerEdit customer={itemToEdit} />}></Route>
+
+            <Route path="/products" element={<Products setItemToEdit={setItemToEdit}/>}></Route>
+            <Route path="/products/edit" element={<ProductsEdit itemToEdit={itemToEdit}/>}></Route>
+
+            <Route path="/manufacturers" element={<Manufacturers setItemToEdit={setItemToEdit}/>}></Route>
+            <Route path="/manufacturers/edit" element={<ManufacturersEdit itemToEdit={itemToEdit}/>}></Route>
+
+            <Route path="/statuses" element={<Statuses setItemToEdit={setItemToEdit} />}></Route>
+            <Route path="/statuses/edit" element={<StatusesEdit status={itemToEdit} />}></Route>
+
+            <Route path="/producttypes" element={<ProductTypes setItemToEdit={setItemToEdit} />}></Route>
+            <Route path="/producttypes/edit" element={<ProductTypesEdit itemToEdit={itemToEdit}/>}></Route>
+
+            <Route path="/orders" element={<Orders setItemToEdit={setItemToEdit}/>}></Route>
+            <Route path="/orders/edit" element={<OrderEdit order={itemToEdit}/>}></Route>
+
+            <Route path="/ordersstatuses" element={<OrderStatuses setItemToEdit={setItemToEdit}/>}></Route>
+            <Route path="/ordersstatuses/edit" element={<OrderStatusEdit orderstatus={itemToEdit} />}></Route>
+
+            <Route path="/orderproducts" element={<OrderProducts setItemToEdit={setItemToEdit}/>}></Route>
+            <Route path="/orderproducts/edit" element={<OrderProductEdit itemToEdit={itemToEdit} />}></Route>
 
           </Routes>
         </Router>

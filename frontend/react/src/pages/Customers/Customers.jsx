@@ -1,39 +1,56 @@
 
+import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getCustomers} from "../../components/apiClient";
-import CustomerRow from "./CustomerRow";
-function Customers() {
+import { getCustomers, deleteCustomer } from "../../components/apiClient";
+import TableRow from '../../components/TableRow';
+
+function Customers({setItemToEdit}) {
     const [customers, setCustomers] = useState([]);
+    const navigate = useNavigate();
 
     const loadCustomers = () => {
         const data = getCustomers();
         setCustomers(data);
-    }
+    };
+    const onEdit = (item) =>{
+ 
+        setItemToEdit(item);
+        navigate('/customers/edit');
+    };
+    const onDelete = (item) => {
+
+        deleteOrderStatuses(item);
+        loadCustomers();
+    };
     useEffect(() => {
         loadCustomers();
         
     }, []);
-
     return (
         <>
+
+            <h1>Customers</h1>
+
             <table>
                 <thead>
                     <tr>
-                        <th>customerID</th>
-                        <th>firstName</th>
-                        <th>lastName</th>
-                        <th>email</th>
-                        <th>phone</th>
+                        {customers.length > 0 && Object.keys(customers[0]).map((header, index) => (
+                            <th key={index}>{header}</th>
+                        ))}
+                        <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
-
-                    {customers.map((customer) => (<CustomerRow key={customer.customerID} customer={customer} />))}
-
+                    {customers.map((customer, index) => (
+                        <TableRow key={index} rowObject={customer} refreshObjects={loadCustomers} onDelete={onDelete} onEdit={onEdit}/>
+                    ))}
 
                 </tbody>
             </table>
-
+            
+               
+       
         </>
     )
 };

@@ -1,16 +1,28 @@
 
+import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getOrderStatuses} from "../../components/apiClient";
-import OrderStatusRow from "./OrderStatusRow";
+import {getOrderStatuses, deleteOrderStatuses} from "../../components/apiClient";
+import TableRow from '../../components/TableRow';
 
 
-function OrderStatuses() {
+function OrderStatuses({setItemToEdit}) {
     const [orderStatuses, setOrderStatuses] = useState([]);
-
+    const navigate = useNavigate();
     const loadOrderStatuses = () => {
         const data = getOrderStatuses();
         setOrderStatuses(data);
     }
+    const onEdit = (item) =>{
+ 
+        setItemToEdit(item);
+        console.log("orderStatusesEdit ");
+        navigate('/ordersstatuses/edit');
+    };
+    const onDelete = (item) => {
+
+        deleteOrderStatuses(item);
+        loadOrderStatuses();
+    };
     useEffect(() => {
         loadOrderStatuses();
         
@@ -18,21 +30,22 @@ function OrderStatuses() {
     return (
       
         <>
+            <h1>OrderStatuses</h1>
+
             <table>
                 <thead>
                     <tr>
-                        <th>orderStatusID</th>
-                        <th>orderID</th>
-                        <th>statusName</th>
-                        <th>statusDate</th>
-
-                        
+                        {orderStatuses.length > 0 && Object.keys(orderStatuses[0]).map((header, index) => (
+                            <th key={index}>{header}</th>
+                        ))}
+                        <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
-
-                    {orderStatuses.map((orderstatus) => (<OrderStatusRow key={orderstatus.orderStatusID} item={orderstatus} />))}
-
+                    {orderStatuses.map((orderstatus, index) => (
+                        <TableRow key={index} rowObject={orderstatus} refreshObjects={loadOrderStatuses} onDelete={onDelete} onEdit={onEdit}/>
+                    ))}
 
                 </tbody>
             </table>

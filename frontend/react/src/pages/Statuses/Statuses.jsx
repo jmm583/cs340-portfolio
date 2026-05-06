@@ -1,34 +1,50 @@
 
 import { useState, useEffect } from "react";
 import {getStatuses} from "../../components/apiClient";
-import StatusRow from "./StatusRow";
 
-function Statuses(){
+import { useNavigate } from 'react-router';
+import TableRow from '../../components/TableRow';
+
+function Statuses({setItemToEdit}){
     const [statusList, setStatusList] = useState([]);
-
+    const navigate = useNavigate();
     const loadStatuses = () => {
         const data = getStatuses();
         setStatusList(data);
     }
+    const onEdit = (item) =>{
+ 
+        setItemToEdit(item);
+        console.log("statusesEdit ");
+        navigate('/statuses/edit');
+    };
+    const onDelete = (item) => {
+
+        deleteStatuses(item);
+        loadStatuses();
+    };
     useEffect(() => {
         loadStatuses();
         
     }, []);
     return(
         <>
+            <h1>Statuses</h1>
+
             <table>
                 <thead>
                     <tr>
-                        <th>statusID</th>
-                        <th>statusName</th>
-
-                        
+                        {statusList.length > 0 && Object.keys(statusList[0]).map((header, index) => (
+                            <th key={index}>{header}</th>
+                        ))}
+                        <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
-
-                    {statusList.map((status) => (<StatusRow key={status.statusID} status={status} />))}
-
+                    {statusList.map((status, index) => (
+                        <TableRow key={index} rowObject={status} refreshObjects={loadStatuses} onDelete={onDelete} onEdit={onEdit}/>
+                    ))}
 
                 </tbody>
             </table>

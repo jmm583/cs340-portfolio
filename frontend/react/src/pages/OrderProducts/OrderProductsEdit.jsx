@@ -3,23 +3,24 @@
 
 import { useState } from "react";
 
-function OrderProductsEdit() {
-    const [orderProductsID, setOrderProductsID] = useState("");
-    const [orderID, setOrderID] = useState("");
-    const [productID, setProductID] = useState("");
-    const [quantity, setQuantity] = useState("");
+function OrderProductsEdit({itemToEdit}) {
+    const [orderProductsID, setOrderProductsID] = useState(itemToEdit.orderProductsID);
+    const [orderID, setOrderID] = useState(itemToEdit.orderID);
+    const [productID, setProductID] = useState(itemToEdit.productID);
+    const [quantity, setQuantity] = useState(itemToEdit.quantity);
 
     return (
     <>  
         <form>
             <label htmlFor="orderProductsID">orderProductsID</label>
-            <input name="orderProductsID" type="number" value={orderProductsID} onchange={setOrderProductsID} />
+            <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} />
             <label htmlFor="orderID">orderID</label>
-            <input name="orderID" type="checkbox" value={orderID} onchange={setOrderID} />
+            <input name="orderID" type="checkbox" value={orderID} onChange={setOrderID} />
             <label htmlFor="productID">productID</label>
-            <input name="productID" type="text" value={productID} onchange={setProductID} />
+            <input name="productID" type="text" value={productID} onChange={setProductID} />
             <label htmlFor="quantity">quantity</label>
             <input name="quantity" type="text" value={quantity} onChange={setQuantity} />
+            <button>Save</button>
         </form>
     </>
 )};

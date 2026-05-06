@@ -1,11 +1,11 @@
 
 import { useState } from "react";
 
-function CustomerEdit() {
-    const [firstName, setfirstName] = useState([]);
-    const [lastName, setlastName] = useState([]);
-    const [email, setemail] = useState([]);
-    const [phone, setPhone] = useState([]);
+function CustomerEdit({customer}) {
+    const [firstName, setfirstName] = useState([customer.firstName]);
+    const [lastName, setlastName] = useState([customer.lastName]);
+    const [email, setemail] = useState([customer.email]);
+    const [phone, setPhone] = useState([customer.phone]);
 
     return (
         <>
@@ -21,6 +21,7 @@ function CustomerEdit() {
 
                 <label htmlFor="phone">phone</label>
                 <input name="phone" type="number" value={phone} onChange={setPhone}/>
+                <button>Save</button>
             </form>
         </>
     )
