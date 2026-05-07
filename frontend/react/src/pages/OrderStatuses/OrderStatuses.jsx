@@ -31,7 +31,7 @@ function OrderStatuses({setItemToEdit}) {
       
         <div className='main'>
             <h1>OrderStatuses</h1>
-            <p><Link to='/ordersstatuses/create'>Add OrderStatus</Link></p>
+            <h2><Link to='/ordersstatuses/create'>Add OrderStatus</Link></h2>
 
             <table>
                 <thead>

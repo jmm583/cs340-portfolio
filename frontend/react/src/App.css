@@ -1,89 +1,52 @@
-/*
-palette colors
-  #43002a
-  #890027
-  #d9243c
-  #ff6157
-  #ffb762
-  #c76e46
-  #73392e
-  #34111f
-  #030710
-  #273b2d
-  #458239
-  #9cb93b
-  #ffd832
-  #ff823b
-  #d1401f
-  #7c191a
-  #310c1b
-  #833f34
-  #eb9c6e
-  #ffdaac
-  #ffffe4
-  #bfc3c6
-  #6d8a8d
-  #293b49
-  #041528
-  #033e5e
-  #1c92a7
-  #77d6c1 
-*/
-palette{
-  color: #43002a;
-  color: #890027;
-  color: #d9243c;
-  color: #ff6157;
-  color: #ffb762;
-  color: #c76e46;
-  color: #73392e;
-  color: #34111f;
-  color: #030710;
-  color: #273b2d;
-  color: #458239;
-  color: #9cb93b;
-  color: #ffd832;
-  color: #ff823b;
-  color: #d1401f;
-  color: #7c191a;
-  color: #310c1b;
-  color: #833f34;
-  color: #eb9c6e;
-  color: #ffdaac;
-  color: #ffffe4;
-  color: #bfc3c6;
-  color: #6d8a8d;
-  color: #293b49;
-  color: #041528;
-  color: #033e5e;
-  color: #1c92a7;
-  color: #77d6c1;
-}
-
-/* =========================
-   Base Styles
-   ========================= */
+/* =================================================
+   Color Palette (Updated)
+   ================================================= */
 
 :root {
-  --dark-wine: #43002a;
-  --deep-red: #890027;
-  --coral-red: #d9243c;
-  --soft-coral: #ff6157;
-  --golden: #ffb762;
-  --sand: #ffdaac;
-  --cream: #ffffe4;
+  /* Primary / Brand */
+  --primary-dark: #2c4941;
+  --primary: #66a650;
+  --primary-light: #b9d850;
 
-  --forest-dark: #273b2d;
-  --forest: #458239;
-  --leaf: #9cb93b;
+  /* Secondary / Cool Accent */
+  --cool-light: #82dcd7;
+  --cool: #208cb2;
 
-  --slate-dark: #041528;
-  --slate: #293b49;
-  --slate-soft: #bfc3c6;
+  /* Neutral / Structural */
+  --neutral-dark: #1d1b24;
+  --neutral: #253348;
+  --neutral-soft: #3a3a41;
+  --neutral-muted: #7a7576;
 
-  --teal: #1c92a7;
-  --aqua: #77d6c1;
+  /* Warm Accent */
+  --warm-metal: #b59a66;
+  --warm-light: #cec7b1;
+  --warm-bg: #edefe2;
+
+  /* Rose / Plum Accent */
+  --rose-light: #d78b98;
+  --rose: #a13d77;
+  --rose-dark: #6d2047;
+  --violet-dark: #3c1c43;
+
+  /* Earth / Brown */
+  --earth-dark: #2c2228;
+  --earth: #5e3735;
+  --earth-light: #885a44;
+
+  /* Orange / Gold */
+  --gold-dark: #b8560f;
+  --gold: #dc9824;
+  --gold-light: #efcb84;
+  --orange-soft: #e68556;
+
+  /* Alert */
+  --danger: #c02931;
 }
+
+/* =================================================
+   Global Base
+   ================================================= */
 
 * {
   box-sizing: border-box;
@@ -92,167 +55,184 @@ palette{
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--cream);
-  color: var(--slate-dark);
-  line-height: 1.6;
   font-size: 90%;
+  line-height: 1.55;
+  background-color: var(--neutral-dark);
+  color: var(--warm-bg);
 }
 
-/* =========================
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  max-width: 70ch;
+}
+
+/* =================================================
+   Page Container & Layout
+   ================================================= */
+
+.page-container {
+  max-width: 1200px;
+  min-width: 600px;
+  margin: 0 auto;
+  background-color: var(--neutral-dark);
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 160px);
+}
+
+/* =================================================
    Header
-   ========================= */
+   ================================================= */
+
 
 header {
-  background-color: var(--dark-wine);
-  color: var(--cream);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
+  color: var(--warm-bg);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark) 0%,
+      var(--primary) 35%,
+      var(--cool) 65%,
+      var(--cool-light) 100%
+    );
+
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+              0 2px 6px rgba(0, 0, 0, 0.25);
+
 }
 
+
+
 header h1 {
-  margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
+  letter-spacing: 0.5px;
 }
 
 header p {
-  margin: 0.5rem 0 0;
-  font-size: 1rem;
-  color: var(--sand);
+  color: var(--gold-light);
+  max-width: 60ch;
 }
 
-/* =========================
-   Navigation
-   ========================= */
+
+/* =================================================
+   Navigation (Left Column)
+   ================================================= */
 
 nav {
-  background-color: var(--deep-red);
+  width: 220px;
+  min-width: 180px;
+  flex-shrink: 0;
+  background-color: var(--neutral);
 }
 
 nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.75rem 0;
   display: flex;
-}
-
-nav li {
-  margin: 0;
+  flex-direction: column;
 }
 
 nav a {
   display: block;
-  padding: 1rem 1.25rem;
-  color: var(--cream);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--warm-bg);
   text-decoration: none;
-  font-weight: bold;
 }
 
 nav a:hover,
 nav a:focus {
-  background-color: var(--soft-coral);
-  color: var(--slate-dark);
+  background-color: var(--cool);
+  color: var(--neutral-dark);
 }
 
-/* =========================
-   Main Content Helpers
-   ========================= */
+/* =================================================
+   Main Content
+   ================================================= */
 
 main {
+  flex: 1;
   padding: 2rem;
+  background-color: var(--neutral-dark);
 }
 
-h2, h3 {
-  color: var(--forest-dark);
+main h2 {
+  margin-top: 0;
+  color: var(--primary-light);
 }
 
-p {
-  max-width: 65ch;
-}
-
-/* =========================
+/* =================================================
    Tables
-   ========================= */
+   ================================================= */
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem 0;
-  background-color: var(--cream);
-}
-
-caption {
-  caption-side: bottom;
-  padding-top: 0.75rem;
-  color: var(--slate);
+  margin: 1.75rem 0;
   font-size: 0.9rem;
+  background-color: var(--neutral-soft);
 }
 
 thead {
-  background-color: var(--forest);
-  color: var(--cream);
+  background-color: var(--primary);
+  color: var(--neutral-dark);
 }
 
 th,
 td {
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--earth-light);
   text-align: left;
-  border: 1px solid var(--slate-soft);
 }
 
 tbody tr:nth-child(even) {
-  background-color: #ffdaac;
+  background-color: var(--earth-dark);
 }
 
 tbody tr:hover {
-  background-color: var(--aqua);
+  background-color: var(--cool);
+  color: var(--neutral-dark);
 }
 
-
-
-
-/* =========================
+/* =================================================
    Forms
-   ========================= */
+   ================================================= */
 
 form {
   max-width: 600px;
-  margin: 2rem 0;
   padding: 1.5rem;
-  background-color: var(--cream);
-  border: 1px solid var(--slate-soft);
-  border-radius: 4px;
-}
-
-fieldset {
-  border: 1px solid var(--slate-soft);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-legend {
-  padding: 0 0.5rem;
-  font-weight: bold;
-  color: var(--forest-dark);
+  border: 1px solid var(--earth-light);
+  background-color: var(--neutral);
 }
 
 label {
   display: block;
   margin-bottom: 0.35rem;
-  font-weight: bold;
-  color: var(--slate);
+  font-weight: 600;
+  color: var(--warm-light);
 }
 
 input,
 select,
 textarea {
   width: 100%;
-  padding: 0.6rem 0.75rem;
-  margin-bottom: 1.1rem;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  color: var(--slate-dark);
-  background-color: #ffffe4;
-  border: 1px solid var(--slate-soft);
-  border-radius: 3px;
+  font-size: 0.95rem;
+  border: 1px solid var(--earth-light);
+  background-color: var(--neutral-dark);
+  color: var(--warm-bg);
 }
 
 textarea {
@@ -260,29 +240,16 @@ textarea {
   resize: vertical;
 }
 
-/* Focus states */
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(28, 146, 167, 0.25);
+  border-color: var(--cool-light);
 }
 
-/* Checkboxes & Radio Buttons */
-input[type="checkbox"],
-input[type="radio"] {
-  width: auto;
-  margin-right: 0.4rem;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-/* =========================
+/* =================================================
    Link‑Style Buttons
-   ========================= */
+   ================================================= */
 
 button,
 input[type="submit"],
@@ -291,115 +258,74 @@ input[type="reset"] {
   background: none;
   border: none;
   padding: 0;
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
-/* Primary (Link‑like CTA) */
+/* Primary Action */
 button.primary,
 input[type="submit"] {
-  color: var(--coral-red);
-  text-decoration-color: var(--soft-coral);
+  color: var(--primary-light);
 }
 
 button.primary:hover,
 input[type="submit"]:hover {
-  color: var(--deep-red);
-  text-decoration-color: var(--deep-red);
+  color: var(--cool-light);
 }
 
-/* Secondary (Neutral Link Action) */
+/* Secondary Action */
 button.secondary,
 input[type="reset"] {
-  color: var(--forest);
-  text-decoration-color: var(--leaf);
+  color: var(--warm-metal);
 }
 
 button.secondary:hover,
 input[type="reset"]:hover {
-  color: var(--forest-dark);
-  text-decoration-color: var(--forest-dark);
+  color: var(--gold-light);
 }
 
-/* Keyboard Focus (Accessible) */
+/* Focus */
 button:focus-visible,
 input:focus-visible {
   outline: none;
-  background-color: rgba(28, 146, 167, 0.15);
-  border-radius: 3px;
+  background-color: rgba(130, 220, 215, 0.25);
 }
 
+/* =================================================
+   Footer
+   ================================================= */
 
-/* =========================
-   Help & Validation Text
-   ========================= */
-
-.form-help {
-  font-size: 0.9rem;
-  color: var(--slate);
-  margin-top: -0.75rem;
-  margin-bottom: 1rem;
+footer {
+  background-color: var(--earth-dark);
+  color: var(--warm-light);
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.85rem;
 }
 
-.form-error {
-  color: var(--deep-red);
-  font-size: 0.9rem;
+footer a {
+  color: var(--gold);
+  text-decoration: none;
 }
 
-.form-success {
-  color: var(--forest);
-  font-size: 0.9rem;
-}
-/* =========================
-   Layout
-   ========================= */
-
-.layout {
-  display: flex;
-  min-height: calc(80vh - 160px); /* allows header + footer breathing room */
+footer a:hover {
+  text-decoration: underline;
 }
 
-/* =========================
-   Navigation (Left Column)
-   ========================= */
-
-nav {
-  width: 220px;
-  background-color: var(--deep-red);
-  flex-shrink: 0;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: column;
-}
-
-nav a {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* =========================
-   Main Content (Right Column)
-   ========================= */
-
-main {
-  flex: 1;
-  padding: 2rem;
-  background-color: var(--cream);
-}
-
-/* =========================
-   Responsive Adjustment
-   ========================= */
+/* =================================================
+   Responsive
+   ================================================= */
 
 @media (max-width: 768px) {
+  .page-container {
+    min-width: 100%;
+  }
+
   .layout {
     flex-direction: column;
   }
@@ -414,38 +340,6 @@ main {
   }
 
   nav a {
-    border-bottom: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    flex: 1;
   }
-}
-/* =========================
-   Page Container
-   ========================= */
-
-.page-container {
-  min-width: 600px;
-  margin: 0 auto;
-  background-color: var(--cream);
-}
-
-
-/* =========================
-   Footer
-   ========================= */
-
-footer {
-  background-color: var(--slate-dark);
-  color: var(--slate-soft);
-  padding: 1.5rem;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-footer a {
-  color: var(--golden);
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
 }

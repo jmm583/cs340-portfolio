@@ -1,0 +1,319 @@
+/* =================================================
+   Color Palette (Updated)
+   ================================================= */
+
+:root {
+  /* Primary */
+  --primary-dark: #79444a;
+  --primary: #ae5d40;
+  --primary-soft: #c77b58;
+
+  /* Accent */
+  --accent-dark: #927441;
+  --accent: #ba9158;
+  --accent-soft: #d1b187;
+
+  /* Backgrounds */
+  --background-main: #d2c9a5;
+  --background-soft: #ffffe4;
+
+  /* Navigation / Structure */
+  --nav-dark: #4b3d44;
+  --nav: #574852;
+
+  /* Text */
+  --text-dark: #4d4539;
+  --text-muted: #847875;
+
+  /* Borders / Surfaces */
+  --surface-alt: #ab9b8e;
+  --border-soft: #b3a555;
+
+  /* Calm Accent */
+  --calm-dark: #4b726e;
+  --calm: #8caba1;
+}
+
+/* =================================================
+   Global Base
+   ================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 90%; /* 10% reduction */
+  line-height: 1.55;
+  background-color: var(--background-main);
+  color: var(--text-dark);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  max-width: 70ch;
+}
+
+/* =================================================
+   Page Container & Layout
+   ================================================= */
+
+.page-container {
+  max-width: 1200px;
+  min-width: 600px;
+  margin: 0 auto;
+  background-color: var(--background-main);
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 160px);
+}
+
+/* =================================================
+   Header
+   ================================================= */
+
+header {
+  background-color: var(--primary-dark);
+  color: var(--background-soft);
+  padding: 1.25rem 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+header p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--accent-soft);
+}
+
+/* =================================================
+   Navigation (Left Column)
+   ================================================= */
+
+nav {
+  width: 220px;
+  min-width: 180px;
+  flex-shrink: 0;
+  background-color: var(--nav-dark);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--background-soft);
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--primary-soft);
+  color: var(--text-dark);
+}
+
+/* =================================================
+   Main Content
+   ================================================= */
+
+main {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--background-main);
+}
+
+main h2 {
+  margin-top: 0;
+  color: var(--text-dark);
+}
+
+/* =================================================
+   Tables
+   ================================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: 0.9rem;
+  background-color: var(--background-soft);
+}
+
+thead {
+  background-color: var(--accent-dark);
+  color: var(--background-soft);
+}
+
+th,
+td {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border-soft);
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--surface-alt);
+}
+
+tbody tr:hover {
+  background-color: var(--calm);
+}
+
+/* =================================================
+   Forms
+   ================================================= */
+
+form {
+  max-width: 600px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-soft);
+  background-color: var(--background-soft);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-soft);
+  background-color: var(--background-soft);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--calm-dark);
+}
+
+/* =================================================
+   Link‑Style Buttons (Professional)
+   ================================================= */
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Primary Action */
+button.primary,
+input[type="submit"] {
+  color: var(--primary);
+}
+
+button.primary:hover,
+input[type="submit"]:hover {
+  color: var(--primary-dark);
+}
+
+/* Secondary Action */
+button.secondary,
+input[type="reset"] {
+  color: var(--calm-dark);
+}
+
+button.secondary:hover,
+input[type="reset"]:hover {
+  color: var(--nav-dark);
+}
+
+/* Focus (Keyboard Accessibility) */
+button:focus-visible,
+input:focus-visible {
+  outline: none;
+  background-color: rgba(140, 171, 161, 0.25);
+}
+
+/* =================================================
+   Footer
+   ================================================= */
+
+footer {
+  background-color: var(--nav);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.85rem;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* =================================================
+   Responsive
+   ================================================= */
+
+@media (max-width: 768px) {
+  .page-container {
+    min-width: 100%;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    flex: 1;
+  }
+}

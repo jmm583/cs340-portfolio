@@ -32,7 +32,7 @@ function Customers({setItemToEdit}) {
         <div className='main'>
 
             <h1>Customers</h1>
-            <p><Link to="/customers/create">Add Customer</Link></p>
+            <h2><Link to="/customers/create">Add Customer</Link></h2>
             <table>
                 <thead>
                     <tr>

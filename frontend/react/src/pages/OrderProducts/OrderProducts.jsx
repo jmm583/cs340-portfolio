@@ -30,7 +30,7 @@ function OrderProducts({setItemToEdit}) {
     return (
         <div className='main'>
             <h1>OrderProducts</h1>
-            <p><Link to='/orderproducts/create'>Add OrderProduct</Link></p>
+            <h2><Link to='/orderproducts/create'>Add OrderProduct</Link></h2>
 
             <table>
                 <thead>

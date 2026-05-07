@@ -46,7 +46,7 @@ function App() {
     <div className='page-container'>
       <header>
         <h1>NobleGoldFish</h1>
-        <p>Skate Shop Portal DBMS</p>
+        <h2>Skate Shop Portal DBMS</h2>
       </header>
       <div className='app'>
         <div className='layout'>

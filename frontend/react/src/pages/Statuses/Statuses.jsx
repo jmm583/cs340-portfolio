@@ -31,7 +31,7 @@ function Statuses({setItemToEdit}){
     return(
         <div className='main'>
             <h1>Statuses</h1>
-            <p><Link to="/statuses/create"> Add Status</Link></p>
+            <h2><Link to="/statuses/create"> Add Status</Link></h2>
 
             <table>
                 <thead>

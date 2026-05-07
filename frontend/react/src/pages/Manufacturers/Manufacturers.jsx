@@ -33,7 +33,7 @@ function Manufacturers({setItemToEdit}) {
     return (
         <div className='main'>
             <h1>Manufacturers</h1>
-            <p><Link to="/manufacturers/create">Add Manufacturer</Link></p>
+            <h2><Link to="/manufacturers/create">Add Manufacturer</Link></h2>
 
             <table>
                 <thead>

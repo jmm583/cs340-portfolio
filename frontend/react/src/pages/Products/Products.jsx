@@ -32,7 +32,7 @@ function Products({setItemToEdit}) {
     return (
         <div className='main'>
             <h1>Products</h1>
-            <p><Link to="/products/create">Add Product</Link></p>
+            <h2><Link to="/products/create">Add Product</Link></h2>
             <table>
                 <thead>
                     <tr>
