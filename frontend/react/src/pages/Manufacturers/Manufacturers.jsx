@@ -31,7 +31,7 @@ function Manufacturers({setItemToEdit}) {
     }, []);
 
     return (
-        <>
+        <div className='main'>
             <h1>Manufacturers</h1>
             <p><a href="/manufacturers/create">Add Manufacturer</a></p>
 
@@ -41,6 +41,7 @@ function Manufacturers({setItemToEdit}) {
                         {manufacturers.length > 0 && Object.keys(manufacturers[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -53,7 +54,7 @@ function Manufacturers({setItemToEdit}) {
                 </tbody>
             </table>
 
-        </>
+        </div>
     )
 };
 

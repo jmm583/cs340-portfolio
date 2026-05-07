@@ -18,7 +18,8 @@ function StatusesCreate(){
 
     }
     return(
-        <><h1>Add Statuses</h1>
+        <div className='main'>
+            <h1>Add Statuses</h1>
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="statusID">statusID</label>
                 <input name = "statusID" type="text" value={statusID} onChange={e => setDescription(e.target.value)}/> */}
@@ -26,7 +27,7 @@ function StatusesCreate(){
                 <input name = "statusName "type="text" value={statusName} onChange={e => setStatusName(e.target.value)} />
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 };
 

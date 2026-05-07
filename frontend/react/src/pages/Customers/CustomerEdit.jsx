@@ -6,10 +6,13 @@ function CustomerEdit({customer}) {
     const [lastName, setlastName] = useState([customer.lastName]);
     const [email, setemail] = useState([customer.email]);
     const [phone, setPhone] = useState([customer.phone]);
-
+    const onSubmit = (e) => {
+        e.preventDefault();
+    }
     return (
-        <><h1>Edit Customer</h1>
-            <form>
+        <div className='main'>
+            <h1>Edit Customer</h1>
+            <form onSubmit={onSubmit}>
                 <label htmlFor="firstName">firstName</label>
                 <input name="firstName" type="text" value={firstName} onChange={setfirstName}/>
 
@@ -21,9 +24,9 @@ function CustomerEdit({customer}) {
 
                 <label htmlFor="phone">phone</label>
                 <input name="phone" type="number" value={phone} onChange={setPhone}/>
-                <button>Save</button>
+                <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 };
 export default CustomerEdit;

@@ -19,7 +19,8 @@ function OrderCreate(){
     }
 
     return (
-        <><h1>Add Order</h1>
+        <div className='main'>
+            <h1>Add Order</h1>
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="orderID">orderID</label>
                 <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/> */}
@@ -34,7 +35,7 @@ function OrderCreate(){
                 <input name="totalCost" type="text" value={totalCost} onChange={e => setTotalCost(e.target.value)} />
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 }
 

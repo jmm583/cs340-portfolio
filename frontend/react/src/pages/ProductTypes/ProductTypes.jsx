@@ -29,8 +29,7 @@ function ProductTypes({setItemToEdit}) {
         
     }, []);
     return (
-        <>
-
+        <div className='main'>
             <h1>ProductTypes</h1>
             <p><a href="/producttypes/create">Add ProductType</a></p>
 
@@ -40,6 +39,7 @@ function ProductTypes({setItemToEdit}) {
                         {productTypes.length > 0 && Object.keys(productTypes[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -54,7 +54,7 @@ function ProductTypes({setItemToEdit}) {
             
                
        
-        </>
+        </div>
     )
 };
 export default ProductTypes;

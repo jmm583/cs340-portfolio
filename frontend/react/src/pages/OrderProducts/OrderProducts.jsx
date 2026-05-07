@@ -28,7 +28,7 @@ function OrderProducts({setItemToEdit}) {
     }, []);
 
     return (
-        <>
+        <div className='main'>
             <h1>OrderProducts</h1>
             <p><a href='/orderproducts/create'>Add OrderProduct</a></p>
 
@@ -38,6 +38,7 @@ function OrderProducts({setItemToEdit}) {
                         {orderProducts.length > 0 && Object.keys(orderProducts[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -50,7 +51,7 @@ function OrderProducts({setItemToEdit}) {
                 </tbody>
             </table>
 
-        </>
+        </div>
     )
 };
 

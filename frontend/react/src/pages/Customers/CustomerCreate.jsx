@@ -19,7 +19,8 @@ function CustomerCreate() {
 
     }
     return (
-        <><h1>Create Customer</h1>
+        <div className='main'>
+            <h1>Create Customer</h1>
             <form onSubmit={onSubmit}>
                 <label htmlFor="firstName">firstName</label>
                 <input name="firstName" type="text" value={firstName} onChange={ e => setFirstName(e.target.value)}/>
@@ -34,7 +35,7 @@ function CustomerCreate() {
                 <input name="phone" type="number" value={phone} onChange={e => setPhone(e.target.value)}/>
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 };
 export default CustomerCreate;

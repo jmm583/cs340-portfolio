@@ -29,8 +29,7 @@ function Products({setItemToEdit}) {
         
     }, []);
     return (
-        <>
-
+        <div className='main'>
             <h1>Products</h1>
             <p><a href="/products/create">Add Product</a></p>
             <table>
@@ -54,7 +53,7 @@ function Products({setItemToEdit}) {
             
                
        
-        </>
+        </div>
     )
 };
 export default Products;

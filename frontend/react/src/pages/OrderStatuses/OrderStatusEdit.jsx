@@ -13,10 +13,13 @@ function OrderStatusEdit({orderstatus}) {
         setStatusID(e.target.value);
 
     };
-
+    const onSubmit = (e) => {
+        e.preventDefault();
+    }
     return (
-        <><h1>Edit OrderStatus</h1>
-            <form>
+        <div className='main'>
+            <h1>Edit OrderStatus</h1>
+            <form onSubmit={onSubmit}>
                 <label htmlFor="orderStatusID">orderStatusID</label>
                 <input name="orderStatusID" type="text" value={orderStatusID} onChange={setOrderStatusID} ></input>
 
@@ -35,9 +38,9 @@ function OrderStatusEdit({orderstatus}) {
 
                 <label htmlFor="statusDate">statusDate</label>
                 <input name="statusDate" type="date" value={statusDate} onChange={setStatusDate}></input>
-                <button>Save</button>
+                <button type='submit' >Save</button>
             </form>
-        </>
+        </div>
     )
 };
 

@@ -28,7 +28,7 @@ function Customers({setItemToEdit}) {
         
     }, []);
     return (
-        <>
+        <div className='main'>
 
             <h1>Customers</h1>
             <p><a href="/customers/create">Add Customer</a></p>
@@ -38,6 +38,7 @@ function Customers({setItemToEdit}) {
                         {customers.length > 0 && Object.keys(customers[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -52,7 +53,7 @@ function Customers({setItemToEdit}) {
             
                
        
-        </>
+        </div>
     )
 };
 export default Customers;

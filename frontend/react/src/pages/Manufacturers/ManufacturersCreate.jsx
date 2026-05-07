@@ -19,7 +19,8 @@ function ManufacturersCreate() {
 
     }
     return (
-        <><h1>Add Manufacturer</h1>
+        <div className='main'>
+            <h1>Add Manufacturer</h1>
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="manufacturerID">manufacturerID:</label>
                 <input name="manufacturerID" type="number" value={manufacturerID} onChange={ e => setmanufacturerID(e.target.value)} /> */}
@@ -38,7 +39,7 @@ function ManufacturersCreate() {
 
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 }
 

@@ -28,7 +28,7 @@ function Statuses({setItemToEdit}){
         
     }, []);
     return(
-        <>
+        <div className='main'>
             <h1>Statuses</h1>
             <p><a href="/statuses/create"> Add Status</a></p>
 
@@ -38,6 +38,7 @@ function Statuses({setItemToEdit}){
                         {statusList.length > 0 && Object.keys(statusList[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -50,7 +51,7 @@ function Statuses({setItemToEdit}){
                 </tbody>
             </table>
 
-        </>
+        </div>
     )
 };
 

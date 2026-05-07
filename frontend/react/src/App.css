@@ -29,3 +29,406 @@ palette colors
   #1c92a7
   #77d6c1 
 */
+palette{
+  color: #43002a;
+  color: #890027;
+  color: #d9243c;
+  color: #ff6157;
+  color: #ffb762;
+  color: #c76e46;
+  color: #73392e;
+  color: #34111f;
+  color: #030710;
+  color: #273b2d;
+  color: #458239;
+  color: #9cb93b;
+  color: #ffd832;
+  color: #ff823b;
+  color: #d1401f;
+  color: #7c191a;
+  color: #310c1b;
+  color: #833f34;
+  color: #eb9c6e;
+  color: #ffdaac;
+  color: #ffffe4;
+  color: #bfc3c6;
+  color: #6d8a8d;
+  color: #293b49;
+  color: #041528;
+  color: #033e5e;
+  color: #1c92a7;
+  color: #77d6c1;
+}
+
+/* =========================
+   Base Styles
+   ========================= */
+
+:root {
+  --dark-wine: #43002a;
+  --deep-red: #890027;
+  --coral-red: #d9243c;
+  --soft-coral: #ff6157;
+  --golden: #ffb762;
+  --sand: #ffdaac;
+  --cream: #ffffe4;
+
+  --forest-dark: #273b2d;
+  --forest: #458239;
+  --leaf: #9cb93b;
+
+  --slate-dark: #041528;
+  --slate: #293b49;
+  --slate-soft: #bfc3c6;
+
+  --teal: #1c92a7;
+  --aqua: #77d6c1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cream);
+  color: var(--slate-dark);
+  line-height: 1.6;
+  font-size: 90%;
+}
+
+/* =========================
+   Header
+   ========================= */
+
+header {
+  background-color: var(--dark-wine);
+  color: var(--cream);
+  padding: 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+header p {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  color: var(--sand);
+}
+
+/* =========================
+   Navigation
+   ========================= */
+
+nav {
+  background-color: var(--deep-red);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  padding: 1rem 1.25rem;
+  color: var(--cream);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--soft-coral);
+  color: var(--slate-dark);
+}
+
+/* =========================
+   Main Content Helpers
+   ========================= */
+
+main {
+  padding: 2rem;
+}
+
+h2, h3 {
+  color: var(--forest-dark);
+}
+
+p {
+  max-width: 65ch;
+}
+
+/* =========================
+   Tables
+   ========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background-color: var(--cream);
+}
+
+caption {
+  caption-side: bottom;
+  padding-top: 0.75rem;
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+thead {
+  background-color: var(--forest);
+  color: var(--cream);
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid var(--slate-soft);
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ffdaac;
+}
+
+tbody tr:hover {
+  background-color: var(--aqua);
+}
+
+
+
+
+/* =========================
+   Forms
+   ========================= */
+
+form {
+  max-width: 600px;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--cream);
+  border: 1px solid var(--slate-soft);
+  border-radius: 4px;
+}
+
+fieldset {
+  border: 1px solid var(--slate-soft);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: bold;
+  color: var(--forest-dark);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: bold;
+  color: var(--slate);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 1.1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--slate-dark);
+  background-color: #ffffe4;
+  border: 1px solid var(--slate-soft);
+  border-radius: 3px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus states */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(28, 146, 167, 0.25);
+}
+
+/* Checkboxes & Radio Buttons */
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: 0.4rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  padding: 0.65rem 1.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button.primary,
+input[type="submit"] {
+  background-color: var(--coral-red);
+  color: var(--cream);
+}
+
+button.primary:hover,
+input[type="submit"]:hover {
+  background-color: var(--soft-coral);
+  color: var(--slate-dark);
+}
+
+button.secondary,
+input[type="reset"] {
+  background-color: var(--forest);
+  color: var(--cream);
+}
+
+button.secondary:hover,
+input[type="reset"]:hover {
+  background-color: var(--leaf);
+  color: var(--slate-dark);
+}
+
+/* =========================
+   Help & Validation Text
+   ========================= */
+
+.form-help {
+  font-size: 0.9rem;
+  color: var(--slate);
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+}
+
+.form-error {
+  color: var(--deep-red);
+  font-size: 0.9rem;
+}
+
+.form-success {
+  color: var(--forest);
+  font-size: 0.9rem;
+}
+/* =========================
+   Layout
+   ========================= */
+
+.layout {
+  display: flex;
+  min-height: calc(80vh - 160px); /* allows header + footer breathing room */
+}
+
+/* =========================
+   Navigation (Left Column)
+   ========================= */
+
+nav {
+  width: 220px;
+  background-color: var(--deep-red);
+  flex-shrink: 0;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   Main Content (Right Column)
+   ========================= */
+
+main {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--cream);
+}
+
+/* =========================
+   Responsive Adjustment
+   ========================= */
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+/* =========================
+   Page Container
+   ========================= */
+
+.page-container {
+  min-width: 600px;
+  margin: 0 auto;
+  background-color: var(--cream);
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+
+footer {
+  background-color: var(--slate-dark);
+  color: var(--slate-soft);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--golden);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

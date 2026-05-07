@@ -6,9 +6,13 @@ function ManufacturersEdit({itemToEdit}) {
     const [country, setcountry] = useState(itemToEdit.country);
     const [contactEmail, setcontactEmail] = useState(itemToEdit.contactEmail);
     const [contactPhone, setcontactPhone] = useState(itemToEdit.contactPhone);
+    const onSubmit = (e) => {
+        e.preventDefault();
+    }
     return (
-        <><h1>Edit Manufacturer</h1>
-            <form>
+        <div className='main'>
+            <h1>Edit Manufacturer</h1>
+            <form onSubmit={onSubmit}>
                 <label htmlFor="manufacturerID">manufacturerID:</label>
                 <input name="manufacturerID" type="number" value={manufacturerID} onChange={setmanufacturerID} />
                 <label htmlFor="brandName">brandName:</label>
@@ -19,9 +23,9 @@ function ManufacturersEdit({itemToEdit}) {
                 <input name="contactEmail"type="text" value={contactEmail} onChange={setcontactEmail} />
                 <label htmlFor="contactPhone">contactPhone:</label>
                 <input name="contactPhone" type="text" value={contactPhone} onChange={setcontactPhone} />
-                <button>Save</button>
+                <button type='submit'>Save</button>
             </form>
-        </>
+        </div>
     )
 }
 

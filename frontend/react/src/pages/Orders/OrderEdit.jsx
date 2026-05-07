@@ -6,9 +6,13 @@ function OrderEdit({order}){
     const [complete, setComplete] = useState(order.complete);
     const [totalCost, setTotalCost] = useState(order.totalCost);
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+    }
     return (
-        <><h1>Edit Order</h1>
-            <form>
+        <div className='main'>
+            <h1>Edit Order</h1>
+            <form onSubmit={onSubmit}>
                 <label htmlFor="orderID">orderID</label>
                 <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/>
 
@@ -20,9 +24,9 @@ function OrderEdit({order}){
 
                 <label htmlFor="totalCost">totalCost</label>
                 <input name="totalCost" type="text" value={totalCost} onChange={setTotalCost} />
-                <button>Save</button>
+                <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 }
 

@@ -29,7 +29,7 @@ function OrderStatuses({setItemToEdit}) {
     }, []);
     return (
       
-        <>
+        <div className='main'>
             <h1>OrderStatuses</h1>
             <p><a href='/ordersstatuses/create'>Add OrderStatus</a></p>
 
@@ -39,6 +39,7 @@ function OrderStatuses({setItemToEdit}) {
                         {orderStatuses.length > 0 && Object.keys(orderStatuses[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -51,7 +52,7 @@ function OrderStatuses({setItemToEdit}) {
                 </tbody>
             </table>
 
-        </>
+        </div>
 
        
     )

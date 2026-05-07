@@ -16,7 +16,8 @@ function ProductTypesCreate() {
 
     }
     return(
-        <><h1>Add ProductTypes</h1>
+        <div className='main'>
+            <h1>Add ProductTypes</h1>
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="productTypeID">productTypeID:</label>
                 <input name="productTypeID" type="number" value={productTypeID} onChange={setProductTypeID}/> */}
@@ -25,7 +26,7 @@ function ProductTypesCreate() {
                 <input name="typeName" type="text" value={typeName} onChange={e => setTypeName(e.target.value)} />
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 };
 

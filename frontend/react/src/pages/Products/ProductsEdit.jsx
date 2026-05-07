@@ -18,9 +18,13 @@ function ProductsEdit({itemToEdit}) {
     const setManufacturer = (e) => {
         setManufacturerID(e.target.value);
     }
+    const onSubmit = (e) => {
+        e.preventDefault();
+    }
     return (
-        <div><h1>Edit Products</h1>
-            <form>
+        <div className='main'>
+            <h1>Edit Products</h1>
+            <form onSubmit={onSubmit}>
                 <label htmlFor="productID">productID:</label>
                 <input name="productID" type="number" value={productID} onChange={setProductID} />
 

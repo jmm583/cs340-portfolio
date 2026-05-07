@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { getStatuses, createOrderStatuses } from "../../components/apiClient";
 import { useNavigate } from "react-router";
+
 function OrderStatusCreate() {
     const [orderStatusID, setOrderStatusID] = useState();
     const [orderID, setOrderID] = useState();
@@ -24,7 +25,8 @@ function OrderStatusCreate() {
     }
 
     return (
-        <><h1>Add OrderStatus</h1>
+        <div className='main'>
+            <h1>Add OrderStatus</h1>
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="orderStatusID">orderStatusID</label>
                 <input name="orderStatusID" type="text" value={orderStatusID} onChange={setOrderStatusID} ></input> */}
@@ -46,7 +48,7 @@ function OrderStatusCreate() {
                 <input name="statusDate" type="date" value={statusDate} onChange={e => setStatusDate(e.target.value)}></input>
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     )
 };
 
