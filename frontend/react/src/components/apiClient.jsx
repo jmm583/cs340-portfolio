@@ -89,89 +89,96 @@ const getData = async function () {
 // Product Functions
 function getProducts() {
     return sampleData["Products"];
-}
+};
 function deleteProduct(item) {
-    const itemIndex = sampleData["Products"].find(item);
-
-    sampleData["Products"].splice(itemIndex, 1);
-}
+    const filtered =sampleData["Products"].filter(product => product.productID !== item.productID);
+    sampleData["Products"] = filtered;
+    
+    return sampleData["Products"];
+};
 function createProduct(customer) {
     sampleData["Products"].push(customer);
-}
+};
 
 // Customer Fuctions
 function getCustomers() {
-    return sampleData["Customers"]
-}
+    return sampleData["Customers"];
+};
 function deleteCustomer(item) {
-    const customer = sampleData["Customers"].find(item);
+    const filtered = sampleData["Customers"].filter(customer => customer.customerID !==item.customerID);
+    sampleData["Customers"] = filtered;
 
-    sampleData["Customers"].splice(customer, 1);
-}
+    return sampleData["Customers"];
+};
 function createCustomer(customer) {
     sampleData["Customers"].push(customer);
-}
+};
 
 // Manufacturer Functions
 function getManufacturers() {
-    return sampleData["Manufacturers"]
-}
+    return sampleData["Manufacturers"];
+};
 function deleteManufacturer(item) {
-    const itemIndex = sampleData["Manufacturers"].find(item);
+    const filtered = sampleData["Manufacturers"].filter(manufacturer => manufacturer.manufacturerID !== item.manufacturerID);
 
-    sampleData["Manufacturers"].splice(itemIndex, 1);
-}
+    sampleData["Manufacturers"] = filtered;
+    return sampleData["Manufacturers"];
+};
 function createManufacturer(item) {
     sampleData["Manufacturers"].push(item);
-}
+};
 
 // Statuses Functions
 function getStatuses() {
-    return sampleData["Statuses"]
-}
+    return sampleData["Statuses"];
+};
 function deleteStatuses(item) {
-    const itemIndex = sampleData["Statuses"].find(item);
+    const filtered = sampleData["Statuses"].filter(statuses => statuses.statusID !== item.statusID);
 
-    sampleData["Statuses"].splice(itemIndex, 1);
-}
+    sampleData["Statuses"] = filtered;
+    return sampleData["Statuses"];
+};
 function createStatuses(item) {
     sampleData["Statuses"].push(item);
-}
+};
 
 // Order Functions
 function getOrders() {
-    return sampleData["Orders"]
-}
+    return sampleData["Orders"];
+};
 function deleteOrder(item) {
-    const itemIndex = sampleData["Orders"].find(item);
+    const filtered = sampleData["Orders"].filter(order => order.orderID !== item.orderID);
 
-    sampleData["Orders"].splice(itemIndex, 1);
-}
+    sampleData["Orders"] = filtered;
+    return sampleData["Orders"];
+};
 function createOrder(item) {
     sampleData["Orders"].push(item);
-}
+};
 
 // ProductTypes Functions
 function getProductTypes() {
-    return sampleData["ProductTypes"]
-}
+    return sampleData["ProductTypes"];
+};
 function deleteProductType(item) {
-    const itemIndex = sampleData["ProductTypes"].find(item);
+    const filtered = sampleData["ProductTypes"].filter( productTypes => productTypes.productTypeID !== item.productTypeID);
 
-    sampleData["ProductTypes"].splice(itemIndex, 1);
-}
+    sampleData["ProductTypes"] = filtered;
+    return sampleData["ProductTypes"];
+};
 function createProductType(item) {
     sampleData["ProductTypes"].push(item);
-}
+};
 
 // OrderStatuses Functions
 function getOrderStatuses() {
-    return sampleData["OrderStatuses"]
-}
+    return sampleData["OrderStatuses"];
+};
 function deleteOrderStatuses(item) {
-    const itemIndex = sampleData["OrderStatuses"].find(item);
+    const filtered = sampleData["OrderStatuses"].filter(orderStatus => orderStatus.orderStatusID !== item.orderStatusID);
 
-    sampleData["OrderStatuses"].splice(itemIndex, 1);
+    sampleData["OrderStatuses"] = filtered;
+    return sampleData["OrderStatuses"];
 }
 function createOrderStatuses(item) {
     sampleData["OrderStatuses"].push(item);
@@ -179,17 +186,18 @@ function createOrderStatuses(item) {
 
 // OrderProducts Functions
 function getOrderProducts() {
-    return sampleData["OrderProducts"]
-}
+    return sampleData["OrderProducts"];
+};
 
 function deleteOrderProduct(item) {
-    const itemIndex = sampleData["OrderProducts"].find(item);
+    const filtered = sampleData["OrderProducts"].filter(orderProduct => orderProduct.orderProductsID !== item.orderProductsID);
 
-    sampleData["OrderProducts"].splice(itemIndex, 1);
-}
+    sampleData["OrderProducts"] = filtered;
+    return sampleData["OrderProducts"];
+};
 function createOrderProduct(item) {
     sampleData["OrderProducts"].push(item);
-}
+};
 
 
 export default getData;

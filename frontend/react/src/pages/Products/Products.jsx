@@ -19,9 +19,10 @@ function Products({setItemToEdit}) {
         navigate('/products/edit');
     };
     const onDelete = (item) => {
+        setProducts(deleteProduct(item));
+ 
+        console.log("deleted Product", item.productID)
 
-        deleteProduct(item);
-        loadProducts();
     };
     useEffect(() => {
         loadProducts();
@@ -38,6 +39,7 @@ function Products({setItemToEdit}) {
                         {products.length > 0 && Object.keys(products[0]).map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>

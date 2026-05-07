@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import {getStatuses} from "../../components/apiClient";
+import {getStatuses, deleteStatuses} from "../../components/apiClient";
 
 import { useNavigate } from 'react-router';
 import TableRow from '../../components/TableRow';
