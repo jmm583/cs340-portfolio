@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
 import { getProducts, deleteProduct } from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
+import { Link } from 'react-router';
 
 function Products({setItemToEdit}) {
     const [products, setProducts] = useState([]);
@@ -31,7 +32,7 @@ function Products({setItemToEdit}) {
     return (
         <div className='main'>
             <h1>Products</h1>
-            <p><a href="/products/create">Add Product</a></p>
+            <p><Link to="/products/create">Add Product</Link></p>
             <table>
                 <thead>
                     <tr>

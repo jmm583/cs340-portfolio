@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
 import {getOrderStatuses, deleteOrderStatuses} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
-
+import { Link } from 'react-router';
 
 function OrderStatuses({setItemToEdit}) {
     const [orderStatuses, setOrderStatuses] = useState([]);
@@ -31,7 +31,7 @@ function OrderStatuses({setItemToEdit}) {
       
         <div className='main'>
             <h1>OrderStatuses</h1>
-            <p><a href='/ordersstatuses/create'>Add OrderStatus</a></p>
+            <p><Link to='/ordersstatuses/create'>Add OrderStatus</Link></p>
 
             <table>
                 <thead>

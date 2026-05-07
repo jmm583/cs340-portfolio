@@ -4,6 +4,7 @@ import {getStatuses, deleteStatuses} from "../../components/apiClient";
 
 import { useNavigate } from 'react-router';
 import TableRow from '../../components/TableRow';
+import { Link } from 'react-router';
 
 function Statuses({setItemToEdit}){
     const [statusList, setStatusList] = useState([]);
@@ -30,7 +31,7 @@ function Statuses({setItemToEdit}){
     return(
         <div className='main'>
             <h1>Statuses</h1>
-            <p><a href="/statuses/create"> Add Status</a></p>
+            <p><Link to="/statuses/create"> Add Status</Link></p>
 
             <table>
                 <thead>

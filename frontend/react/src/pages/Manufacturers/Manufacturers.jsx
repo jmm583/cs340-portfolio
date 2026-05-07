@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
 import {getManufacturers, deleteManufacturer} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
-
+import { Link } from 'react-router';
 
 function Manufacturers({setItemToEdit}) {
     const [manufacturers, setManufacturers] = useState([]);
@@ -33,7 +33,7 @@ function Manufacturers({setItemToEdit}) {
     return (
         <div className='main'>
             <h1>Manufacturers</h1>
-            <p><a href="/manufacturers/create">Add Manufacturer</a></p>
+            <p><Link to="/manufacturers/create">Add Manufacturer</Link></p>
 
             <table>
                 <thead>
