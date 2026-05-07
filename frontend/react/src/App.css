@@ -281,43 +281,60 @@ input[type="radio"] {
 }
 
 /* =========================
-   Buttons
+   Link‑Style Buttons
    ========================= */
 
 button,
 input[type="submit"],
 input[type="reset"] {
-  padding: 0.65rem 1.4rem;
-  font-size: 1rem;
-  font-weight: bold;
+  appearance: none;
+  background: none;
   border: none;
-  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
+/* Primary (Link‑like CTA) */
 button.primary,
 input[type="submit"] {
-  background-color: var(--coral-red);
-  color: var(--cream);
+  color: var(--coral-red);
+  text-decoration-color: var(--soft-coral);
 }
 
 button.primary:hover,
 input[type="submit"]:hover {
-  background-color: var(--soft-coral);
-  color: var(--slate-dark);
+  color: var(--deep-red);
+  text-decoration-color: var(--deep-red);
 }
 
+/* Secondary (Neutral Link Action) */
 button.secondary,
 input[type="reset"] {
-  background-color: var(--forest);
-  color: var(--cream);
+  color: var(--forest);
+  text-decoration-color: var(--leaf);
 }
 
 button.secondary:hover,
 input[type="reset"]:hover {
-  background-color: var(--leaf);
-  color: var(--slate-dark);
+  color: var(--forest-dark);
+  text-decoration-color: var(--forest-dark);
 }
+
+/* Keyboard Focus (Accessible) */
+button:focus-visible,
+input:focus-visible {
+  outline: none;
+  background-color: rgba(28, 146, 167, 0.15);
+  border-radius: 3px;
+}
+
 
 /* =========================
    Help & Validation Text
