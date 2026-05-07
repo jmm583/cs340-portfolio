@@ -87,6 +87,50 @@ p {
   min-height: calc(100vh - 160px);
 }
 
+
+/* =========================================
+   Header Banner with Raster Logo
+   ========================================= */
+
+.site-header {
+  padding: 2rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark),
+    var(--primary),
+    var(--cool),
+    var(--cool-light)
+  );
+}
+
+/* Layout */
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+/* Logo Image */
+.header-logo {
+  width: 150px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Text */
+.site-title h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--warm-bg);
+}
+
+.site-title p {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--gold-light);
+}
+
+
 /* =================================================
    Header
    ================================================= */

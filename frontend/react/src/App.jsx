@@ -44,10 +44,26 @@ function App() {
 
   return (
     <div className='page-container'>
-      <header>
-        <h1>NobleGoldFish</h1>
-        <h2>Skate Shop Portal DBMS</h2>
+
+      <header className="site-header">
+        <div className="header-content">
+    
+          <img
+            src="/logo-noblegoldfish.png"
+            alt="NobleGoldfish mascot riding a skateboard"
+            className="header-logo"
+          />
+        
+
+
+          <div className="site-title">
+            <h1>NobleGoldfish</h1>
+            <p>Riding above the current</p>
+          </div>
+        </div>
       </header>
+
+
       <div className='app'>
         <div className='layout'>
           <Router>
