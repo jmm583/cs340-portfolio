@@ -23,9 +23,14 @@ function StatusesCreate(){
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="statusID">statusID</label>
                 <input name = "statusID" type="text" value={statusID} onChange={e => setDescription(e.target.value)}/> */}
-                <label htmlFor="statusName">status</label>
-                <input name = "statusName "type="text" value={statusName} onChange={e => setStatusName(e.target.value)} />
-                <button type="submit">Save</button>
+                
+                <div className="form-group">
+                    <label htmlFor="statusName">status</label>
+                    <input name = "statusName "type="text" value={statusName} onChange={e => setStatusName(e.target.value)} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button>
+                </div>
             </form>
         </div>
     )

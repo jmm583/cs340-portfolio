@@ -24,20 +24,26 @@ function ManufacturersCreate() {
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="manufacturerID">manufacturerID:</label>
                 <input name="manufacturerID" type="number" value={manufacturerID} onChange={ e => setmanufacturerID(e.target.value)} /> */}
+                <div className="form-group">
+                    <label htmlFor="brandName">brandName:</label>
+                    <input name="brandName" type="text" value={brandName} onChange={e => setBrandName(e.target.value)} />
 
-                <label htmlFor="brandName">brandName:</label>
-                <input name="brandName" type="text" value={brandName} onChange={e => setBrandName(e.target.value)} />
-
-                <label htmlFor="country">country:</label>
-                <input name="country" type="text" value={country} onChange={e => setCountry(e.target.value)}/>
-
-                <label htmlFor="contactEmail">contactEmail:</label>
-                <input name="contactEmail"type="text" value={contactEmail} onChange={e => setContactEmail(e.target.value)} />
-
-                <label htmlFor="contactPhone">contactPhone:</label>
-                <input name="contactPhone" type="text" value={contactPhone} onChange={e => setContactPhone(e.target.value)} />
-
-                <button type="submit">Save</button>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="country">country:</label>
+                    <input name="country" type="text" value={country} onChange={e => setCountry(e.target.value)}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="contactEmail">contactEmail:</label>
+                    <input name="contactEmail"type="text" value={contactEmail} onChange={e => setContactEmail(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="contactPhone">contactPhone:</label>
+                    <input name="contactPhone" type="text" value={contactPhone} onChange={e => setContactPhone(e.target.value)} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button>
+                </div>
             </form>
         </div>
     )

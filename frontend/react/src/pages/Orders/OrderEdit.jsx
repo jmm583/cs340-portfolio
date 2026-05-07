@@ -13,18 +13,26 @@ function OrderEdit({order}){
         <div className='main'>
             <h1>Edit Order</h1>
             <form onSubmit={onSubmit}>
-                <label htmlFor="orderID">orderID</label>
-                <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/>
-
-                <label htmlFor="customerID">customerID</label>
-                <input name="customerID" type="number" value={customerID} onChange={setCustomerID} />
-
-                <label htmlFor="complete">complete</label>
-                <input name="complete" type="checkbox" value={complete} onChange={setComplete} />
-
-                <label htmlFor="totalCost">totalCost</label>
-                <input name="totalCost" type="text" value={totalCost} onChange={setTotalCost} />
-                <button type="submit">Save</button>
+                              
+                <div className="form-group">
+                    <label htmlFor="orderID">orderID</label>
+                    <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="customerID">customerID</label>
+                    <input name="customerID" type="number" value={customerID} onChange={setCustomerID} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="complete">complete</label>
+                    <input name="complete" type="checkbox" value={complete} onChange={setComplete} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="totalCost">totalCost</label>
+                    <input name="totalCost" type="text" value={totalCost} onChange={setTotalCost} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button> 
+                </div>
             </form>
         </div>
     )

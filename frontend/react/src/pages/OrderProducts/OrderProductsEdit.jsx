@@ -15,18 +15,26 @@ function OrderProductsEdit({itemToEdit}) {
         <div className='main'>
             <h1>Edit OrderProducts</h1>
             <form onSubmit={onSubmit}>
-                <label htmlFor="orderProductsID">orderProductsID</label>
-                <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} />
-
-                <label htmlFor="orderID">orderID</label>
-                <input name="orderID" type="number" value={orderID} onChange={setOrderID} />
-
-                <label htmlFor="productID">productID</label>
-                <input name="productID" type="text" value={productID} onChange={setProductID} />
-
-                <label htmlFor="quantity">quantity</label>
-                <input name="quantity" type="text" value={quantity} onChange={setQuantity} />
-                <button type="submit">Save</button>
+                                
+                <div className="form-group">
+                    <label htmlFor="orderProductsID">orderProductsID</label>
+                    <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="orderID">orderID</label>
+                    <input name="orderID" type="number" value={orderID} onChange={setOrderID} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="productID">productID</label>
+                    <input name="productID" type="text" value={productID} onChange={setProductID} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="quantity">quantity</label>
+                    <input name="quantity" type="text" value={quantity} onChange={setQuantity} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button>
+                </div>
             </form>
         </div>
 )};

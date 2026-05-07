@@ -24,16 +24,22 @@ function OrderCreate(){
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="orderID">orderID</label>
                 <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/> */}
-
-                <label htmlFor="customerID">customerID</label>
-                <input name="customerID" type="number" value={customerID} onChange={e => setCustomerID(e.target.value)} />
-
-                <label htmlFor="complete">complete</label>
-                <input name="complete" type="checkbox" value={complete} onChange={e => setComplete(e.target.value)} />
-
-                <label htmlFor="totalCost">totalCost</label>
-                <input name="totalCost" type="text" value={totalCost} onChange={e => setTotalCost(e.target.value)} />
-                <button type="submit">Save</button>
+                
+                <div className="form-group">
+                    <label htmlFor="customerID">customerID</label>
+                    <input name="customerID" type="number" value={customerID} onChange={e => setCustomerID(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="complete">complete</label>
+                    <input name="complete" type="checkbox" value={complete} onChange={e => setComplete(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="totalCost">totalCost</label>
+                    <input name="totalCost" type="text" value={totalCost} onChange={e => setTotalCost(e.target.value)} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button>
+                </div>
             </form>
         </div>
     )

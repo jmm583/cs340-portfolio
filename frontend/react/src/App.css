@@ -290,7 +290,100 @@ textarea:focus {
   outline: none;
   border-color: var(--cool-light);
 }
+/* =================================================
+   Professional Horizontal Form Styles
+   ================================================= */
 
+form {
+  max-width: 720px;
+  padding: 2rem;
+  background-color: var(--neutral);
+  border: 1px solid var(--earth-light);
+  border-radius: 4px;
+}
+
+/* Form rows */
+.form-group {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.4rem;
+}
+
+/* Labels (left column) */
+label {
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--warm-light);
+  text-align: right;
+}
+
+/* Inputs (right column) */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--warm-bg);
+  background-color: var(--neutral-dark);
+  border: 1px solid var(--earth-light);
+  border-radius: 3px;
+}
+
+/* Textarea */
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Placeholder */
+::placeholder {
+  color: var(--neutral-muted);
+}
+
+/* Focus */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cool-light);
+}
+
+/* Help / validation spans align under inputs */
+.form-help,
+.form-error,
+.form-success {
+  grid-column: 2;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.form-help {
+  color: var(--neutral-muted);
+}
+
+.form-error {
+  color: var(--danger);
+}
+
+.form-success {
+  color: var(--primary-light);
+}
+
+/* Button row */
+.form-group.actions {
+  grid-template-columns: 160px 1fr;
+}
+
+.form-group.actions label {
+  visibility: hidden;
+}
 /* =================================================
    Link‑Style Buttons
    ================================================= */

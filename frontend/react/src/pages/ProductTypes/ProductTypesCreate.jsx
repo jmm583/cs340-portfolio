@@ -21,10 +21,14 @@ function ProductTypesCreate() {
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="productTypeID">productTypeID:</label>
                 <input name="productTypeID" type="number" value={productTypeID} onChange={setProductTypeID}/> */}
-
-                <label htmlFor="typeName">typeName:</label>
-                <input name="typeName" type="text" value={typeName} onChange={e => setTypeName(e.target.value)} />
-                <button type="submit">Save</button>
+                
+                <div className="form-group">
+                    <label htmlFor="typeName">typeName:</label>
+                    <input name="typeName" type="text" value={typeName} onChange={e => setTypeName(e.target.value)} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button>
+                </div>
             </form>
         </div>
     )

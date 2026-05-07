@@ -14,13 +14,18 @@ function StatusesEdit({status}){
         <div className='main'>
             <h1>Edit Statuses</h1>
             <form onSubmit={onSubmit}>
-                <label htmlFor="statusID">statusID</label>
-                <input name = "statusID" type="text" value={statusID} onChange={setStatusID}/>
-
-                <label htmlFor="statusName">status</label>
-                <input name = "statusName "type="text" value={statusName} onChange={setStatusName} />
-
-                <button type="submite">Save</button>
+              
+                <div className="form-group">
+                    <label htmlFor="statusID">statusID</label>
+                    <input name = "statusID" type="text" value={statusID} onChange={setStatusID}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="statusName">status</label>
+                    <input name = "statusName "type="text" value={statusName} onChange={setStatusName} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submite">Save</button>
+                </div>
             </form>
         </div>
     )

@@ -27,16 +27,21 @@ function OrderProductsCreate() {
             <form onSubmit={onSubmit}>
                 {/* <label htmlFor="orderProductsID">orderProductsID</label>
                 <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} /> */}
-
-                <label htmlFor="orderID">orderID</label>
-                <input name="orderID" type="number" value={orderID} onChange={e => setOrderID(e.target.value)} />
-
-                <label htmlFor="productID">productID</label>
-                <input name="productID" type="text" value={productID} onChange={e => setProductID(e.target.value)} />
-
-                <label htmlFor="quantity">quantity</label>
-                <input name="quantity" type="text" value={quantity} onChange={e => setQuantity(e.target.value)} />
-                <button type="submit">Save</button>
+                <div className="form-group">
+                    <label htmlFor="orderID">orderID</label>
+                    <input name="orderID" type="number" value={orderID} onChange={e => setOrderID(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="productID">productID</label>
+                    <input name="productID" type="text" value={productID} onChange={e => setProductID(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="quantity">quantity</label>
+                    <input name="quantity" type="text" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Save</button>
+                </div>
             </form>
         </div>
 )};
