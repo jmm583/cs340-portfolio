@@ -453,7 +453,26 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+/* =================================================
+   Link Readability & Visited State
+   ================================================= */
 
+a {
+  color: var(--primary-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--cool-light);
+}
+
+/* Visited links: clearer but still professional */
+a:visited {
+  color: var(--primary-muted);
+}
 /* =================================================
    Responsive
    ================================================= */
