@@ -201,6 +201,22 @@ nav a:focus {
 }
 
 /* =================================================
+   Main Content Wrapper
+   ================================================= */
+
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--neutral-dark);
+  margin: 0.5rem 2rem; /* vertical | horizontal */
+}
+
+.main h2 {
+  margin-top: 0;
+  color: var(--primary-light);
+}
+/* =================================================
    Main Content
    ================================================= */
 
@@ -296,6 +312,7 @@ textarea:focus {
 
 form {
   max-width: 720px;
+  min-width: 500px; 
   padding: 2rem;
   background-color: var(--neutral);
   border: 1px solid var(--earth-light);
@@ -476,6 +493,17 @@ a:visited {
 /* =================================================
    Responsive
    ================================================= */
+
+@media (max-width: 640px) {
+  form {
+    min-width: 100%;
+  }
+
+  .main {
+    margin: 0rem 0rem;
+  }
+
+}
 
 @media (max-width: 768px) {
   .page-container {
