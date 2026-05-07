@@ -107,7 +107,7 @@ function App() {
         </div>
       </div>
       <footer>
-        <p>&copy; 2026 Group 13 Lucknumber13 Joshua York, Jonathan Marchand</p>
+        <p>&copy; 2026 Group 13 Luckynumber13 Joshua York, Jonathan Marchand</p>
       </footer>
     </div>
 
