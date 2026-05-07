@@ -21,3 +21,8 @@ This app is using starter code from CS 340 Week 1 Activity 2.
 https://canvas.oregonstate.edu/courses/2042369/assignments/10464646?module_item_id=26640125
 
 
+This app used Microsoft Copilot to generate a professional looking CSS style.
+https://copilot.microsoft.com/
+
+This app uses a color palette taken from:
+https://lospec.com/palette-list/sweet24
