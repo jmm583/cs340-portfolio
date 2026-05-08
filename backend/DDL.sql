@@ -10,7 +10,7 @@ CREATE OR REPLACE TABLE Customers (
     firstName varchar(50) NOT NULL,
     lastName varchar(50) NOT NULL,
     email varchar(254) NOT NULL UNIQUE,
-    phone varchar(20) NOT NULL,
+    phone varchar(20),
     PRIMARY KEY(customerId)
 );
 CREATE OR REPLACE TABLE Orders(

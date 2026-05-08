@@ -6,7 +6,7 @@ INSERT INTO Statuses (statusName) VALUES (@statusName)
 --Delete row
 DELETE FROM Statuses WHERE statusName = @statusName
 -- Update row
-UPDATE Statuses SET statusName WHERE statusID = @statusID
+UPDATE Statuses SET statusName = statusName WHERE statusID = @statusID
 
 --Customers Table
 -- Select
