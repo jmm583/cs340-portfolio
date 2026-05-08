@@ -57,7 +57,7 @@ CREATE TABLE Products (
     productTypeID int,
     name varchar(50) NOT NULL,
     price decimal(12,2),
-    description varchar(100),
+    description varchar(100) NOT NULL,
     SKU varchar(50) UNIQUE,
     PRIMARY KEY (productID),
     FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID),
