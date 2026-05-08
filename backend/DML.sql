@@ -40,13 +40,13 @@ DELETE FROM OrderProducts WHERE orderProductsID=@orderProductsID
 
 --Order Statuses table
 --select
-SELECT orderStatusID, orderID, statusID, statusName, statusDate FROM OrderStatuses JOIN Statuses ON OrderStatuses.statusID = Statuses.statusID
+SELECT orderStatusesID, orderID, statusID, statusName, statusDate FROM OrderStatuses JOIN Statuses ON OrderStatuses.statusID = Statuses.statusID
 --insert into
 INSERT INTO OrderStatuses (orderID, statusID, statusDate) VALUES (@orderID, @statusID, @statusDate)
 --update
-UPDATE OrderStatuses SET orderID=@orderID, statusID=@statusID, statusDate=@statusDate WHERE orderStatusID = @orderStatusID
+UPDATE OrderStatuses SET orderID=@orderID, statusID=@statusID, statusDate=@statusDate WHERE orderStatusesID = @orderStatusesID
 --delete
-DELETE FROM OrderStatuses WHERE orderStatusID = @orderStatusID
+DELETE FROM OrderStatuses WHERE orderStatusesID = @orderStatusesID
 
 --Manufacturers table
 --select
