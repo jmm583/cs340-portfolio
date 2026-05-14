@@ -7,11 +7,11 @@ const sampleData = {
     ,
     "Manufacturers":
     [
-    {"Manufacturer ID":"1","Brand Name":"Santa Cruz Skateboards","Country":"USA","Contact Email":"sales@santacruzskateboards.com","Contact Phone":"831-555-4827"},
-    {"Manufacturer ID":"2","Brand Name":"Powell Peralta","Country":"USA","Contact Email":"info@powell-peralta.com","Contact Phone":"805-555-7391"},
-    {"Manufacturer ID":"3","Brand Name":"Independent Truck Company","Country":"USA","Contact Email":"info@independenttrucks.com","Contact Phone":"510-555-6032"},
-    {"Manufacturer ID":"4","Brand Name":"Mob Grip","Country":"USA","Contact Email":"support@mobgrip.com","Contact Phone":"310-555-7824"},
-    {"Manufacturer ID":"5","Brand Name":"Bones Bearings ","Country":"USA","Contact Email":"info@bonesbearings.com","Contact Phone":"415-555-2648"}
+    {"Manufacturer ID":"1","Brand":"Santa Cruz Skateboards","Country":"USA","Contact Email":"sales@santacruzskateboards.com","Contact Phone":"831-555-4827"},
+    {"Manufacturer ID":"2","Brand":"Powell Peralta","Country":"USA","Contact Email":"info@powell-peralta.com","Contact Phone":"805-555-7391"},
+    {"Manufacturer ID":"3","Brand":"Independent Truck Company","Country":"USA","Contact Email":"info@independenttrucks.com","Contact Phone":"510-555-6032"},
+    {"Manufacturer ID":"4","Brand":"Mob Grip","Country":"USA","Contact Email":"support@mobgrip.com","Contact Phone":"310-555-7824"},
+    {"Manufacturer ID":"5","Brand":"Bones Bearings ","Country":"USA","Contact Email":"info@bonesbearings.com","Contact Phone":"415-555-2648"}
     ]
     ,
     "OrderProducts":
@@ -30,11 +30,11 @@ const sampleData = {
     ,
     "Products":
     [
-    {"Product ID":"1","Manufacturer ID":"1","Brand Name":"Santa Cruz Skateboards","Product Type":"deck", "Name":"Classic Dot Deck 8.25","Price":"64.99","Description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
-    {"Product ID":"2","Manufacturer ID":"2","Brand Name":"Powell Peralta", "Product Type":"wheels", "Name":"Dragon Formula Wheels 54mm","Price":"42.99","Description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
-    {"Product ID":"3","Manufacturer ID":"3","Brand Name":"Independent Truck Company", "Product Type":"trucks","Name":"Stage 11 Standard Trucks","Price":"59.99","Description":"Independent Stage 11 trucks","SKU":"412659Z"},
-    {"Product ID":"4","Manufacturer ID":"2","Brand Name":"Powell Peralta","Product Type":"bearings", "Name":"Bones Reds Bearings","Price":"21.99","Description":"Bones Reds skateboard bearings","SKU":"638204T"},
-    {"Product ID":"5","Manufacturer ID":"4","Brand Name":"Mob Grip", "Product Type":"griptape", "Name":"Mob Black Griptape","Price":"11.99","Description":"Mob black skateboard griptape","SKU":"748213M"}
+    {"Product ID":"1","Manufacturer ID":"1","Manufacturer":"Santa Cruz Skateboards","Product Type":"deck", "Name":"Classic Dot Deck 8.25","Price":"64.99","Description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
+    {"Product ID":"2","Manufacturer ID":"2","Manufacturer":"Powell Peralta", "Product Type":"wheels", "Name":"Dragon Formula Wheels 54mm","Price":"42.99","Description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
+    {"Product ID":"3","Manufacturer ID":"3","Manufacturer":"Independent Truck Company", "Product Type":"trucks","Name":"Stage 11 Standard Trucks","Price":"59.99","Description":"Independent Stage 11 trucks","SKU":"412659Z"},
+    {"Product ID":"4","Manufacturer ID":"2","Manufacturer":"Powell Peralta","Product Type":"bearings", "Name":"Bones Reds Bearings","Price":"21.99","Description":"Bones Reds skateboard bearings","SKU":"638204T"},
+    {"Product ID":"5","Manufacturer ID":"4","Manufacturer":"Mob Grip", "Product Type":"griptape", "Name":"Mob Black Griptape","Price":"11.99","Description":"Mob black skateboard griptape","SKU":"748213M"}
     ]
 };
 // Define the backend port and URL for API requests
