@@ -1,22 +1,34 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getOrderProductsByOrder, deleteOrderProduct} from "../../components/apiClient";
+import {getOrderProductsByOrder, deleteOrderProduct, getProducts} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 import { Link } from 'react-router';
 
 function OrderProducts({itemToEdit}) {
     const [orderProducts, setOrderProducts] = useState([]);
     const navigate = useNavigate();
+    const [products, setProducts] = useState([]);
+    const [addProduct, setAddProduct] = useState(); 
+    const loadProducts = () => {
+        setProducts(getProducts());
+
+    };
     const loadOrderProducts = () => {
         const data = getOrderProductsByOrder(itemToEdit.orderID);
         setOrderProducts(data);
-    }
+    };
     const onEdit= (orderProduct) => {
    
         
 
     };
+
+
+    const onSubmit=(e) => {
+        e.preventDefault();
+
+    }
     const onDelete = (item) => {
 
         deleteOrderProduct(item);
@@ -24,13 +36,28 @@ function OrderProducts({itemToEdit}) {
     };
     useEffect(() => {
         loadOrderProducts();
-        
+        loadProducts();
     }, []);
 
     return (
         <div className='main'>
-            <h1>OrderProducts</h1>
-            <h2><Link to='/order/orderproductscreate'>Add Product</Link></h2>
+            <h1>Products</h1>
+            <h2>Add Product To Order</h2>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label htmlFor="AddProduct">Product</label>
+                    <select name="AddProduct" onChange={setAddProduct}>
+                        {products.map((product) => (
+                            <option key={product.productID} value={product.productID}>
+                            {product.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="form-group actions">
+                    <button type="submit">Add</button>
+                </div>
+            </form>
 
             <table>
                 <thead>

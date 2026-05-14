@@ -41,24 +41,24 @@ function ProductsEdit({itemToEdit}) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="productType">productType:</label>
-                    <input name="productType" type="number" value={productType}  />
+                    <input name="productType" type="text" value={productType} onChange={e => setProductType(e.target.value)} />
 
                 </div>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" value={name} onChange={setName}/>
+                    <input type="text" name="name" value={name} onChange={e => setName(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="price">Price:</label>
-                    <input name="price" type="number" value={price} onChange={setPrice} />
+                    <input name="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description:</label>
-                    <input type="text" name="description" value={description} onChange={setDescription} />
+                    <input type="text" name="description" value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="SKU">SKU:</label>
-                    <input name="SKU" type="text" value={SKU} onChange={setSKU} />
+                    <input name="SKU" type="text" value={SKU} onChange={e => setSKU(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <button>Save</button>

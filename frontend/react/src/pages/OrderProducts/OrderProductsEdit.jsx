@@ -18,19 +18,20 @@ function OrderProductsEdit({itemToEdit}) {
                                 
                 <div className="form-group">
                     <label htmlFor="orderProductsID">orderProductsID</label>
-                    <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} />
+                    {orderProductsID}
+                    {/* <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} /> */}
                 </div>
                 <div className="form-group">
                     <label htmlFor="orderID">OrderID</label>
-                    <input name="orderID" type="number" value={orderID} onChange={setOrderID} />
+                    <input name="orderID" type="number" required value={orderID} onChange={e => setOrderID(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="productID">ProductID</label>
-                    <input name="productID" type="text" value={productID} onChange={setProductID} />
+                    <input name="productID" type="number" required value={productID} onChange={e => setProductID(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="quantity">Quantity</label>
-                    <input name="quantity" type="text" value={quantity} onChange={setQuantity} />
+                    <input name="quantity" type="number" required value={quantity} onChange={e => setQuantity(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button>

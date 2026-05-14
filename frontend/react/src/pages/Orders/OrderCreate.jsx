@@ -29,13 +29,14 @@ function OrderCreate(){
                     <label htmlFor="customerID">CustomerID</label>
                     <input name="customerID" type="number" value={customerID} onChange={e => setCustomerID(e.target.value)} />
                 </div>
+
+                <div className="form-group">
+                    <label htmlFor="totalCost">Total Cost</label>
+                    <input name="totalCost" type="number" value={totalCost} onChange={e => setTotalCost(e.target.value)} />
+                </div>
                 <div className="form-group">
                     <label htmlFor="complete">Complete</label>
                     <input name="complete" type="checkbox" value={complete} onChange={e => setComplete(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="totalCost">Total Cost</label>
-                    <input name="totalCost" type="text" value={totalCost} onChange={e => setTotalCost(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button>

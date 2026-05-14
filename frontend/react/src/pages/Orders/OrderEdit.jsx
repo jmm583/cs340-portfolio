@@ -1,8 +1,10 @@
 import { useState } from "react";
+import OrderProducts from "./OrderProducts";
 
 function OrderEdit({order}){
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
+    const [customerEmail, setCustomerEmail] = useState(order.customerEmail);
     const [complete, setComplete] = useState(order.complete);
     const [totalCost, setTotalCost] = useState(order.totalCost);
 
@@ -15,25 +17,29 @@ function OrderEdit({order}){
             <form onSubmit={onSubmit}>
                               
                 <div className="form-group">
-                    <label htmlFor="orderID">orderID</label>
-                    <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/>
+                    <label htmlFor="orderID">Order ID</label>
+                    <div>{orderID}</div>
+                    {/* <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/> */}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="customerID">customerID</label>
-                    <input name="customerID" type="number" value={customerID} onChange={setCustomerID} />
+                    <label htmlFor="customerID">Customer Email</label>
+                    <div>{customerEmail}</div>
+                    {/*<input name="customerEmail" type="text" value={customerEmail} onChange={setCustomerEmail} /> */}
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="totalCost">Total Cost</label>
+                    <input name="totalCost" type="number" value={totalCost} onChange={e => setTotalCost(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="complete">complete</label>
-                    <input name="complete" type="checkbox" value={complete} onChange={setComplete} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="totalCost">totalCost</label>
-                    <input name="totalCost" type="text" value={totalCost} onChange={setTotalCost} />
+                    <label htmlFor="complete">Complete</label>
+                    <input name="complete" type="checkbox" value={complete} onChange={e => setComplete(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button> 
                 </div>
             </form>
+            <OrderProducts itemToEdit={order}/>
         </div>
     )
 }

@@ -19,19 +19,19 @@ function ManufacturersEdit({itemToEdit}) {
                 </div> */}
                 <div className="form-group">
                     <label htmlFor="brandName">Brand:</label>
-                    <input name="brandName" type="text" value={brandName} onChange={setbrandName} />
+                    <input name="brandName" type="text" value={brandName} onChange={e => setbrandName(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="country">Country:</label>
-                    <input name="country" type="text" value={country} onChange={setcountry}/>
+                    <input name="country" type="text" value={country} onChange={e => setcountry(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="contactEmail">Contact Email:</label>
-                    <input name="contactEmail"type="text" value={contactEmail} onChange={setcontactEmail} />
+                    <input name="contactEmail"type="text" value={contactEmail} onChange={e => setcontactEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="contactPhone">Contact Phone:</label>
-                    <input name="contactPhone" type="text" value={contactPhone} onChange={setcontactPhone} />
+                    <input name="contactPhone" type="text" value={contactPhone} onChange={e => setcontactPhone(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type='submit'>Save</button>

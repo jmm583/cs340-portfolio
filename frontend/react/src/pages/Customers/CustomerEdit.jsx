@@ -5,7 +5,7 @@ function CustomerEdit({customer}) {
     const [customerID, setCustomerID] = useState([customer.customerID]);
     const [firstName, setfirstName] = useState([customer.firstName]);
     const [lastName, setlastName] = useState([customer.lastName]);
-    const [email, setemail] = useState([customer.email]);
+    const [email, setEmail] = useState([customer.email]);
     const [phone, setPhone] = useState([customer.phone]);
     const onSubmit = (e) => {
         e.preventDefault();
@@ -20,21 +20,21 @@ function CustomerEdit({customer}) {
                 </div> */}
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
-                    <input name="firstName" type="text" required value={firstName} onChange={setfirstName}/>
+                    <input name="firstName" type="text" required value={firstName} onChange={e => setfirstName(e.target.value)}/>
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="lastName">Last Name</label>
-                    <input name="lastName" type="text" required  value={lastName} onChange={setlastName}/>
+                    <input name="lastName" type="text" required  value={lastName} onChange={e => setlastName(e.target.value)}/>
                 
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input name="email" type="text" required value={email} onChange={setemail}/>
+                    <input name="email" type="text" required value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="phone">Phone</label>
-                    <input name="phone" type="text" value={phone} onChange={setPhone}/>
+                    <input name="phone" type="text" value={phone} onChange={e => setPhone(e.target.value)}/>
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button>

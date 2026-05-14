@@ -45,7 +45,7 @@ function ProductsCreate() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="productType">Type:</label>
-                    <input name="productType" type="text" value={productType} onChange={setProductType}   />
+                    <input name="productType" type="text" value={productType} onChange={e=> setProductType(e.target.value)}   />
 
                 
                 </div>
