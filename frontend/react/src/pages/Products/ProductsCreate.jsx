@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { getProductTypes, getManufacturers, createProduct } from "../../components/apiClient";
+import { getManufacturers, createProduct } from "../../components/apiClient";
 import { useNavigate } from "react-router";
 
 function ProductsCreate() {
@@ -8,14 +8,12 @@ function ProductsCreate() {
     const [productID, setProductID] = useState();
     const [manufacturerID, setManufacturerID] = useState();
     const [name, setName] = useState();
-    const [productTypeID, setProductTypeID] = useState();
+    const [productType, setProductType] = useState();
     const [price, setPrice] = useState();
     const [description, setDescription] = useState();
     const [SKU, setSKU] = useState();
-    const productTypes = getProductTypes();
-    const setProductType = (e) => {
-        setProductTypeID(e.target.value)
-    };
+
+
     const manufacturers = getManufacturers();
     const setManufacturer = (e) => {
         setManufacturerID(e.target.value);
@@ -23,7 +21,7 @@ function ProductsCreate() {
     const onSubmit = (e) => {
         const ID = -1;
         e.preventDefault();
-        createProduct(ID, manufacturerID, name, productTypeID, price, SKU );
+        createProduct(ID, manufacturerID, name, productType, price, SKU );
         navigate("/products")
 
     }
@@ -35,7 +33,7 @@ function ProductsCreate() {
                 <input name="productID" type="number" value={productID} onChange={setProductID} /> */}
                
                 <div className="form-group">
-                    <label htmlFor="manufacturerID">manufacturerID:</label>
+                    <label htmlFor="manufacturerID">Manufacturer:</label>
                     {/* <input name="manufacturerID" type="number" value={manufacturerID} onChange={setManufacturerID} /> */}
                     <select onChange={setManufacturer}>
                         {manufacturers.map((manufacturer) => (
@@ -46,26 +44,21 @@ function ProductsCreate() {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="productTypeID">productTypeID:</label>
-                    {/* <input name="productTypeID" type="number" value={productTypeID}  /> */}
-                    <select onChange={setProductType}>
-                        {productTypes.map((productType) => (
-                            <option key={productType.productTypeID} value={productType.productTypeID}>
-                            {productType.typeName}
-                            </option>
-                        ))}
-                    </select>
+                    <label htmlFor="productType">Type:</label>
+                    <input name="productType" type="text" value={productType} onChange={setProductType}   />
+
+                
                 </div>
                 <div className="form-group">
-                    <label htmlFor="name">name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input type="text" name="name" value={name} onChange={e => setName(e.target.value)}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="price">price:</label>
+                    <label htmlFor="price">Price:</label>
                     <input name="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">description:</label>
+                    <label htmlFor="description">Description:</label>
                     <input type="text" name="description" value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
                 <div className="form-group">
