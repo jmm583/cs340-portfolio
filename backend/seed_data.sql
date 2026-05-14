@@ -10,26 +10,19 @@ INSERT INTO Manufacturers (manufacturerID, brandName, country, contactEmail, con
     (4, 'Mob Grip', 'USA', 'support@mobgrip.com', '310-555-7824'),
     (5, 'Bones Bearings ', 'USA', 'info@bonesbearings.com', '415-555-2648');
 
-INSERT INTO ProductTypes (typeName) VALUES
-    ('deck'),
-    ('wheels'),
-    ('bearings'),
-    ('griptape'),
-    ('trucks'),
-    ('apparel');
 
-INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SKU) VALUES
+INSERT INTO Products(name, manufacturerID, productType, price, description, SKU) VALUES
     (
         'Classic Dot Deck 8.25', 
         (SELECT manufacturerID FROM Manufacturers WHERE brandName = 'Santa Cruz Skateboards'),
-        (SELECT productTypeID FROM ProductTypes WHERE typeName = 'deck'),
+        'deck',
         64.99,
         'Santa Cruz Classic Dot deck', 
         '825471K'
     ),
     (
         'Dragon Formula Wheels 54mm', (SELECT manufacturerID FROM Manufacturers WHERE brandName = 'Powell Peralta'),
-        (SELECT productTypeID FROM ProductTypes WHERE typeName = 'wheels'),
+        'wheels',
         42.99, 
         'Powell Peralta Dragon Wheels',
         '194362Q'
@@ -37,7 +30,7 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
     (
         'Stage 11 Standard Trucks',
         (SELECT manufacturerID FROM Manufacturers WHERE brandName = 'Independent Truck Company'),
-        (SELECT productTypeID FROM ProductTypes WHERE typeName = 'trucks'),
+       'trucks',
         59.99, 
         'Independent Stage 11 trucks', 
         '412659Z'
@@ -45,7 +38,7 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
     (
         'Bones Reds Bearings', 
         (SELECT manufacturerID FROM Manufacturers WHERE brandName = 'Powell Peralta'),
-        (SELECT productTypeID FROM ProductTypes WHERE typeName = 'bearings'),
+        'bearings',
         21.99, 
         'Bones Reds skateboard bearings',
         '638204T'
@@ -53,7 +46,7 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
     (
         'Mob Black Griptape', 
         (SELECT manufacturerID FROM Manufacturers WHERE brandName = 'Mob Grip'),
-        (SELECT productTypeID FROM ProductTypes WHERE typeName = 'griptape'),
+        'griptape',
         11.99, 
         'Mob black skateboard griptape', 
         '748213M'
@@ -82,31 +75,7 @@ INSERT INTO OrderProducts(orderID, productID, quantity) VALUES
         1
     );
 
-INSERT INTO Statuses(statusName) VALUES 
-    ("Ordered"),
-    ("Shipped"),
-    ("Delivered"),
-    ("Completed");
 
-INSERT INTO OrderStatuses(orderID, statusDate, statusID) VALUES
-    (
-        (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Leia' and lastName='Skywalker')),
-        '2026-01-02',
-        (Select statusID from Statuses where statusName='Ordered') 
-    ),
-    (
-        (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Leia' and lastName='Skywalker')),
-        '2026-01-02',
-        (Select statusID from Statuses where statusName='Shipped') 
-    ),
-    (
-        (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Leia' and lastName='Skywalker')),
-        '2026-01-07',
-        (Select statusID from Statuses where statusName='Delivered') 
-    ),
-        (
-        (Select orderID from Orders where customerID =(Select customerID from Customers where firstName='Leia' and lastName='Skywalker')),
-        '2026-01-08',
-        (Select statusID from Statuses where statusName='Completed') 
-    );
+
+
 

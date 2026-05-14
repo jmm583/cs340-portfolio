@@ -1,12 +1,4 @@
--- Statuses Table
---Select
-SELECT statusID, statusName FROM Statuses
---Insert values
-INSERT INTO Statuses (statusName) VALUES (@statusName)
---Delete row
-DELETE FROM Statuses WHERE statusName = @statusName
--- Update row
-UPDATE Statuses SET statusName = statusName WHERE statusID = @statusID
+
 
 --Customers Table
 -- Select
@@ -38,15 +30,6 @@ UPDATE OrderProducts SET orderID = @orderID, productID=@productID, quantity=@qua
 --delete
 DELETE FROM OrderProducts WHERE orderProductsID=@orderProductsID
 
---Order Statuses table
---select
-SELECT orderStatusesID, orderID, statusID, statusName, statusDate FROM OrderStatuses JOIN Statuses ON OrderStatuses.statusID = Statuses.statusID
---insert into
-INSERT INTO OrderStatuses (orderID, statusID, statusDate) VALUES (@orderID, @statusID, @statusDate)
---update
-UPDATE OrderStatuses SET orderID=@orderID, statusID=@statusID, statusDate=@statusDate WHERE orderStatusesID = @orderStatusesID
---delete
-DELETE FROM OrderStatuses WHERE orderStatusesID = @orderStatusesID
 
 --Manufacturers table
 --select
@@ -60,20 +43,10 @@ DELETE FROM Manufacturers WHERE manufacturerID = @manufacturerID
 
 -- Products table
 --select
-SELECT productID, manufacturerID, brandName, productTypeID, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
+SELECT productID, manufacturerID, brandName, productType, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
 --insert into
-INSERT INTO Products (manufacturerID, productTypeID, name, price, description, SKU) VALUES (@manufacturerID, @productTypeID, @name, @price, @description, @SKU)
+INSERT INTO Products (manufacturerID, productType, name, price, description, SKU) VALUES (@manufacturerID, @productType, @name, @price, @description, @SKU)
 --update
-UPDATE Products SET manufacturerID=@manufacturerID, productTypeID=@productTypeID, name=@name, price=@price, description=@description, SKU=@SKU WHERE productID=@productID
+UPDATE Products SET manufacturerID=@manufacturerID, productType=@productType, name=@name, price=@price, description=@description, SKU=@SKU WHERE productID=@productID
 --delete
 DELETE FROM Products WHERE productID=@productID
-
--- ProductTypes table
---select
-SELECT productTypeID, typeName from ProductTypes
---insert into
-INSERT INTO ProductTypes (typeName) VALUES (@typeName)
---update
-UPDATE ProductTypes SET typeName=@typeName WHERE productTypeID = @productTypeID
---delete
-DELETE FROM ProductTypes WHERE productTypeID = @productTypeID

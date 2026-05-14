@@ -110,46 +110,7 @@ DELETE FROM OrderProducts
 WHERE orderProductsID = @orderProductsID;
 
 
--- OrderStatuses
--- ======================
--- INSERT
--- ======================
 
-
-SET @orderID = 2;
-SET @statusID = 2;
-SET @statusDate = '2026-05-07';
-
-INSERT INTO OrderStatuses (orderID, statusID, statusDate)
-VALUES (@orderID, @statusID, @statusDate);
-
-
--- ======================
--- UPDATE
--- ======================
-
-
-SET @orderStatusesID = 1;
-SET @orderID = 2;
-SET @statusesID = 3;
-SET @statusDate = '2026-05-08';
-
-UPDATE OrderStatuses
-SET orderID    = @orderID,
-    statusID   = @statusID,
-    statusDate = @statusDate
-WHERE orderStatusesID = @orderStatusesID;
-
-
--- ======================
--- DELETE
--- ======================
-DECLARE @orderStatusID INT;
-
-SET @orderStatusID = 8;
-
-DELETE FROM OrderStatuses
-WHERE orderStatusID = @orderStatusID;
 
 
 -- Manufacturers
@@ -220,7 +181,7 @@ VALUES (@manufacturerID, @productTypeID, @name, @price, @description, @SKU);
 
 SET @productID = 12;
 SET @manufacturerID = 4;
-SET @productTypeID = 2;
+SET @productType = 'deck';
 SET @name = 'Mechanical Wireless Keyboard';
 SET @price = 79.99;
 SET @description = 'Mechanical wireless keyboard with backlit keys';
@@ -228,7 +189,7 @@ SET @SKU = 'MWK-2002';
 
 UPDATE Products
 SET manufacturerID = @manufacturerID,
-    productTypeID  = @productTypeID,
+    productTypeID  = @productType,
     name           = @name,
     price          = @price,
     description    = @description,
@@ -246,37 +207,3 @@ SET @productID = 4;
 DELETE FROM Products
 WHERE productID = @productID;
 
--- ProductTypes
--- ======================
--- INSERT
--- ======================
-
-
-SET @typeName = 'Electronics';
-
-INSERT INTO ProductTypes (typeName)
-VALUES (@typeName);
-
-
--- ======================
--- UPDATE
--- ======================
-
-
-SET @productTypeID = 6;
-SET @typeName = 'Consumer Electronics';
-
-UPDATE ProductTypes
-SET typeName = @typeName
-WHERE productTypeID = @productTypeID;
-
-
--- ======================
--- DELETE
--- ======================
-
-
-SET @productTypeID = 6;
-
-DELETE FROM ProductTypes
-WHERE productTypeID = @productTypeID;
