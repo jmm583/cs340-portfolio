@@ -13,7 +13,9 @@
 
 // Express
 const express = require('express');  // We are using the express library for the web server
-const app = express();               // We need to instantiate an express object to interact with the server in our code
+const app = express();              // We need to instantiate an express object to interact with the server in our code
+app.use(express.json());             
+require('dotenv').config();
 const PORT = process.env.PORT;     // Set a port number
 
 // Database 
@@ -23,27 +25,12 @@ const db = require('./db-connector');
     ROUTES
 */
 
-app.get('/', async function (req, res) {
+app.get('/customers', async function (req, res) {
     try {
-        console.log("view");
+        const query = 'SELECT firstName, lastName, email, phone FROM Customers';
         
-        // Define our queries
-        const query1 = 'DROP TABLE IF EXISTS diagnostic;';
-        const query2 = 'CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);';
-        const query3 = 'INSERT INTO diagnostic (text) VALUES ("MySQL and Node is working for yorkjo!");'; 
-        const query4 = 'SELECT * FROM diagnostic;';
-        
-        // Execute each query synchronously (await).
-        // We want each query to finish before the next one starts.
-        await db.query(query1);
-        await db.query(query2);
-        await db.query(query3);
-        const [rows] = await db.query(query4); // Store the results
-        
-        // Send the results to the browser
-        const base = "<h1>MySQL Results:</h1>";
-        res.send(base + JSON.stringify(rows));
-
+        const [rows] = await db.query(query); 
+        res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -51,6 +38,84 @@ app.get('/', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+app.post('/customers/add', async function (req, res) {
+    try {
+        const customer = req.body;
+
+        console.log(customer);
+        let query = `INSERT INTO Customers (firstName, lastName, email) VALUES ('${customer.firstName}', '${customer.lastName}', '${customer.email}' )`;
+
+        
+        const [rows] = await db.query(query); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+
+});
+app.delete('/customers/delete/:id', async function (req, res) {
+    try {
+ 
+        const { id } = req.params;
+        console.log(id);
+
+        let query = `DELETE FROM Customers WHERE customerID=${id}`;
+
+        
+        const [rows] = await db.query(query); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+app.put('/customers/:id', async (req, res) => {
+
+    try {
+        const customer = req.body;
+        const { id } = req.params;
+        console.log(id);
+
+        let query = `UPDATE Customers SET firstName = '${req.body.firstName}', lastName='${req.body.lastName}', email='${req.body.email}', phone='${req.body.phone}' WHERE email = @email`;
+
+         
+        const [rows] = await db.query(query); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+app.get('/orders', async function (req, res) {
+    try {} catch (error) {
+
+    }
+});
+app.get('/products', async function (req, res) {
+    try {
+
+    } catch (error) {
+
+    }
+});
+app.get('/manufacturers', async function (req, res) {
+    try {} catch (error) {
+
+    }
+});
+app.get('/orderproducts', async function (req, res) {
+    try {} catch (error) {
+
+    }
+});
+
 
 /*
     LISTENER
