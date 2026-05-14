@@ -2,7 +2,7 @@
 
 --Customers Table
 -- Select
-SELECT firstName, lastName, email, phone FROM Customers
+SELECT firstName as "First Name", lastName as "Last Name", email as "Email", phone as "Phone" FROM Customers
 -- INSERT INTO
 INSERT INTO Customers (firstName, lastName, email, phone) VALUES (@firstName, @lastName, @email, @phone )
 --update
@@ -12,7 +12,7 @@ DELETE FROM Customers WHERE email=@email
 
 --Orders Table
 -- select
-SELECT orderID, customerID, firstName, lastName, complete, totalCost, statusName, statusDate FROM Orders JOIN Customers ON Order.customerID = Customers.customerID
+SELECT orderID as "Order ID", customerID as "Customer ID", firstName as "First Name", lastName as "Last Name", complete as "Complete", totalCost as "Total Cost", statusName as "Status Name", statusDate as "Status Date" FROM Orders JOIN Customers ON Orders.customerID = Customers.customerID
 -- insert
 INSERT INTO Orders (customerID, complete, totalCost) VALUES(@customerID, @complete, @totalCost)
 -- update
@@ -22,7 +22,7 @@ DELETE FROM Orders WHERE orderID=@orderID
 
 --OrderProducts table
 --select
-SELECT orderProductsID, orderID, productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID
+SELECT orderProductsID as "Order Products ID", orderID as "Order ID", productID as "Product ID", Products.name as "Product Name", quantity as "Quantity", Products.price as "Price" FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID
 --insert into
 INSERT INTO OrderProducts (orderID, productID, quantity) VALUES (@orderID, @productID, @quantity)
 --update
@@ -33,7 +33,7 @@ DELETE FROM OrderProducts WHERE orderProductsID=@orderProductsID
 
 --Manufacturers table
 --select
-SELECT manufacturerID, brandName, country, contactEmail, contactPhone FROM Manufacturers
+SELECT manufacturerID as "Manufacturer ID", brandName as "Brand Name", country as "Country", contactEmail as "Contact Email", contactPhone as "Contact Phone" FROM Manufacturers
 --insert into
 INSERT INTO Manufacturers (brandName, country, contactEmail, contactPhone) VALUES (@brandName, @country, @contactEmail, @contactPhone)
 --update 
@@ -43,7 +43,7 @@ DELETE FROM Manufacturers WHERE manufacturerID = @manufacturerID
 
 -- Products table
 --select
-SELECT productID, manufacturerID, brandName, productType, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
+SELECT productID as "Product ID", manufacturerID as "Manufacturer ID", brandName as "Brand Name", productType as "Product Type", name as "Name", price as "Price", description as "Description", SKU as "SKU" FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
 --insert into
 INSERT INTO Products (manufacturerID, productType, name, price, description, SKU) VALUES (@manufacturerID, @productType, @name, @price, @description, @SKU)
 --update
