@@ -14,9 +14,9 @@ DELETE FROM Customers WHERE email=@email
 -- select
 SELECT orderID as "Order ID", customerID as "Customer ID", firstName as "First Name", lastName as "Last Name", complete as "Complete", totalCost as "Total Cost", statusName as "Status Name", statusDate as "Status Date" FROM Orders JOIN Customers ON Orders.customerID = Customers.customerID
 -- insert
-INSERT INTO Orders (customerID, complete, totalCost) VALUES(@customerID, @complete, @totalCost)
+INSERT INTO Orders (customerID, complete, totalCost, statusName, statusDate) VALUES(@customerID, @complete, @totalCost, @statusName, @statusDate)
 -- update
-UPDATE Orders SET customerID=@customerID, complete=@complete, totalCost=@totalCost WHERE orderID=@orderID
+UPDATE Orders SET customerID=@customerID, complete=@complete, totalCost=@totalCost, statusName=@statusName, statusDate=@statusDate WHERE orderID=@orderID
 -- delete
 DELETE FROM Orders WHERE orderID=@orderID
 
