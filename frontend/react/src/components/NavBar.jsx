@@ -6,14 +6,15 @@ function NavBar() {
         <nav>
             <ul>
                 <li><Link to="/">Home</Link></li>
-
-                <li><Link to="/producttypes">ProductTypes</Link></li>
+                {/* <li><Link to="/ordersstatuses">OrderStatuses</Link></li>
+                <li><Link to="/statuses">Statuses</Link></li>
+                <li><Link to="/producttypes">ProductTypes</Link></li> */}
                 <li><Link to="/manufacturers">Manufacturers</Link></li>
                 <li><Link to="/products">Products</Link></li>
-                <li><Link to="/statuses">Statuses</Link></li>
+                
                 <li><Link to="/customers">Customers</Link></li>
                 <li><Link to="/orders">Orders</Link></li>
-                <li><Link to="/ordersstatuses">OrderStatuses</Link></li>
+
                 <li><Link to="/orderproducts">OrderProducts</Link></li>
                 
             </ul>

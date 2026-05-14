@@ -12,25 +12,28 @@ import Products  from './pages/Products/Products';
 import ProductsEdit  from './pages/Products/ProductsEdit';
 import ProductsCreate  from './pages/Products/ProductsCreate';
 
-import ProductTypes from './pages/ProductTypes/ProductTypes';
-import ProductTypesEdit from './pages/ProductTypes/ProductTypesEdit';
-import ProductTypesCreate from './pages/ProductTypes/ProductTypesCreate';
+
 
 import Customers from './pages/Customers/Customers';
 import CustomerEdit from './pages/Customers/CustomerEdit';
 import CustomerCreate from './pages/Customers/CustomerCreate';
 
-import Statuses from './pages/Statuses/Statuses';
-import StatusesEdit from './pages/Statuses/StatusesEdit';
-import StatusesCreate from './pages/Statuses/StatusesCreate';
+
 
 import Orders from './pages/Orders/Orders';
 import OrderEdit from './pages/Orders/OrderEdit';
 import OrderCreate from './pages/Orders/OrderCreate';
 
-import OrderStatuses from './pages/OrderStatuses/OrderStatuses';
-import OrderStatusEdit from './pages/OrderStatuses/OrderStatusEdit';
-import OrderStatusCreate from './pages/OrderStatuses/OrderStatusCreate';
+// import ProductTypes from './pages/ProductTypes/ProductTypes';
+// import ProductTypesEdit from './pages/ProductTypes/ProductTypesEdit';
+// import ProductTypesCreate from './pages/ProductTypes/ProductTypesCreate';
+// import Statuses from './pages/Statuses/Statuses';
+// import StatusesEdit from './pages/Statuses/StatusesEdit';
+// import StatusesCreate from './pages/Statuses/StatusesCreate';
+
+// import OrderStatuses from './pages/OrderStatuses/OrderStatuses';
+// import OrderStatusEdit from './pages/OrderStatuses/OrderStatusEdit';
+// import OrderStatusCreate from './pages/OrderStatuses/OrderStatusCreate';
 
 import OrderProducts from './pages/OrderProducts/OrderProducts';
 import OrderProductEdit from './pages/OrderProducts/OrderProductsEdit';
@@ -82,21 +85,21 @@ function App() {
               <Route path="/manufacturers/edit" element={<ManufacturersEdit itemToEdit={itemToEdit}/>}></Route>
               <Route path="/manufacturers/create" element={<ManufacturersCreate />}></Route>
 
-              <Route path="/statuses" element={<Statuses setItemToEdit={setItemToEdit} />}></Route>
+              {/* <Route path="/statuses" element={<Statuses setItemToEdit={setItemToEdit} />}></Route>
               <Route path="/statuses/edit" element={<StatusesEdit status={itemToEdit} />}></Route>
-              <Route path="/statuses/create" element={<StatusesCreate  />}></Route>
+              <Route path="/statuses/create" element={<StatusesCreate  />}></Route> */}
 
-              <Route path="/producttypes" element={<ProductTypes setItemToEdit={setItemToEdit} />}></Route>
+              {/* <Route path="/producttypes" element={<ProductTypes setItemToEdit={setItemToEdit} />}></Route>
               <Route path="/producttypes/edit" element={<ProductTypesEdit itemToEdit={itemToEdit}/>}></Route>
-              <Route path="/producttypes/create" element={<ProductTypesCreate />}></Route>
+              <Route path="/producttypes/create" element={<ProductTypesCreate />}></Route> */}
 
               <Route path="/orders" element={<Orders setItemToEdit={setItemToEdit}/>}></Route>
               <Route path="/orders/edit" element={<OrderEdit order={itemToEdit}/>}></Route>
               <Route path="/orders/create" element={<OrderCreate />}></Route>
 
-              <Route path="/ordersstatuses" element={<OrderStatuses setItemToEdit={setItemToEdit}/>}></Route>
+              {/* <Route path="/ordersstatuses" element={<OrderStatuses setItemToEdit={setItemToEdit}/>}></Route>
               <Route path="/ordersstatuses/edit" element={<OrderStatusEdit orderstatus={itemToEdit} />}></Route>
-              <Route path="/ordersstatuses/create" element={<OrderStatusCreate />}></Route>
+              <Route path="/ordersstatuses/create" element={<OrderStatusCreate />}></Route> */}
 
               <Route path="/orderproducts" element={<OrderProducts setItemToEdit={setItemToEdit}/>}></Route>
               <Route path="/orderproducts/edit" element={<OrderProductEdit itemToEdit={itemToEdit} />}></Route>
