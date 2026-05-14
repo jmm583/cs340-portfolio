@@ -28,29 +28,13 @@ const sampleData = {
     {"Order ID":"3","Customer ID":"1", "Full Name":"Luke Skywalker","Customer Email":"lukeskywalker@jedi.com", "Complete":"0","Total Cost":"59.99"}
     ]
     ,
-    "OrderStatuses":
-    [
-    {"orderStatusID":"1","orderID":"1","statusID":"1", "Order Status":"Ordered","statusDate":"2026-01-02"},
-    {"orderStatusID":"2","orderID":"1","statusID":"2", "Order Status":"Shipped","statusDate":"2026-01-02"},
-    {"orderStatusID":"3","orderID":"1","statusID":"3", "Order Status":"Delivered","statusDate":"2026-01-07"},
-    {"orderStatusID":"4","orderID":"1","statusID":"4", "Order Status":"Completed","statusDate":"2026-01-08"}
-    ]
-    ,
     "Products":
     [
-    {"Product ID":"1","Manufacturer ID":"1", "Brand Name":"Santa Cruz Skateboards","productTypeID":"1","Product Type":"deck", "Name":"Classic Dot Deck 8.25","Price":"64.99","Description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
-    {"Product ID":"2","Manufacturer ID":"2","Brand Name":"Powell Peralta", "productTypeID":"2","Product Type":"wheels", "Name":"Dragon Formula Wheels 54mm","Price":"42.99","Description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
-    {"Product ID":"3","Manufacturer ID":"3","Brand Name":"Independent Truck Company", "productTypeID":"5","Product Type":"trucks","Name":"Stage 11 Standard Trucks","Price":"59.99","Description":"Independent Stage 11 trucks","SKU":"412659Z"},
-    {"Product ID":"4","Manufacturer ID":"2","Brand Name":"Powell Peralta","productTypeID":"3","Product Type":"bearings", "Name":"Bones Reds Bearings","Price":"21.99","Description":"Bones Reds skateboard bearings","SKU":"638204T"},
-    {"Product ID":"5","Manufacturer ID":"4","Brand Name":"Mob Grip", "productTypeID":"4","Product Type":"griptape", "Name":"Mob Black Griptape","Price":"11.99","Description":"Mob black skateboard griptape","SKU":"748213M"}
-    ]
-
-    ,"Statuses":
-    [
-    {"statusID":"4","statusName":"Completed"},
-    {"statusID":"3","statusName":"Delivered"},
-    {"statusID":"1","statusName":"Ordered"},
-    {"statusID":"2","statusName":"Shipped"}
+    {"Product ID":"1","Manufacturer ID":"1","Brand Name":"Santa Cruz Skateboards","Product Type":"deck", "Name":"Classic Dot Deck 8.25","Price":"64.99","Description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
+    {"Product ID":"2","Manufacturer ID":"2","Brand Name":"Powell Peralta", "Product Type":"wheels", "Name":"Dragon Formula Wheels 54mm","Price":"42.99","Description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
+    {"Product ID":"3","Manufacturer ID":"3","Brand Name":"Independent Truck Company", "Product Type":"trucks","Name":"Stage 11 Standard Trucks","Price":"59.99","Description":"Independent Stage 11 trucks","SKU":"412659Z"},
+    {"Product ID":"4","Manufacturer ID":"2","Brand Name":"Powell Peralta","Product Type":"bearings", "Name":"Bones Reds Bearings","Price":"21.99","Description":"Bones Reds skateboard bearings","SKU":"638204T"},
+    {"Product ID":"5","Manufacturer ID":"4","Brand Name":"Mob Grip", "Product Type":"griptape", "Name":"Mob Black Griptape","Price":"11.99","Description":"Mob black skateboard griptape","SKU":"748213M"}
     ]
 };
 // Define the backend port and URL for API requests
