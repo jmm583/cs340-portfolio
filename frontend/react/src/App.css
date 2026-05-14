@@ -1,0 +1,529 @@
+/* =================================================
+   Color Palette (Updated)
+   ================================================= */
+
+:root {
+  /* Primary / Brand */
+  --primary-dark: #2c4941;
+  --primary: #66a650;
+  --primary-light: #b9d850;
+
+  /* Secondary / Cool Accent */
+  --cool-light: #82dcd7;
+  --cool: #208cb2;
+
+  /* Neutral / Structural */
+  --neutral-dark: #1d1b24;
+  --neutral: #253348;
+  --neutral-soft: #3a3a41;
+  --neutral-muted: #7a7576;
+
+  /* Warm Accent */
+  --warm-metal: #b59a66;
+  --warm-light: #cec7b1;
+  --warm-bg: #edefe2;
+
+  /* Rose / Plum Accent */
+  --rose-light: #d78b98;
+  --rose: #a13d77;
+  --rose-dark: #6d2047;
+  --violet-dark: #3c1c43;
+
+  /* Earth / Brown */
+  --earth-dark: #2c2228;
+  --earth: #5e3735;
+  --earth-light: #885a44;
+
+  /* Orange / Gold */
+  --gold-dark: #b8560f;
+  --gold: #dc9824;
+  --gold-light: #efcb84;
+  --orange-soft: #e68556;
+
+  /* Alert */
+  --danger: #c02931;
+}
+
+/* =================================================
+   Global Base
+   ================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 90%;
+  line-height: 1.55;
+  background-color: var(--neutral-dark);
+  color: var(--warm-bg);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  max-width: 70ch;
+}
+
+/* =================================================
+   Page Container & Layout
+   ================================================= */
+
+.page-container {
+  max-width: 1200px;
+  min-width: 600px;
+  margin: 0 auto;
+  background-color: var(--neutral-dark);
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 160px);
+}
+
+
+/* =========================================
+   Header Banner with Raster Logo
+   ========================================= */
+
+.site-header {
+  padding: 2rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark),
+    var(--primary),
+    var(--cool),
+    var(--cool-light)
+  );
+}
+
+/* Layout */
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+/* Logo Image */
+.header-logo {
+  width: 150px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Text */
+.site-title h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--warm-bg);
+}
+
+.site-title p {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--gold-light);
+}
+
+
+/* =================================================
+   Header
+   ================================================= */
+
+
+header {
+  padding: 2rem 1.5rem;
+  color: var(--warm-bg);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark) 0%,
+      var(--primary) 35%,
+      var(--cool) 65%,
+      var(--cool-light) 100%
+    );
+
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+              0 2px 6px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+header h1 {
+  font-size: 1.75rem;
+  letter-spacing: 0.5px;
+}
+
+header p {
+  color: var(--gold-light);
+  max-width: 60ch;
+}
+
+
+/* =================================================
+   Navigation (Left Column)
+   ================================================= */
+
+nav {
+  width: 220px;
+  min-width: 180px;
+  flex-shrink: 0;
+  background-color: var(--neutral);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--warm-bg);
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--cool);
+  color: var(--neutral-dark);
+}
+
+/* =================================================
+   Main Content Wrapper
+   ================================================= */
+
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--neutral-dark);
+  margin: 0.5rem 2rem; /* vertical | horizontal */
+}
+
+.main h2 {
+  margin-top: 0;
+  color: var(--primary-light);
+}
+/* =================================================
+   Main Content
+   ================================================= */
+
+main {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--neutral-dark);
+}
+
+main h2 {
+  margin-top: 0;
+  color: var(--primary-light);
+}
+
+/* =================================================
+   Tables
+   ================================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: 0.9rem;
+  background-color: var(--neutral-soft);
+}
+
+thead {
+  background-color: var(--primary);
+  color: var(--neutral-dark);
+}
+
+th,
+td {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--earth-light);
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--earth-dark);
+}
+
+tbody tr:hover {
+  background-color: var(--cool);
+  color: var(--neutral-dark);
+}
+
+/* =================================================
+   Forms
+   ================================================= */
+
+form {
+  max-width: 600px;
+  padding: 1.5rem;
+  border: 1px solid var(--earth-light);
+  background-color: var(--neutral);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--warm-light);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  border: 1px solid var(--earth-light);
+  background-color: var(--neutral-dark);
+  color: var(--warm-bg);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cool-light);
+}
+/* =================================================
+   Professional Horizontal Form Styles
+   ================================================= */
+
+form {
+  max-width: 720px;
+  min-width: 500px; 
+  padding: 2rem;
+  background-color: var(--neutral);
+  border: 1px solid var(--earth-light);
+  border-radius: 4px;
+}
+
+/* Form rows */
+.form-group {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.4rem;
+}
+
+/* Labels (left column) */
+label {
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--warm-light);
+  text-align: right;
+}
+
+/* Inputs (right column) */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--warm-bg);
+  background-color: var(--neutral-dark);
+  border: 1px solid var(--earth-light);
+  border-radius: 3px;
+}
+
+/* Textarea */
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Placeholder */
+::placeholder {
+  color: var(--neutral-muted);
+}
+
+/* Focus */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cool-light);
+}
+
+/* Help / validation spans align under inputs */
+.form-help,
+.form-error,
+.form-success {
+  grid-column: 2;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.form-help {
+  color: var(--neutral-muted);
+}
+
+.form-error {
+  color: var(--danger);
+}
+
+.form-success {
+  color: var(--primary-light);
+}
+
+/* Button row */
+.form-group.actions {
+  grid-template-columns: 160px 1fr;
+}
+
+.form-group.actions label {
+  visibility: hidden;
+}
+/* =================================================
+   Link‑Style Buttons
+   ================================================= */
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Primary Action */
+button.primary,
+input[type="submit"] {
+  color: var(--primary-light);
+}
+
+button.primary:hover,
+input[type="submit"]:hover {
+  color: var(--cool-light);
+}
+
+/* Secondary Action */
+button.secondary,
+input[type="reset"] {
+  color: var(--warm-metal);
+}
+
+button.secondary:hover,
+input[type="reset"]:hover {
+  color: var(--gold-light);
+}
+
+/* Focus */
+button:focus-visible,
+input:focus-visible {
+  outline: none;
+  background-color: rgba(130, 220, 215, 0.25);
+}
+
+/* =================================================
+   Footer
+   ================================================= */
+
+footer {
+  background-color: var(--earth-dark);
+  color: var(--warm-light);
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.85rem;
+}
+
+footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+/* =================================================
+   Link Readability & Visited State
+   ================================================= */
+
+a {
+  color: var(--primary-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--cool-light);
+}
+
+/* Visited links: clearer but still professional */
+a:visited {
+  color: var(--primary-muted);
+}
+/* =================================================
+   Responsive
+   ================================================= */
+
+@media (max-width: 640px) {
+  form {
+    min-width: 100%;
+  }
+
+  .main {
+    margin: 0rem 0rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    min-width: 100%;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    flex: 1;
+  }
+}

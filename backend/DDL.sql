@@ -4,16 +4,28 @@
 -- Date: Apr 30 2026
 -- Description: Step 2 Initial table creation and sample seed data.
 
+-- Avoid errors
+SET FOREIGN_KEY_CHECKS = 0;
+SET autocommit = 0;
+-- Drop tables prior to creation
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Statuses;
+DROP TABLE IF EXISTS OrderStatuses;
+DROP TABLE IF EXISTS Manufacturers;
+DROP TABLE IF EXISTS ProductTypes;
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS OrderProducts;
 -- Table Creation
-CREATE OR REPLACE TABLE Customers (
+CREATE TABLE Customers (
     customerID int AUTO_INCREMENT,
     firstName varchar(50) NOT NULL,
     lastName varchar(50) NOT NULL,
     email varchar(254) NOT NULL UNIQUE,
-    phone varchar(20) NOT NULL,
+    phone varchar(20),
     PRIMARY KEY(customerId)
 );
-CREATE OR REPLACE TABLE Orders(
+CREATE TABLE Orders(
     orderID int AUTO_INCREMENT,
     customerID int,
     complete boolean NOT NULL,
@@ -21,12 +33,12 @@ CREATE OR REPLACE TABLE Orders(
     PRIMARY KEY(OrderID),
     FOREIGN KEY(customerID) REFERENCES Customers(customerID)
 );
-CREATE OR REPLACE TABLE Statuses(
+CREATE TABLE Statuses(
     statusID int AUTO_INCREMENT,
     statusName varchar(25) NOT NULL UNIQUE,
     PRIMARY KEY(StatusID)
 );
-CREATE OR REPLACE TABLE OrderStatuses(
+CREATE TABLE OrderStatuses(
     orderStatusID int AUTO_INCREMENT,
     orderID int,
     statusID int,
@@ -36,7 +48,7 @@ CREATE OR REPLACE TABLE OrderStatuses(
     FOREIGN KEY(orderID) REFERENCES Orders(orderID) ON DELETE CASCADE,
     FOREIGN KEY(statusID) REFERENCES Statuses(statusID)
 );
-CREATE OR REPLACE TABLE Manufacturers(
+CREATE TABLE Manufacturers(
     manufacturerID int AUTO_INCREMENT,
     brandName varchar(50),
     country varchar(50),
@@ -57,13 +69,13 @@ CREATE TABLE Products (
     productTypeID int,
     name varchar(50) NOT NULL,
     price decimal(12,2),
-    description varchar(100),
+    description varchar(100) NOT NULL,
     SKU varchar(50) UNIQUE,
     PRIMARY KEY (productID),
     FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID),
     FOREIGN KEY (productTypeID) REFERENCES ProductTypes(productTypeID)
 );
-CREATE OR REPLACE TABLE OrderProducts(
+CREATE TABLE OrderProducts(
     orderProductsID int AUTO_INCREMENT,
     orderID int,
     productID int,
@@ -188,3 +200,5 @@ INSERT INTO OrderStatuses(orderID, statusDate, statusID) VALUES
     );
 -- End Sample Seed Data 
 
+SET FOREIGN_KEY_CHECKS = 1;
+SET autocommit = 1;

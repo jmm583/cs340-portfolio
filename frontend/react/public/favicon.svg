@@ -1,0 +1,27 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 100"
+  role="img"
+  aria-label="NG favicon">
+
+  <!-- Background (transparent) -->
+  <rect width="100" height="100" fill="none"/>
+
+  <!-- Optional subtle circle for balance (comment out if not wanted) -->
+  <!--
+  <circle cx="50" cy="50" r="48" fill="#0d001a"/>
+  -->
+
+  <!-- NG Text -->
+  <text
+    x="50"
+    y="62"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="56"
+    font-weight="700"
+    fill="#dc9824"
+    letter-spacing="-6">
+    NG
+  </text>
+</svg>
