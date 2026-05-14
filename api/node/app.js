@@ -94,25 +94,56 @@ app.put('/customers/:id', async (req, res) => {
     }
 });
 app.get('/orders', async function (req, res) {
-    try {} catch (error) {
+    try {
+        const query = 'SELECT orderID, customerID, firstName, lastName, complete, totalCost FROM Orders JOIN Customers ON Order.customerID = Customers.customerID';
+        
+        const [rows] = await db.query(query); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
 
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
     }
 });
 app.get('/products', async function (req, res) {
     try {
-
+        const query = 'SELECT productID, manufacturerID, brandName, productType, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID';
+        
+        const [rows] = await db.query(query); 
+        res.json(rows);
     } catch (error) {
+        console.error("Error executing queries:", error);
 
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
     }
 });
 app.get('/manufacturers', async function (req, res) {
-    try {} catch (error) {
+    try {
+        const query = 'SELECT manufacturerID, brandName, country, contactEmail, contactPhone FROM Manufacturers';
+        
+        const [rows] = await db.query(query); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
 
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
     }
 });
 app.get('/orderproducts', async function (req, res) {
-    try {} catch (error) {
+    
+    try {
+        const query = 'SELECT orderProductsID, orderID, productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID';
+        
+        const [rows] = await db.query(query); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
 
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
     }
 });
 
