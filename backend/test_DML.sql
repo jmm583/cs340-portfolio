@@ -1,28 +1,27 @@
 -- Test Scripts
--- Status
-set @statusname = "pending";
-INSERT INTO Statuses (statusName) VALUES (@statusName)
 
---Delete row
-DELETE FROM Statuses WHERE statusName = @statusName
--- Update row
-set @statusID = 1
-set @statusName = "canceled"
-UPDATE Statuses SET statusName = @statusName WHERE statusID = @statusID
 
---Customers
+-- ======================
+-- Customers INSERT
+-- ======================
 SET @firstName = 'John';
 SET @lastName  = 'Doe';
 SET @email     = 'john.doe@example.com';
 SET @phone     = '555-123-4567';
 INSERT INTO Customers (firstName, lastName, email, phone) VALUES (@firstName, @lastName, @email, @phone );
 
+-- ======================
+-- Customers UPDATE
+-- ======================
 SET @firstName = 'John';
 SET @lastName  = 'Test';
 SET @email     = 'john.doe@example.com';
 SET @phone     = '555-123-4567';
 UPDATE Customers SET firstName = @firstName, lastName=@lastName, email=@email, phone=@phone WHERE email = @email;
 
+-- ======================
+-- Customers DELETE
+-- ======================
 SET @email     = 'john.doe@example.com';
 DELETE FROM Customers WHERE email=@email
 
@@ -30,7 +29,7 @@ DELETE FROM Customers WHERE email=@email
 -- Orders Table
 
 -- ======================
--- INSERT
+-- Orders INSERT
 -- ======================
 
 
@@ -43,7 +42,7 @@ VALUES (@customerID, @complete, @totalCost);
 
 
 -- ======================
--- UPDATE
+-- Orders UPDATE
 -- ======================
 
 
@@ -60,7 +59,7 @@ WHERE orderID = @orderID;
 
 
 -- ======================
--- DELETE
+-- Orders DELETE
 -- ======================
 
 
@@ -71,7 +70,7 @@ WHERE orderID = @orderID;
 
 -- OrderProducts
 -- ======================
--- INSERT
+-- OrderProducts INSERT
 -- ======================
 
 
@@ -84,7 +83,7 @@ VALUES (@orderID, @productID, @quantity);
 
 
 -- ======================
--- UPDATE
+-- OrderProducts UPDATE
 -- ======================
 
 
@@ -101,7 +100,7 @@ WHERE orderProductsID = @orderProductsID;
 
 
 -- ======================
--- DELETE
+-- OrderProducts DELETE
 -- ======================
 
 SET @orderProductsID = 1;
@@ -110,12 +109,9 @@ DELETE FROM OrderProducts
 WHERE orderProductsID = @orderProductsID;
 
 
-
-
-
 -- Manufacturers
 -- ======================
--- INSERT
+-- Manufacturers INSERT
 -- ======================
 
 
@@ -129,7 +125,7 @@ VALUES (@brandName, @country, @contactEmail, @contactPhone);
 
 
 -- ======================
--- UPDATE
+-- Manufacturers UPDATE
 -- ======================
 
 
@@ -148,7 +144,7 @@ WHERE manufacturerID = @manufacturerID;
 
 
 -- ======================
--- DELETE
+-- Manufacturers DELETE
 -- ======================
 
 
@@ -159,7 +155,7 @@ WHERE manufacturerID = @manufacturerID;
 
 --Products
 -- ======================
--- INSERT
+--  Products INSERT
 -- ======================
 
 
@@ -175,7 +171,7 @@ VALUES (@manufacturerID, @productTypeID, @name, @price, @description, @SKU);
 
 
 -- ======================
--- UPDATE
+--  Products UPDATE
 -- ======================
 
 
@@ -198,7 +194,7 @@ WHERE productID = @productID;
 
 
 -- ======================
--- DELETE
+-- Products DELETE
 -- ======================
 
 

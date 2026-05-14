@@ -11,10 +11,7 @@ BEGIN;
 -- Drop tables prior to creation
 DROP TABLE IF EXISTS Customers;
 DROP TABLE IF EXISTS Orders;
-DROP TABLE IF EXISTS Statuses;
-DROP TABLE IF EXISTS OrderStatuses;
 DROP TABLE IF EXISTS Manufacturers;
-DROP TABLE IF EXISTS ProductTypes;
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS OrderProducts;
 -- Table Creation
