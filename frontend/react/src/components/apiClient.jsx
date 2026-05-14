@@ -23,9 +23,9 @@ const sampleData = {
     ,
     "Orders":
     [
-    {"orderID":"1","customerID":"3", "fullName":"Leia Skywalker","complete":"1","totalCost":"64.99"},
-    {"orderID":"2","customerID":"2", "fullName":"Ben Kenobi","complete":"0","totalCost":"42.99"},
-    {"orderID":"3","customerID":"1", "fullName":"Luke Skywalker","complete":"0","totalCost":"59.99"}
+    {"orderID":"1","customerID":"3", "fullName":"Leia Skywalker", "customerEmail": "leiaskywalker@rebels.com","complete":"1","totalCost":"64.99"},
+    {"orderID":"2","customerID":"2", "fullName":"Ben Kenobi", "customerEmail":"obiwan@jedi.com","complete":"0","totalCost":"42.99"},
+    {"orderID":"3","customerID":"1", "fullName":"Luke Skywalker","customerEmail":"lukeskywalker@jedi.com", "complete":"0","totalCost":"59.99"}
     ]
     ,
     "OrderStatuses":
@@ -128,19 +128,7 @@ function createManufacturer(item) {
     sampleData["Manufacturers"].push(item);
 };
 
-// Statuses Functions
-function getStatuses() {
-    return sampleData["Statuses"];
-};
-function deleteStatuses(item) {
-    const filtered = sampleData["Statuses"].filter(statuses => statuses.statusID !== item.statusID);
 
-    sampleData["Statuses"] = filtered;
-    return sampleData["Statuses"];
-};
-function createStatuses(item) {
-    sampleData["Statuses"].push(item);
-};
 
 // Order Functions
 function getOrders() {
@@ -156,39 +144,15 @@ function createOrder(item) {
     sampleData["Orders"].push(item);
 };
 
-// ProductTypes Functions
-function getProductTypes() {
-    return sampleData["ProductTypes"];
-};
-function deleteProductType(item) {
-    const filtered = sampleData["ProductTypes"].filter( productTypes => productTypes.productTypeID !== item.productTypeID);
 
-    sampleData["ProductTypes"] = filtered;
-    return sampleData["ProductTypes"];
-};
-function createProductType(item) {
-    sampleData["ProductTypes"].push(item);
-};
-
-// OrderStatuses Functions
-function getOrderStatuses() {
-    return sampleData["OrderStatuses"];
-};
-function deleteOrderStatuses(item) {
-    const filtered = sampleData["OrderStatuses"].filter(orderStatus => orderStatus.orderStatusID !== item.orderStatusID);
-
-    sampleData["OrderStatuses"] = filtered;
-    return sampleData["OrderStatuses"];
-}
-function createOrderStatuses(item) {
-    sampleData["OrderStatuses"].push(item);
-}
 
 // OrderProducts Functions
 function getOrderProducts() {
     return sampleData["OrderProducts"];
 };
-
+function getOrderProductsByOrder(orderID) {
+    return sampleData["OrderProducts"].filter(order => order.orderID === orderID);
+};
 function deleteOrderProduct(item) {
     const filtered = sampleData["OrderProducts"].filter(orderProduct => orderProduct.orderProductsID !== item.orderProductsID);
 
@@ -210,6 +174,7 @@ export {
     deleteManufacturer,
     createManufacturer,
 
+    getOrderProductsByOrder,
     getOrderProducts, 
     deleteOrderProduct, 
     createOrderProduct, 
@@ -218,22 +183,8 @@ export {
     deleteOrder,
     createOrder, 
 
-    getProductTypes, 
-    deleteProductType,
-    createProductType,
-
     getProducts, 
     deleteProduct,
     createProduct,
-
-    getStatuses, 
-    deleteStatuses, 
-    createStatuses,
-
-    getOrderStatuses,
-    deleteOrderStatuses, 
-    createOrderStatuses
-    
-    
 
 };
