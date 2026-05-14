@@ -28,6 +28,8 @@ CREATE TABLE Orders(
     customerID int,
     complete boolean NOT NULL,
     totalCost decimal(12,2),
+    statusDate datetime,
+    statusName varchar(50),
     PRIMARY KEY(OrderID),
     FOREIGN KEY(customerID) REFERENCES Customers(customerID)
 );
@@ -52,8 +54,8 @@ CREATE TABLE Products (
     description varchar(100) NOT NULL,
     SKU varchar(50) UNIQUE,
     PRIMARY KEY (productID),
-    FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID),
-    FOREIGN KEY (productTypeID) REFERENCES ProductTypes(productTypeID)
+    FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID)
+
 );
 CREATE TABLE OrderProducts(
     orderProductsID int AUTO_INCREMENT,
@@ -80,7 +82,7 @@ INSERT INTO Manufacturers (manufacturerID, brandName, country, contactEmail, con
     (5, 'Bones Bearings ', 'USA', 'info@bonesbearings.com', '415-555-2648');
 
 
-INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SKU) VALUES
+INSERT INTO Products(name, manufacturerID, productType, price, description, SKU) VALUES
     (
         'Classic Dot Deck 8.25', 
         (SELECT manufacturerID FROM Manufacturers WHERE brandName = 'Santa Cruz Skateboards'),
@@ -121,10 +123,10 @@ INSERT INTO Products(name, manufacturerID, productTypeID, price, description, SK
         '748213M'
     );
 
-INSERT INTO Orders(customerID, complete, totalCost) VALUES
-    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), true, 64.99),
-    ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false, 42.99),
-    ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false, 59.99 );
+INSERT INTO Orders(customerID, complete, totalCost, statusName, statusDate) VALUES
+    ((Select customerID from Customers where firstName='Leia' and lastName='Skywalker'), true, 64.99, "complete", '2026-01-01 10:30:00'),
+    ((Select customerID from Customers where firstName='Ben' and lastName='Kenobi'), false, 42.99, "pending", '2026-01-01 10:30:00'),
+    ((Select customerID from Customers where firstName='Luke' and lastName='Skywalker'), false, 59.99, "pending", '2026-01-01 10:30:00' );
 
 
 INSERT INTO OrderProducts(orderID, productID, quantity) VALUES 

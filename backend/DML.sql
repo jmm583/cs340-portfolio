@@ -12,7 +12,7 @@ DELETE FROM Customers WHERE email=@email
 
 --Orders Table
 -- select
-SELECT orderID, customerID, firstName, lastName, complete, totalCost FROM Orders JOIN Customers ON Order.customerID = Customers.customerID
+SELECT orderID, customerID, firstName, lastName, complete, totalCost, statusName, statusDate FROM Orders JOIN Customers ON Order.customerID = Customers.customerID
 -- insert
 INSERT INTO Orders (customerID, complete, totalCost) VALUES(@customerID, @complete, @totalCost)
 -- update
