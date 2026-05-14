@@ -23,9 +23,9 @@ const sampleData = {
     ,
     "Orders":
     [
-    {"Order ID":"1","Customer ID":"3", "Full Name":"Leia Skywalker", "Customer Email": "leiaskywalker@rebels.com","Complete":"1","Total Cost":"64.99"},
-    {"Order ID":"2","Customer ID":"2", "Full Name":"Ben Kenobi", "Customer Email":"obiwan@jedi.com","Complete":"0","Total Cost":"42.99"},
-    {"Order ID":"3","Customer ID":"1", "Full Name":"Luke Skywalker","Customer Email":"lukeskywalker@jedi.com", "Complete":"0","Total Cost":"59.99"}
+    {"Order ID":"1","Customer ID":"3", "Full Name":"Leia Skywalker", "Customer Email": "leiaskywalker@rebels.com","Complete":"1","Status Date":"2023-01-01","Status Name":"Shipped","Total Cost":"64.99", },
+    {"Order ID":"2","Customer ID":"2", "Full Name":"Ben Kenobi", "Customer Email":"obiwan@jedi.com","Complete":"0","Status Date":"2023-01-01","Status Name":"Processing","Total Cost":"42.99"},
+    {"Order ID":"3","Customer ID":"1", "Full Name":"Luke Skywalker","Customer Email":"lukeskywalker@jedi.com", "Complete":"0","Status Date":"2023-01-01","Status Name":"Processing","Total Cost":"59.99"}
     ]
     ,
     "Products":
