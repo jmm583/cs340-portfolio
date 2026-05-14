@@ -21,15 +21,15 @@ function OrderProductsEdit({itemToEdit}) {
                     <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="orderID">orderID</label>
+                    <label htmlFor="orderID">OrderID</label>
                     <input name="orderID" type="number" value={orderID} onChange={setOrderID} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="productID">productID</label>
+                    <label htmlFor="productID">ProductID</label>
                     <input name="productID" type="text" value={productID} onChange={setProductID} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="quantity">quantity</label>
+                    <label htmlFor="quantity">Quantity</label>
                     <input name="quantity" type="text" value={quantity} onChange={setQuantity} />
                 </div>
                 <div className="form-group actions">

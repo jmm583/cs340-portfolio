@@ -28,16 +28,16 @@ function OrderProductsCreate() {
                 {/* <label htmlFor="orderProductsID">orderProductsID</label>
                 <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} /> */}
                 <div className="form-group">
-                    <label htmlFor="orderID">orderID</label>
+                    <label htmlFor="orderID">Order ID</label>
                     <input name="orderID" type="number" value={orderID} onChange={e => setOrderID(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="productID">productID</label>
+                    <label htmlFor="productID">Product ID</label>
                     <input name="productID" type="text" value={productID} onChange={e => setProductID(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="quantity">quantity</label>
-                    <input name="quantity" type="text" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                    <label htmlFor="quantity">Quantity</label>
+                    <input name="quantity" type="text" required value={quantity} onChange={e => setQuantity(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button>

@@ -14,26 +14,26 @@ function CustomerEdit({customer}) {
         <div className='main'>
             <h1>Edit Customer</h1>
             <form onSubmit={onSubmit}>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="customerID">customerID</label>
                     <input name="customerID" type="text" value={customerID} onChange={setCustomerID}/>
-                </div>
+                </div> */}
                 <div className="form-group">
-                    <label htmlFor="firstName">firstName</label>
-                    <input name="firstName" type="text" value={firstName} onChange={setfirstName}/>
+                    <label htmlFor="firstName">First Name</label>
+                    <input name="firstName" type="text" required value={firstName} onChange={setfirstName}/>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="lastName">lastName</label>
-                    <input name="lastName" type="text" value={lastName} onChange={setlastName}/>
+                    <label htmlFor="lastName">Last Name</label>
+                    <input name="lastName" type="text" required  value={lastName} onChange={setlastName}/>
                 
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">email</label>
-                    <input name="email" type="text" value={email} onChange={setemail}/>
+                    <label htmlFor="email">Email</label>
+                    <input name="email" type="text" required value={email} onChange={setemail}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="phone">phone</label>
+                    <label htmlFor="phone">Phone</label>
                     <input name="phone" type="text" value={phone} onChange={setPhone}/>
                 </div>
                 <div className="form-group actions">

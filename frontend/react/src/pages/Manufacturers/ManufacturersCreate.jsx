@@ -25,20 +25,20 @@ function ManufacturersCreate() {
                 {/* <label htmlFor="manufacturerID">manufacturerID:</label>
                 <input name="manufacturerID" type="number" value={manufacturerID} onChange={ e => setmanufacturerID(e.target.value)} /> */}
                 <div className="form-group">
-                    <label htmlFor="brandName">brandName:</label>
+                    <label htmlFor="brandName">Brand:</label>
                     <input name="brandName" type="text" value={brandName} onChange={e => setBrandName(e.target.value)} />
 
                 </div>
                 <div className="form-group">
-                    <label htmlFor="country">country:</label>
+                    <label htmlFor="country">Country:</label>
                     <input name="country" type="text" value={country} onChange={e => setCountry(e.target.value)}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="contactEmail">contactEmail:</label>
+                    <label htmlFor="contactEmail">Contact Email:</label>
                     <input name="contactEmail"type="text" value={contactEmail} onChange={e => setContactEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="contactPhone">contactPhone:</label>
+                    <label htmlFor="contactPhone">Contact Phone:</label>
                     <input name="contactPhone" type="text" value={contactPhone} onChange={e => setContactPhone(e.target.value)} />
                 </div>
                 <div className="form-group actions">
