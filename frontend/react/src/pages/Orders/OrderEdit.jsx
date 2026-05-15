@@ -1,6 +1,6 @@
 import { useState } from "react";
 import OrderProducts from "./OrderProducts";
-
+import { getCustomers } from "../../components/apiClient";
 function OrderEdit({order}){
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
@@ -9,7 +9,7 @@ function OrderEdit({order}){
     const [statusName, setStatusName] = useState(order.statusName);
     const [statusDate, setStatusDate] = useState(order.statusDate);
     const [totalCost, setTotalCost] = useState(order.totalCost);
-
+    const customers = getCustomers()
     const onSubmit = (e) => {
         e.preventDefault();
     }
@@ -25,7 +25,13 @@ function OrderEdit({order}){
                 </div>
                 <div className="form-group">
                     <label htmlFor="customerID">Customer Email</label>
-                    <div>{customerEmail}</div>
+                    <select onChange={setCustomerID} value={customerID}>
+                        {customers.map((customer) => (
+                            <option key={customer.customerID} value={customer.customerID}>
+                            {customer.email}
+                            </option>
+                        ))}
+                    </select>
                     {/*<input name="customerEmail" type="text" value={customerEmail} onChange={setCustomerEmail} /> */}
                 </div>
 
