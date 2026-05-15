@@ -31,7 +31,7 @@ function ProductsEdit({itemToEdit}) {
                 <div className="form-group">
                     <label htmlFor="manufacturerID">Manufacturer:</label>
                     {/* <input name="manufacturerID" type="number" value={manufacturerID} onChange={setManufacturerID} /> */}
-                    <select onChange={setManufacturer}>
+                    <select onChange={setManufacturer} value={manufacturerID}>
                         {manufacturers.map((manufacturer) => (
                             <option key={manufacturer.manufacturerID} value={manufacturer.manufacturerID}>
                             {manufacturer.brandName}
