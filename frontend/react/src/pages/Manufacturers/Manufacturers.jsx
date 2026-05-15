@@ -30,6 +30,14 @@ function Manufacturers({setItemToEdit}) {
         
     }, []);
 
+    const tableHeaders = {
+        manufacturerID: "Manufacturer ID",
+        brandName: "Manufactuer Name",
+        country: "Country",
+        contactEmail: "Contact Email",
+        contactPhone: "Contact Phone"
+        };
+
     return (
         <div className='main'>
             <h1>Manufacturers</h1>
@@ -39,7 +47,7 @@ function Manufacturers({setItemToEdit}) {
                 <thead>
                     <tr>
                         {manufacturers.length > 0 && Object.keys(manufacturers[0]).map((header, index) => (
-                            <th key={index}>{header}</th>
+                            <th key={index}>{tableHeaders[header]}</th>
                         ))}
                         <th></th>
                         <th></th>
