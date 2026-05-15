@@ -23,7 +23,13 @@ function Customers({setItemToEdit}) {
         deleteCustomer(item);
         loadCustomers();
     };
-    
+    const tableHeaders = {
+        customerID: "Customer ID",
+        firstName: "First Name",
+        lastName: "Last Name",
+        email: "Email",
+        phone: "Phone"
+    };
     useEffect(() => {
         loadCustomers();
         
@@ -37,7 +43,7 @@ function Customers({setItemToEdit}) {
                 <thead>
                     <tr>
                         {customers.length > 0 && Object.keys(customers[0]).map((header, index) => (
-                            <th key={index}>{header}</th>
+                            <th key={index}>{tableHeaders[header]}</th>
                         ))}
                         <th></th>
                         <th></th>
