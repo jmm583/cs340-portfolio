@@ -12,7 +12,7 @@ DELETE FROM Customers WHERE email=@email
 
 --Orders Table
 -- select
-SELECT orderID, customerID, firstName, lastName, complete, totalCost, statusName, statusDate FROM Orders JOIN Customers ON Orders.customerID = Customers.customerID
+SELECT orderID, Orders.customerID, firstName, lastName, complete, totalCost, statusName, statusDate FROM Orders JOIN Customers ON Orders.customerID = Customers.customerID
 -- insert
 INSERT INTO Orders (customerID, complete, totalCost, statusName, statusDate) VALUES(@customerID, @complete, @totalCost, @statusName, @statusDate)
 -- update
@@ -22,7 +22,7 @@ DELETE FROM Orders WHERE orderID=@orderID
 
 --OrderProducts table
 --select
-SELECT orderProductsID, orderID, productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID
+SELECT orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID
 --insert into
 INSERT INTO OrderProducts (orderID, productID, quantity) VALUES (@orderID, @productID, @quantity)
 --update
@@ -43,7 +43,7 @@ DELETE FROM Manufacturers WHERE manufacturerID = @manufacturerID
 
 -- Products table
 --select
-SELECT productID, manufacturerID, brandName, productType, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
+SELECT productID, Products.manufacturerID, brandName, productType, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
 --insert into
 INSERT INTO Products (manufacturerID, productType, name, price, description, SKU) VALUES (@manufacturerID, @productType, @name, @price, @description, @SKU)
 --update
