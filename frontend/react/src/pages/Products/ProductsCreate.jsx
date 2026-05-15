@@ -38,7 +38,7 @@ function ProductsCreate() {
                     <select onChange={setManufacturer}>
                         {manufacturers.map((manufacturer) => (
                             <option key={manufacturer.manufacturerID} value={manufacturer.manufacturerID}>
-                            {manufacturer.brandName}
+                            {manufacturer.Brand}
                             </option>
                         ))}
                     </select>

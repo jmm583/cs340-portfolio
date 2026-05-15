@@ -43,7 +43,7 @@ DELETE FROM Manufacturers WHERE manufacturerID = @manufacturerID
 
 -- Products table
 --select
-SELECT productID as "Product ID", manufacturerID as "Manufacturer ID", brandName as "Manufactuer", productType as "Product Type", name as "Name", price as "Price", description as "Description", SKU as "SKU" FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
+SELECT productID as "Product ID", manufacturerID as "Manufacturer ID", brandName as "Brand Name", productType as "Product Type", name as "Name", price as "Price", description as "Description", SKU as "SKU" FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID
 --insert into
 INSERT INTO Products (manufacturerID, productType, name, price, description, SKU) VALUES (@manufacturerID, @productType, @name, @price, @description, @SKU)
 --update
