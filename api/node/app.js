@@ -24,7 +24,18 @@ const db = require('./db-connector');
 /*
     ROUTES
 */
-
+app.get('/reset', async function( req, res) {
+    try {
+        const query = 'CALL RESET';
+        
+        const [rows] = await db.query(query); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
 app.get('/customers', async function (req, res) {
     try {
         const query = 'SELECT firstName, lastName, email, phone FROM Customers';

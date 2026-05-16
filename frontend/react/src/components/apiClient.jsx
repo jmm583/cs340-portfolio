@@ -56,7 +56,20 @@ const getData = async function () {
         console.log(error);
     }
 };
+const performReset= async function() {
 
+  try {
+    const response = await fetch(backendURL);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 // Product Functions
 function getProducts() {
     return sampleData["Products"];
@@ -137,6 +150,8 @@ function createOrderProduct(item) {
 
 export default getData;
 export { 
+    performReset,
+
     getCustomers, 
     deleteCustomer, 
     createCustomer,
