@@ -23,7 +23,7 @@ UPDATE Customers SET firstName = @firstName, lastName=@lastName, email=@email, p
 -- Customers DELETE
 -- ======================
 SET @email     = 'john.doe@example.com';
-DELETE FROM Customers WHERE email=@email
+DELETE FROM Customers WHERE email=@email;
 
 -- Orders
 -- Orders Table
@@ -36,9 +36,11 @@ DELETE FROM Customers WHERE email=@email
 SET @customerID = 1;
 SET @complete = 0;
 SET @totalCost = 149.99;
+SET @statusName = 'completed';
+SET @statusDate = '2026-01-01 10:30:00';
 
-INSERT INTO Orders (customerID, complete, totalCost)
-VALUES (@customerID, @complete, @totalCost);
+INSERT INTO Orders (customerID, complete, totalCost, statusDate, statusName)
+VALUES (@customerID, @complete, @totalCost, @statusDate, @statusName);
 
 
 -- ======================
@@ -50,11 +52,15 @@ SET @orderID = 1;
 SET @customerID = 1;
 SET @complete = 1;
 SET @totalCost = 199.99;
+SET @statusName = 'completed'
+SET @statusDate = '2026-01-01 10:30:00'
 
 UPDATE Orders
 SET customerID = @customerID,
     complete   = @complete,
-    totalCost  = @totalCost
+    totalCost  = @totalCost,
+    statusDate = @statusDate,
+    statusName = @statusName
 WHERE orderID = @orderID;
 
 
@@ -78,6 +84,7 @@ SET @orderID = 2;
 SET @productID = 1;
 SET @quantity = 3;
 
+
 INSERT INTO OrderProducts (orderID, productID, quantity)
 VALUES (@orderID, @productID, @quantity);
 
@@ -91,6 +98,7 @@ SET @orderProductsID = 1;
 SET @orderID = 2;
 SET @productID = 1;
 SET @quantity = 5;
+
 
 UPDATE OrderProducts
 SET orderID   = @orderID,
@@ -129,7 +137,7 @@ VALUES (@brandName, @country, @contactEmail, @contactPhone);
 -- ======================
 
 
-SET @manufacturerID = 4;
+SET @manufacturerID = 6;
 SET @brandName = 'Acme Industries';
 SET @country = 'Canada';
 SET @contactEmail = 'support@acme.com';
@@ -148,12 +156,12 @@ WHERE manufacturerID = @manufacturerID;
 -- ======================
 
 
-SET @manufacturerID = 4;
+SET @manufacturerID = 6;
 
 DELETE FROM Manufacturers
 WHERE manufacturerID = @manufacturerID;
 
---Products
+-- Products
 -- ======================
 --  Products INSERT
 -- ======================
@@ -185,7 +193,7 @@ SET @SKU = 'MWK-2002';
 
 UPDATE Products
 SET manufacturerID = @manufacturerID,
-    productTypeID  = @productType,
+    productType    = @productType,
     name           = @name,
     price          = @price,
     description    = @description,
