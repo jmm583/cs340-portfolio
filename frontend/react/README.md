@@ -12,9 +12,14 @@ uses .env file to store communication details for the API.
 VITE_API_PORT=6113
 VITE_API_BASE_URL=localhost
 
+## Folder Structure 
+Reusable components reside under src/components
+Page specific templates reside under src/pages
 
-
-
+## Notable Components
+apiClient.jsx - contains the API calls and related code to communicate with the API.
+TableRow.jsx - is used on Pages content to display results from select queries. Adapted from Course Content React Starter Code.
+Navbar.jsx - contains to navigation component for the site.
 
 ## Citations
 This app is using starter code from CS 340 Week 1 Activity 2.
