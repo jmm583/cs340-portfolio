@@ -9,10 +9,18 @@ function OrderCreate(){
     const [totalCost, setTotalCost] = useState();
     const [statusName, setStatusName] = useState();
     const [statusDate, setStatusDate] = useState();
+    const [customers, setCustomers] = useState([]);
     
     const navigate = useNavigate();
 
-    const customers = getCustomers()
+
+    const loadCustomers = async () =>{
+        // Make a GET request to the backend
+        const rows = await getCustomers();
+
+        setCustomers(rows);
+
+    };
     const onSubmit = (e) => {
         e.preventDefault();
         const ID = -1;
@@ -23,7 +31,7 @@ function OrderCreate(){
     }
 
     useEffect(() => {
- 
+        loadCustomers();
         
     }, []);
     return (

@@ -35,40 +35,107 @@ const sampleData = {
     ]
 };
 // Define the backend port and URL for API requests
-const backendPort = import.meta.env.VITE_APP_API_PORT;  // Use the port you assigned to the backend server, this would normally go in .env file
-const backendURL = `${import.meta.env.VITE_APP_API_BASE_URL}:${backendPort}/`;
+const backendPort = import.meta.env.VITE_API_PORT;  // Use the port you assigned to the backend server, this would normally go in .env file
+const backendURL = `http://${import.meta.env.VITE_API_BASE_URL}:${backendPort}`;
+
 
 // Get the data from the database
-const getData = async function () {
-
+const getDataByTable = async (target) => {
+    const fullURL = `${backendURL}/${target}`;
     try {
         // Make a GET request to the backend
-        const response = await fetch(backendURL);
+        const response = await fetch(fullURL);
         
         // Convert the response into JSON format
         const rows = await response.json();
-        
+
+        //return rows;
         // Update the message state with the response data
-        return(JSON.stringify(rows));
+        return(rows);
         
     } catch (error) {
         // If the API call fails, print the error to the console
         console.log(error);
     }
 };
-const performReset= async function() {
+// Get the data from the database
+const getDataIDByTable = async (target) => {
+    const fullURL = `${backendURL}/${target}/${target.ID}`;
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL);
+        
+        // Convert the response into JSON format
+        const rows = await response.json();
 
-  try {
-    const response = await fetch(backendURL);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
+        //return rows;
+        // Update the message state with the response data
+        return(rows);
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
     }
+};
+// Get the data from the database
+const deleteData = async (target) => {
+    //target example {table: "customers", id: {} }
+    const fullURL = `${backendURL}/${target.table}/${target.ID}`;
 
-    const result = await response.json();
-    console.log(result);
-  } catch (error) {
-    console.error(error.message);
-  }
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL, {method: 'DELETE'});
+        
+        // Convert the response into JSON format
+        return await response.json();
+        
+        // Update the message state with the response data
+        //return(JSON.stringify(rows));
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+};
+// Get the data from the database
+const createData = async (target) => {
+    //target example {table: "customers", item: {} }
+    const fullURL = `${backendURL}/${target.table}`;
+
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL, 
+            {
+                method: 'POST',
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(target.item)
+            }
+
+        );
+        
+
+        return await response.json();
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+};
+const performReset = async function() {
+
+    const fullURL = `${backendURL}/reset`;
+
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL);
+        
+        // Convert the response into JSON format
+        return await response.json();
+
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
 }
 // Product Functions
 function getProducts() {
@@ -85,17 +152,17 @@ function createProduct(customer) {
 };
 
 // Customer Fuctions
-function getCustomers() {
-    return sampleData["Customers"];
+async function getCustomers() {
+    return await getDataByTable("customers")
 };
-function deleteCustomer(item) {
-    const filtered = sampleData["Customers"].filter(customer => customer.customerID !==item.customerID);
-    sampleData["Customers"] = filtered;
+async function deleteCustomer(item) {
+    const target = {"table":"Customers", "ID": item.customerID};
+    return await deleteData(target);
 
-    return sampleData["Customers"];
 };
-function createCustomer(customer) {
-    sampleData["Customers"].push(customer);
+async function createCustomer(item) {
+    const target = {"table":"Customers", "item": item};
+    return await createData(target)
 };
 
 // Manufacturer Functions
@@ -115,17 +182,16 @@ function createManufacturer(item) {
 
 
 // Order Functions
-function getOrders() {
-    return sampleData["Orders"];
+async function getOrders() {
+    return await getDataByTable("Orders");
 };
-function deleteOrder(item) {
-    const filtered = sampleData["Orders"].filter(order => order.orderID !== item.orderID);
-
-    sampleData["Orders"] = filtered;
-    return sampleData["Orders"];
+async function deleteOrder(item) {
+    const target = {"table":"Orders", "ID": item.orderID};
+    return await deleteData(target);
 };
-function createOrder(item) {
-    sampleData["Orders"].push(item);
+async function createOrder(item) {
+    const target = {"table":"Orders", "item": item};
+    return await createData(target)
 };
 
 
@@ -148,10 +214,11 @@ function createOrderProduct(item) {
 };
 
 
-export default getData;
+export default getDataByTable;
 export { 
     performReset,
-
+    getDataIDByTable,
+    
     getCustomers, 
     deleteCustomer, 
     createCustomer,
