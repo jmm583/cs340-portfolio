@@ -6,11 +6,13 @@ import { performReset } from "../components/apiClient";
 function Home() {
     const [confirm, setConfirm] = useState("");
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const lowerConfirm = confirm.toLowerCase();
         if (lowerConfirm === "confirm") {
-            performReset();
+            await performReset();
+            alert("Completed Reset"); 
+            setConfirm("");
             console.log("reset");
         }
     };
