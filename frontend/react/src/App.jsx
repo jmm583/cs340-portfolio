@@ -24,6 +24,8 @@ import Orders from './pages/Orders/Orders';
 import OrderEdit from './pages/Orders/OrderEdit';
 import OrderCreate from './pages/Orders/OrderCreate';
 
+import ResetDB from './pages/ResetDB';
+
 // import ProductTypes from './pages/ProductTypes/ProductTypes';
 // import ProductTypesEdit from './pages/ProductTypes/ProductTypesEdit';
 // import ProductTypesCreate from './pages/ProductTypes/ProductTypesCreate';
@@ -104,6 +106,7 @@ function App() {
               <Route path="/orderproducts" element={<OrderProducts setItemToEdit={setItemToEdit}/>}></Route>
               <Route path="/orderproducts/edit" element={<OrderProductEdit itemToEdit={itemToEdit} />}></Route>
               <Route path="/orderproducts/create" element={<OrderProductsCreate />}></Route>
+              <Route path="/reset" element={<ResetDB />}></Route>
 
             </Routes>
           </Router>

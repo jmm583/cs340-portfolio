@@ -16,6 +16,7 @@ function NavBar() {
                 <li><Link to="/orders">Orders</Link></li>
 
                 <li><Link to="/orderproducts">OrderProducts</Link></li>
+                <li><Link to="/reset">Reset DB</Link></li>
                 
             </ul>
         </nav>
