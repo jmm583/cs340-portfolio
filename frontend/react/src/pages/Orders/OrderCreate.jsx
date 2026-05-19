@@ -4,13 +4,13 @@ import { createOrder, getCustomers } from "../../components/apiClient";
 
 function OrderCreate(){
     const [orderID, setOrderID] = useState();
-    const [customerID, setCustomerID] = useState();
-    const [complete, setComplete] = useState();
+    const [customerID, setCustomerID] = useState("-1");
+    const [complete, setComplete] = useState("false");
     const [totalCost, setTotalCost] = useState();
     const [statusName, setStatusName] = useState();
     const [statusDate, setStatusDate] = useState();
     const [customers, setCustomers] = useState([]);
-    
+
     const navigate = useNavigate();
 
 
@@ -21,11 +21,13 @@ function OrderCreate(){
         setCustomers(rows);
 
     };
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const ID = -1;
-        const order = {ID, customerID, complete, totalCost}
-        createOrder(order);
+        console.log("customerID" , customerID);
+        console.log("complete", complete);
+        const order = {ID, customerID, complete, totalCost, statusDate, statusName}
+        await createOrder(order);
         navigate("/orders")
 
     }

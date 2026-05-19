@@ -156,10 +156,12 @@ app.post('/orders', async function (req, res) {
         const orders = req.body;
 
         console.log(orders);
-        const query1 = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, @new_id);`;
-
+        const query1 = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, ?, @new_id);`;
         
-        const [rows] = await db.query(query); 
+
+        const test = [...orders];
+        console.log(test);
+        const [rows] = await db.query(query, [...orders]); 
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);

@@ -105,6 +105,7 @@ DROP PROCEDURE IF EXISTS sp_OrdersCreate;
 DELIMITER
     //
 CREATE PROCEDURE sp_OrdersCreate(
+    IN p_orderID INT,
     IN p_customerID INT,
     IN p_complete BOOLEAN,
     IN p_totalCost DECIMAL(12, 2),
