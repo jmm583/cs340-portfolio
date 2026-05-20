@@ -197,17 +197,15 @@ async function createOrder(item) {
 
 
 // OrderProducts Functions
-function getOrderProducts() {
-    return sampleData["OrderProducts"];
+async function getOrderProducts() {
+    return await getDataByTable("OrderProducts");
 };
 function getOrderProductsByOrder(orderID) {
     return sampleData["OrderProducts"].filter(order => order.orderID === orderID);
 };
-function deleteOrderProduct(item) {
-    const filtered = sampleData["OrderProducts"].filter(orderProduct => orderProduct.orderProductsID !== item.orderProductsID);
-
-    sampleData["OrderProducts"] = filtered;
-    return sampleData["OrderProducts"];
+async function deleteOrderProduct(item) {
+    const target = {"table":"OrderProducts", "ID": item.orderProductsID};
+    return await deleteData(target);
 };
 function createOrderProduct(item) {
     sampleData["OrderProducts"].push(item);

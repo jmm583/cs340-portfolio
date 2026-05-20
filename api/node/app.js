@@ -31,7 +31,11 @@ const storedProcs = {
     "ordersSelect": "sp_OrdersSelect",
     "ordersCreate": "sp_OrdersCreate",
     "ordersDelete": "sp_OrdersDelete",
-    "ordersUpdate": "sp_OrdersUpdate"
+    "ordersUpdate": "sp_OrdersUpdate",
+    "orderproductsDelete": "sp_OrderProductsDelete",
+    "orderproductsSelect": "sp_OrderProductsSelect",
+    "orderproductsCreate": "sp_OrderProductsCreate",
+    "orderproductsUpdate": "sp_OrderProductsUpdate",
 };
 /*
     ROUTES
@@ -54,7 +58,7 @@ app.get('/customers', async function (req, res) {
         //const query = `CALL ${storedProcs["customersSelect"]}`;
         const query = "SELECT customerID, firstName, lastName, email, phone FROM Customers";
         const [rows] = await db.query(query); 
-        console.log(rows);
+
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -68,7 +72,7 @@ app.get('/customers/:id', async function (req, res) {
         //const query = `CALL ${storedProcs["customersSelect"]}`;
         const query = `SELECT customerID, firstName, lastName, email, phone FROM Customers where customerID == ${req.params.id}`;
         const [rows] = await db.query(query); 
-        console.log(rows);
+
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -111,7 +115,6 @@ app.put('/customers/:id', async (req, res) => {
     try {
         const customer = req.body;
         const { id } = req.params;
-        console.log(id);
 
         let query = `UPDATE Customers SET firstName = '${req.body.firstName}', lastName='${req.body.lastName}', email='${req.body.email}', phone='${req.body.phone}' WHERE email = @email`;
 
@@ -214,9 +217,8 @@ app.get('/manufacturers', async function (req, res) {
     }
 });
 app.get('/orderproducts', async function (req, res) {
-    
     try {
-        const query = 'SELECT orderProductsID, orderID, productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID';
+        const query = 'SELECT OrderProducts.orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID';
         
         const [rows] = await db.query(query); 
         res.json(rows);
@@ -227,7 +229,22 @@ app.get('/orderproducts', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+app.delete('/orderproducts/:id', async function (req, res) {
+    try {
+ 
+        const { id } = req.params;
+        const query = `CALL ${storedProcs["orderproductsDelete"]}(?);`;
 
+
+        const [rows] = await db.query(query, [id]); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
 
 /*
     LISTENER
