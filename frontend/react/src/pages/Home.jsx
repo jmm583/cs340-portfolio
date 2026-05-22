@@ -16,7 +16,7 @@ function Home() {
                     <li>Products - Admin for Products table</li>
                     <li>Customers - Admin for Customers table</li>
                     <li>Orders - Admin for Orders table</li>
-                    <li>OrderProducts - Admin for direct OrderProducts Table</li>
+                    <li>OrderProducts - M:N table, Admin for direct OrderProducts Table</li>
                 </ul>
                 <div>
                     <h1>Change log</h1>
