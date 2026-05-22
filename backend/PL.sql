@@ -28,6 +28,7 @@ CREATE PROCEDURE sp_CustomersCreate(
     IN phone VARCHAR(20),
     OUT c_id INT)
 BEGIN
+    DECLARE customerID INT;
     INSERT INTO Customers (firstName, lastName, email, phone) 
     VALUES (firstName, lastName, email, phone);
 
@@ -63,10 +64,7 @@ BEGIN
     END;
 
     START TRANSACTION;
-        -- Deleting corresponding rows from both bsg_people table and 
-        --      intersection table to prevent a data anamoly
-        -- This can also be accomplished by using an 'ON DELETE CASCADE' constraint
-        --      inside the bsg_cert_people table.
+
         DELETE FROM Customers WHERE customerID = c_id;
 
 
@@ -156,10 +154,7 @@ BEGIN
     END;
 
     START TRANSACTION;
-        -- Deleting corresponding rows from both bsg_people table and 
-        --      intersection table to prevent a data anamoly
-        -- This can also be accomplished by using an 'ON DELETE CASCADE' constraint
-        --      inside the bsg_cert_people table.
+
         DELETE FROM Orders WHERE orderID = o_id;
 
 
@@ -175,8 +170,33 @@ BEGIN
 END //
 DELIMITER ;
 -- #############################
--- OrderProducts DELETE 
+-- OrderProducts 
 -- #############################
+-- #############################
+-- OrderProducts Create 
+-- #############################
+
+DROP PROCEDURE IF EXISTS sp_OrderProductsCreate;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_OrderProductsCreate(
+    IN p_orderID INT(11), 
+    IN p_productID INT(11), 
+    IN p_quantity INT(11), 
+    OUT o_id INT)
+BEGIN
+    DECLARE orderProductsID INT;
+    INSERT INTO OrderProducts (orderID, productID, quantity) 
+    VALUES (p_orderID, p_productID, p_quantity);
+
+    -- Store the ID of the last inserted row
+    SELECT LAST_INSERT_ID() into orderProductsID;
+    -- Display the ID of the last inserted person.
+    SELECT LAST_INSERT_ID() AS 'op_id';
+
+END //
+DELIMITER ;
 -- #############################
 -- OrderProducts DELETE 
 -- #############################
@@ -198,21 +218,34 @@ BEGIN
     END;
 
     START TRANSACTION;
-        -- Deleting corresponding rows from both bsg_people table and 
-        --      intersection table to prevent a data anamoly
-        -- This can also be accomplished by using an 'ON DELETE CASCADE' constraint
-        --      inside the bsg_cert_people table.
-        DELETE FROM OrderProducts WHERE orderProductsID = c_id;
 
+        DELETE FROM OrderProducts WHERE orderProductsID = c_id;
 
         -- ROW_COUNT() returns the number of rows affected by the preceding statement.
         IF ROW_COUNT() = 0 THEN
             set error_message = CONCAT('No matching record found in OrderProducts for id: ', c_id);
-            -- Trigger custom error, invoke EXIT HANDLER
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
         END IF;
 
     COMMIT;
+
+END //
+DELIMITER ;
+-- #############################
+-- OrderProducts Select BY OrderID 
+-- #############################
+
+DROP PROCEDURE IF EXISTS sp_OrderProductsByOrderSelect;
+
+DELIMITER //
+CREATE PROCEDURE sp_OrderProductsByOrderSelect(IN c_id INT)
+BEGIN
+ 
+    SELECT orderProductsID, orderID, a.productID, b.Name AS productName, quantity
+    FROM OrderProducts a
+    
+    JOIN Products b ON b.productID = a.productID
+    WHERE orderID = c_id;
 
 END //
 DELIMITER ;
