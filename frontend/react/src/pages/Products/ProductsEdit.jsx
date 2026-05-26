@@ -4,14 +4,22 @@ import { getManufacturers } from "../../components/apiClient";
 
 function ProductsEdit({itemToEdit}) {
 
-    const [productID, setProductID] = useState(itemToEdit.productID);
-    // drop down for manufacturer
-    const [manufacturerID, setManufacturerID] = useState(itemToEdit.manufacturerID); 
-    const [name, setName] = useState(itemToEdit.name);
-    const [productType, setProductType] = useState(itemToEdit.productType);
-    const [price, setPrice] = useState(itemToEdit.price);
-    const [description, setDescription] = useState(itemToEdit.description);
-    const [SKU, setSKU] = useState(itemToEdit.SKU);
+    // const [productID, setProductID] = useState(itemToEdit.productID);
+    // // drop down for manufacturer
+    // const [manufacturerID, setManufacturerID] = useState(itemToEdit.manufacturerID); 
+    // const [name, setName] = useState(itemToEdit.name);
+    // const [productType, setProductType] = useState(itemToEdit.productType);
+    // const [price, setPrice] = useState(itemToEdit.price);
+    // const [description, setDescription] = useState(itemToEdit.description);
+    // const [SKU, setSKU] = useState(itemToEdit.SKU);
+
+    const [productID, setProductID] = useState(itemToEdit?.productID || '');
+    const [manufacturerID, setManufacturerID] = useState(itemToEdit?.manufacturerID || '');
+    const [name, setName] = useState(itemToEdit?.name || '');
+    const [productType, setProductType] = useState(itemToEdit?.productType || '');
+    const [price, setPrice] = useState(itemToEdit?.price || '');
+    const [description, setDescription] = useState(itemToEdit?.description || '');
+    const [SKU, setSKU] = useState(itemToEdit?.SKU || '');
 
     const [manufacturers, setManufacturers] = useState([]);
 
@@ -26,8 +34,39 @@ function ProductsEdit({itemToEdit}) {
     const setManufacturer = (e) => {
         setManufacturerID(e.target.value);
     }
+
     const onSubmit = (e) => {
         e.preventDefault();
+        
+        const updatedProduct = {
+            productID,
+            manufacturerID,
+            name,
+            productType,
+            price,
+            description,
+            SKU
+        };
+        console.log("updated product", updatedProduct);
+        try {
+            fetch(`http://localhost:3000/products/${productID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedProduct),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        } catch (error) {
+            console.error("Error updating product:", error);
+        }       
     }
     return (
         <div className='main'>

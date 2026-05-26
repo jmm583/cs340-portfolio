@@ -208,6 +208,27 @@ app.get('/products', async function (req, res) {
         res.status(500).json({ error: "An error occurred while executing the database queries." });
     }
 });
+
+// update product route
+app.put('/products/:id', async (req, res) => {
+
+    try {
+        const product = req.body;
+        const { id } = req.params;
+        console.log(id);
+
+        let query = `UPDATE Products SET manufacturerID = '${req.body.manufacturerID}', name='${req.body.name}', productType='${req.body.productType}', price='${req.body.price}', description='${req.body.description}', SKU='${req.body.SKU}' WHERE productID = ${id}`;
+
+        const [rows] = await db.query(query); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
 app.get('/manufacturers', async function (req, res) {
     try {
         const query = 'SELECT Manufacturers.manufacturerID, Manufacturers.brandName, Manufacturers.country, Manufacturers.contactEmail, Manufacturers.contactPhone FROM Manufacturers';

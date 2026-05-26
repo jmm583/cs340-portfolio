@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createManufacturer } from "../../components/apiClient";
 import { useNavigate } from "react-router";
 
 function ManufacturersCreate() {
-    const [manufacturerID, setmanufacturerID] = useState("");
-    const [brandName, setBrandName] = useState("");
-    const [country, setCountry] = useState("");
-    const [contactEmail, setContactEmail] = useState("");
-    const [contactPhone, setContactPhone] = useState("");
     const navigate = useNavigate();
+    const [manufacturerID, setManufacturerID] = useState();
+    const [brandName, setBrandName] = useState();
+    const [country, setCountry] = useState();
+    const [contactEmail, setContactEmail] = useState();
+    const [contactPhone, setContactPhone] = useState();
 
     const onSubmit = (e) => {
         e.preventDefault();
