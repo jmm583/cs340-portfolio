@@ -10,15 +10,21 @@ function Products({setItemToEdit}) {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
-    const loadProducts = () => {
-        const data = getProducts();
+    // const loadProducts = () => {
+    //     const data = getProducts();
+    //     setProducts(data);
+    // };
+    const loadProducts = async () => {
+        const data = await getProducts();
         setProducts(data);
     };
+
     const onEdit = (item) =>{
- 
+
         setItemToEdit(item);
         navigate('/products/edit');
     };
+
     const onDelete = (item) => {
         setProducts(deleteProduct(item));
  

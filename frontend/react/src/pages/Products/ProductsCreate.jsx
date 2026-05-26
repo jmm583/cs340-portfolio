@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getManufacturers, createProduct } from "../../components/apiClient";
 import { useNavigate } from "react-router";
 
@@ -14,7 +14,17 @@ function ProductsCreate() {
     const [SKU, setSKU] = useState();
 
 
-    const manufacturers = getManufacturers();
+    // const manufacturers = getManufacturers();
+    const [manufacturers, setManufacturers] = useState([]);
+    
+    useEffect(() => {
+        const loadManufacturers = async () => {
+            const data = await getManufacturers();
+            setManufacturers(data);
+        };
+        loadManufacturers();
+    }, []);
+
     const setManufacturer = (e) => {
         setManufacturerID(e.target.value);
     }

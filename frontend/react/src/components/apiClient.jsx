@@ -138,9 +138,15 @@ const performReset = async function() {
     }
 }
 // Product Functions
-function getProducts() {
-    return sampleData["Products"];
+// function getProducts() {
+//     return sampleData["Products"];
+// };
+
+async function getProducts() {
+    const response = await fetch("http://localhost:3000/products");
+    return await response.json();
 };
+
 function deleteProduct(item) {
     const filtered =sampleData["Products"].filter(product => product.productID !== item.productID);
     sampleData["Products"] = filtered;
@@ -166,9 +172,15 @@ async function createCustomer(item) {
 };
 
 // Manufacturer Functions
-function getManufacturers() {
-    return sampleData["Manufacturers"];
-};
+// function getManufacturers() {
+//     return sampleData["Manufacturers"];
+// };
+
+async function getManufacturers() {
+    const response = await fetch("http://localhost:3000/manufacturers");
+    return await response.json();
+}
+
 function deleteManufacturer(item) {
     const filtered = sampleData["Manufacturers"].filter(manufacturer => manufacturer.manufacturerID !== item.manufacturerID);
 

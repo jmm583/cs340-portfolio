@@ -11,10 +11,17 @@ import { Link } from 'react-router';
 function Manufacturers({setItemToEdit}) {
     const [manufacturers, setManufacturers] = useState([]);
     const navigate = useNavigate();
-    const loadManufacturers = () => {
-        const data = getManufacturers();
+
+    // const loadManufacturers = () => {
+    //     const data = getManufacturers();
+    //     setManufacturers(data);
+    // }
+
+    const loadManufacturers = async () => {
+        const data = await getManufacturers();
         setManufacturers(data);
-    }
+    };
+
     const onEdit= (orderProduct) => {
         setItemToEdit(orderProduct);
         navigate("/manufacturers/edit");

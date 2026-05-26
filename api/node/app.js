@@ -18,6 +18,9 @@ app.use(express.json());
 require('dotenv').config();
 const PORT = process.env.PORT;     // Set a port number
 
+const cors = require('cors');
+app.use(cors()); 
+
 // Database 
 const db = require('./db-connector');
 
@@ -192,20 +195,22 @@ app.delete('/orders/:id', async function (req, res) {
 });
 app.get('/products', async function (req, res) {
     try {
-        const query = 'SELECT productID, manufacturerID, brandName, productType, name, price, description, SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID';
+        const query = 'SELECT Products.productID, Products.manufacturerID, Manufacturers.brandName, Products.productType, Products.name, Products.price, Products.description, Products.SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID';
         
         const [rows] = await db.query(query); 
         res.json(rows);
     } catch (error) {
-        console.error("Error executing queries:", error);
+        // console.error("Error executing queries:", error);
+        console.error("SQL Error:", error.sqlMessage || error.message);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        // res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json({ error: "An error occurred while executing the database queries." });
     }
 });
 app.get('/manufacturers', async function (req, res) {
     try {
-        const query = 'SELECT manufacturerID, brandName, country, contactEmail, contactPhone FROM Manufacturers';
+        const query = 'SELECT Manufacturers.manufacturerID, Manufacturers.brandName, Manufacturers.country, Manufacturers.contactEmail, Manufacturers.contactPhone FROM Manufacturers';
         
         const [rows] = await db.query(query); 
         res.json(rows);
@@ -213,9 +218,10 @@ app.get('/manufacturers', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json({ error: 'An error occurred while executing the database queries.' });
     }
 });
+
 app.get('/orderproducts', async function (req, res) {
     try {
         const query = 'SELECT OrderProducts.orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID';

@@ -1,18 +1,28 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getManufacturers } from "../../components/apiClient";
 
 function ProductsEdit({itemToEdit}) {
+
     const [productID, setProductID] = useState(itemToEdit.productID);
-    const [manufacturerID, setManufacturerID] = useState(itemToEdit.manufacturerID);
+    // drop down for manufacturer
+    const [manufacturerID, setManufacturerID] = useState(itemToEdit.manufacturerID); 
     const [name, setName] = useState(itemToEdit.name);
     const [productType, setProductType] = useState(itemToEdit.productType);
     const [price, setPrice] = useState(itemToEdit.price);
     const [description, setDescription] = useState(itemToEdit.description);
     const [SKU, setSKU] = useState(itemToEdit.SKU);
 
+    const [manufacturers, setManufacturers] = useState([]);
 
-    const manufacturers = getManufacturers();
+    useEffect(() => {
+        const loadManufacturers = async () => {
+            const data = await getManufacturers();
+            setManufacturers(data);
+        };
+        loadManufacturers();
+    }, []);
+
     const setManufacturer = (e) => {
         setManufacturerID(e.target.value);
     }
