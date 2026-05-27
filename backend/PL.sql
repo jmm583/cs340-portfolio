@@ -405,7 +405,7 @@ BEGIN
 END //
 DELIMITER ;
 
-
+-- Products Table Stored Procedures
 DELIMITER //
 CREATE PROCEDURE AddProduct(
     IN p_manufacturerID INT,
@@ -422,3 +422,24 @@ BEGIN
     SET p_productID = LAST_INSERT_ID();
 END //
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_ProductsSelect()
+BEGIN
+    SELECT 
+        a.productID,
+        a.manufacturerID,
+        b.brandName,
+        a.productType,
+        a.name,
+        a.price,
+        a.description,
+        a.SKU
+    FROM Products a
+    JOIN Manufacturers b
+        ON Products.manufacturerID = Manufacturers.manufacturerID
+    ORDER BY Products.productID ASC;
+END //
+
+DELIMITER //

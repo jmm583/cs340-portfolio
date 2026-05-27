@@ -39,6 +39,16 @@ const storedProcs = {
     "orderproductsSelect": "sp_OrderProductsSelect",
     "orderproductsCreate": "sp_OrderProductsCreate",
     "orderproductsUpdate": "sp_OrderProductsUpdate",
+
+    "productsSelect": "sp_ProductsSelect",
+    "productsCreate": "sp_ProductsCreate",
+    "productsDelete": "sp_ProductsDelete",
+    "productsUpdate": "sp_ProductsUpdate",
+    
+    "manufacturersSelect": "sp_ManufacturersSelect",
+    "manufacturersCreate": "sp_ManufacturersCreate",
+    "manufacturersDelete": "sp_ManufacturersDelete",
+    "manufacturersUpdate": "sp_ManufacturersUpdate",
 };
 /*
     ROUTES
@@ -132,7 +142,7 @@ app.put('/customers/:id', async (req, res) => {
     }
 });
 app.get('/orders', async function (req, res) {
-    try {``
+    try {
         const query = `CALL ${storedProcs["ordersSelect"]}`;
         
         const [[rows]] = await db.query(query); 
@@ -193,21 +203,21 @@ app.delete('/orders/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
-app.get('/products', async function (req, res) {
-    try {
-        const query = 'SELECT Products.productID, Products.manufacturerID, Manufacturers.brandName, Products.productType, Products.name, Products.price, Products.description, Products.SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID';
+// app.get('/products', async function (req, res) {
+//     try {
+//         const query = 'SELECT Products.productID, Products.manufacturerID, Manufacturers.brandName, Products.productType, Products.name, Products.price, Products.description, Products.SKU FROM Products JOIN Manufacturers ON Products.manufacturerID=Manufacturers.manufacturerID';
         
-        const [rows] = await db.query(query); 
-        res.json(rows);
-    } catch (error) {
-        // console.error("Error executing queries:", error);
-        console.error("SQL Error:", error.sqlMessage || error.message);
+//         const [rows] = await db.query(query); 
+//         res.json(rows);
+//     } catch (error) {
+//         // console.error("Error executing queries:", error);
+//         console.error("SQL Error:", error.sqlMessage || error.message);
 
-        // Send a generic error message to the browser
-        // res.status(500).send("An error occurred while executing the database queries.");
-        res.status(500).json({ error: "An error occurred while executing the database queries." });
-    }
-});
+//         // Send a generic error message to the browser
+//         // res.status(500).send("An error occurred while executing the database queries.");
+//         res.status(500).json({ error: "An error occurred while executing the database queries." });
+//     }
+// });
 
 app.put('/products/:id', async (req, res) => {
 
@@ -250,16 +260,21 @@ app.put('/products/:id', async (req, res) => {
 
 app.post('/products', async function (req, res) {
     try {
+        // Parse frontend form information
         let data = req.body;
 
+        // Cleanse data - If manufacturerID or price aren't numbers, make them NULL.
         if (isNaN(parseInt(data.manufacturerID)))
             data.manufacturerID = null;
 
         if (isNaN(parseFloat(data.price)))
             data.price = null;
 
+        // Create and execute our queries
+        // Using parameterized queries (Prevents SQL injection attacks)
         const query1 = `CALL AddProduct(?, ?, ?, ?, ?, ?, @new_id);`;
 
+        // Store ID of last inserted row
         const [rows] = await db.query(query1, [
             data.manufacturerID,
             data.name,
@@ -274,14 +289,31 @@ app.post('/products', async function (req, res) {
             `Name: ${data.name} | SKU: ${data.SKU}`
         );
 
+        // Redirect the user to the updated webpage
         res.redirect('/products');
 
     } catch (error) {
         console.error("Error executing PL/SQL:", error);
 
+        // Send a generic error message to the browser
         res.status(500).send(
             "An error occurred while executing the database queries."
         );
+    }
+});
+
+app.get('/products', async function (req, res) {
+    try {
+        const query = `CALL ${storedProcs["productsSelect"]}()`;
+        
+        const [rows] = await db.query(query); 
+
+        res.json(rows[0]);
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries."});
     }
 });
 
@@ -395,19 +427,6 @@ app.delete('/orderproducts/:id', async function (req, res) {
  
         const { id } = req.params;
         const query = `CALL ${storedProcs["orderproductsDelete"]}(?);`;
-
-// DB Reset Route
-app.get('/dbreset', async function (req, res) {
-    try {
-        await db.query('CALL DatabaseReset()');
-        res.json({ message: "Database reset successfully" });
-    } catch (error) {
-        console.error("Error executing queries:", error);
-
-        // Send a generic error message to the browser
-        res.status(500).json({ error: "An error occurred while executing the database queries." });
-    }
-});
 
 
         const [rows] = await db.query(query, [id]); 
