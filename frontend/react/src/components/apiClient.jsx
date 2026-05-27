@@ -60,7 +60,7 @@ const getDataByTable = async (target) => {
 };
 // Get the data from the database
 const getDataIDByTable = async (target) => {
-    const fullURL = `${backendURL}/${target}/${target.ID}`;
+    const fullURL = `${backendURL}/${target.table}/${target.ID}`;
     try {
         // Make a GET request to the backend
         const response = await fetch(fullURL);
@@ -234,15 +234,17 @@ async function createOrder(item) {
 async function getOrderProducts() {
     return await getDataByTable("OrderProducts");
 };
-function getOrderProductsByOrder(orderID) {
-    return sampleData["OrderProducts"].filter(order => order.orderID === orderID);
+async function getOrderProductsByOrder(orderID) {
+    const target = {"table":"OrderProducts", "ID": orderID};
+    return await getDataIDByTable(target);
 };
 async function deleteOrderProduct(item) {
     const target = {"table":"OrderProducts", "ID": item.orderProductsID};
     return await deleteData(target);
 };
-function createOrderProduct(item) {
-    sampleData["OrderProducts"].push(item);
+async function createOrderProduct(item) {
+    const target = {"table":"OrderProducts", "item": item};
+    return await createData(target);
 };
 
 

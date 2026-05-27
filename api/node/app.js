@@ -35,6 +35,7 @@ const storedProcs = {
     "ordersCreate": "sp_OrdersCreate",
     "ordersDelete": "sp_OrdersDelete",
     "ordersUpdate": "sp_OrdersUpdate",
+    "orderproductsSelectByOrderID": "sp_OrderProductsByOrderSelect",
     "orderproductsDelete": "sp_OrderProductsDelete",
     "orderproductsSelect": "sp_OrderProductsSelect",
     "orderproductsCreate": "sp_OrderProductsCreate",
@@ -68,9 +69,9 @@ app.get('/reset', async function( req, res) {
 });
 app.get('/customers', async function (req, res) {
     try {
-        //const query = `CALL ${storedProcs["customersSelect"]}`;
-        const query = "SELECT customerID, firstName, lastName, email, phone FROM Customers";
-        const [rows] = await db.query(query); 
+        const query = `CALL ${storedProcs["customersSelect"]}`;
+
+        const [[rows]] = await db.query(query); 
 
         res.json(rows);
     } catch (error) {
@@ -82,9 +83,8 @@ app.get('/customers', async function (req, res) {
 });
 app.get('/customers/:id', async function (req, res) {
     try {
-        //const query = `CALL ${storedProcs["customersSelect"]}`;
-        const query = `SELECT customerID, firstName, lastName, email, phone FROM Customers where customerID == ${req.params.id}`;
-        const [rows] = await db.query(query); 
+        const query = `CALL ${storedProcs["customersSelect"]}`;
+        const [rows] = await db.query(query, [id]); 
 
         res.json(rows);
     } catch (error) {
@@ -97,8 +97,8 @@ app.get('/customers/:id', async function (req, res) {
 app.post('/customers', async function (req, res) {
     try {
         const customer = req.body;
-        const query1 = `CALL ${storedProcs["customersCreate"]}(?, ?, ?, ?, @new_id);`;
-        const [rows] = await db.query(query); 
+        const query= `CALL ${storedProcs["customersCreate"]}(?, ?, ?, ?, @new_id);`;
+        const [rows] = await db.query(query, [customer.firstName, customer.lastName, customer.email, customer.phone]); 
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -157,8 +157,8 @@ app.get('/orders', async function (req, res) {
 app.get('/orders/:id', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["ordersSelect"]}`;
-        
-        const [[rows]] = await db.query(query); 
+        const id = req.body.orderID;
+        const [[rows]] = await db.query(query, [id]); 
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -169,15 +169,11 @@ app.get('/orders/:id', async function (req, res) {
 });
 app.post('/orders', async function (req, res) {
     try {
-        const orders = req.body;
+        const order = req.body;
 
-        console.log(orders);
-        const query1 = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, ?, @new_id);`;
-        
+        const query = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, ?, @new_id);`;
 
-        const test = [...orders];
-        console.log(test);
-        const [rows] = await db.query(query, [...orders]); 
+        const [rows] = await db.query(query, [...order ]); 
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -399,6 +395,34 @@ app.get('/orderproducts', async function (req, res) {
         // Send a generic error message to the browser
         res.status(500).send("An error occurred while executing the database queries.");
     }
+});
+app.get('/orders/orderproducts/:id', async function (req, res) {
+    try {
+        const query = `CALL ${storedProcs["orderproductsSelectByOrderID"]}(?);`;
+        const { id } = req.params;
+        const [[rows]] = await db.query(query, [id]); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+app.post('/orderproducts', async function (req, res) {
+    try {
+        const orderProduct = req.body;
+        const query = `CALL ${storedProcs["orderproductsCreate"]}(?, ?, ?, @new_id);`;
+
+        const [rows] = await db.query(query, [orderProduct.orderID, orderProduct.productID, orderProduct.quantity]); 
+        res.json(rows);
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+
 });
 app.delete('/orderproducts/:id', async function (req, res) {
     try {
