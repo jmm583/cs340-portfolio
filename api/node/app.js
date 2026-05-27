@@ -54,6 +54,11 @@ const storedProcs = {
 /*
     ROUTES
 */
+
+// ==========================================
+// Reset Fetch Route
+// ==========================================
+
 app.get('/reset', async function( req, res) {
     console.log("reset");
     try {
@@ -67,6 +72,14 @@ app.get('/reset', async function( req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+
+// ==========================================
+// Customer Routes
+// ==========================================
+
+// ==========================================
+// Customer Get All Route
+// ==========================================
 app.get('/customers', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["customersSelect"]}`;
@@ -81,6 +94,9 @@ app.get('/customers', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// Customer Route Get Customer By customerID
+// ==========================================
 app.get('/customers/:id', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["customersSelect"]}`;
@@ -94,6 +110,9 @@ app.get('/customers/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// Customer Create Route
+// ==========================================
 app.post('/customers', async function (req, res) {
     try {
         const customer = req.body;
@@ -108,6 +127,9 @@ app.post('/customers', async function (req, res) {
     }
 
 });
+// ==========================================
+// Customer Delete Route
+// ==========================================
 app.delete('/customers/:id', async function (req, res) {
     try {
  
@@ -123,6 +145,9 @@ app.delete('/customers/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// Customer Update Route
+// ==========================================
 app.put('/customers/:id', async (req, res) => {
 
     try {
@@ -141,6 +166,13 @@ app.put('/customers/:id', async (req, res) => {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+
+// ==========================================
+// Order Routes
+// ==========================================
+// ==========================================
+// Order Get ALL Route
+// ==========================================
 app.get('/orders', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["ordersSelect"]}`;
@@ -154,6 +186,9 @@ app.get('/orders', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// Order Get By orderID Route
+// ==========================================
 app.get('/orders/:id', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["ordersSelect"]}`;
@@ -167,6 +202,9 @@ app.get('/orders/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// Order Create Route
+// ==========================================
 app.post('/orders', async function (req, res) {
     try {
         const order = req.body;
@@ -183,6 +221,9 @@ app.post('/orders', async function (req, res) {
     }
 
 });
+// ==========================================
+// Order Delete Routes
+// ==========================================
 app.delete('/orders/:id', async function (req, res) {
     try {
  
@@ -200,7 +241,12 @@ app.delete('/orders/:id', async function (req, res) {
     }
 });
 
-// PRODUCT ROUTES
+// ==========================================
+// Product Routes
+// ==========================================
+// ==========================================
+// Product Get ALL Route
+// ==========================================
 app.get('/products', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["productsSelect"]}()`;
@@ -215,7 +261,9 @@ app.get('/products', async function (req, res) {
         res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries."});
     }
 });
-
+// ==========================================
+// Product Create Route
+// ==========================================
 app.post('/products', async function (req, res) {
     try {
         const data = req.body;
@@ -244,7 +292,9 @@ app.post('/products', async function (req, res) {
         res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries." });
     }
 });
-
+// ==========================================
+// Product Update Route
+// ==========================================
 app.put('/products/:id', async (req, res) => {
 
     try {
@@ -273,7 +323,9 @@ app.put('/products/:id', async (req, res) => {
     }
 });
 
-
+// ==========================================
+// Product Delete Route
+// ==========================================
 app.delete('/products/:id', async function (req, res) {
     try {
  
@@ -292,7 +344,12 @@ app.delete('/products/:id', async function (req, res) {
 });  
 
 
-// Manufacturers routes
+// ==========================================
+// Manufacturer Routes
+// ==========================================
+// ==========================================
+// Manufacturer Get ALL Route
+// ==========================================
 app.get('/manufacturers', async function (req, res) {
     try {
         const manufacturer = req.body;
@@ -307,7 +364,9 @@ app.get('/manufacturers', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }   
 });
-
+// ==========================================
+// Manufacturer Get by manufacturerID Route
+// ==========================================
 app.put('/manufacturers/:id', async (req, res) => {
 
     try {
@@ -333,7 +392,9 @@ app.put('/manufacturers/:id', async (req, res) => {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
-
+// ==========================================
+// Manufacturer Delete Route
+// ==========================================
 app.delete('/manufacturers/:id', async function (req, res) {
     try {
  
@@ -351,7 +412,9 @@ app.delete('/manufacturers/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
-
+// ==========================================
+// Manufacturer Create Route
+// ==========================================
 app.post('/manufacturers', async function (req, res) {
     try {
         const data = req.body;
@@ -382,7 +445,12 @@ app.post('/manufacturers', async function (req, res) {
 
 
 
-// orderProducts route
+// ==========================================
+// OrderProducts Routes
+// ==========================================
+// ==========================================
+// OrderProducts Get ALL Route
+// ==========================================
 app.get('/orderproducts', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["orderproductsSelect"]}`;
@@ -396,6 +464,9 @@ app.get('/orderproducts', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// OrderProducts Get BY orderID Route
+// ==========================================
 app.get('/orders/orderproducts/:id', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["orderproductsSelectByOrderID"]}(?);`;
@@ -409,6 +480,9 @@ app.get('/orders/orderproducts/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// OrderProducts Create Route
+// ==========================================
 app.post('/orderproducts', async function (req, res) {
     try {
         const orderProduct = req.body;
@@ -424,6 +498,9 @@ app.post('/orderproducts', async function (req, res) {
     }
 
 });
+// ==========================================
+// OrderProducts Delete Route
+// ==========================================
 app.delete('/orderproducts/:id', async function (req, res) {
     try {
  
