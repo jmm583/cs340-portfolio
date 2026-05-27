@@ -204,6 +204,7 @@ app.delete('/orders/:id', async function (req, res) {
     }
 });
 
+// PRODUCT ROUTES
 app.get('/products', async function (req, res) {
     try {
         const query = `CALL ${storedProcs["productsSelect"]}()`;
@@ -218,26 +219,6 @@ app.get('/products', async function (req, res) {
         res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries."});
     }
 });
-
-app.put('/products/:id', async (req, res) => {
-
-    try {
-        const product = req.body;
-        const { id } = req.params;
-        console.log(id);
-
-        let query = `UPDATE Products SET manufacturerID = '${req.body.manufacturerID}', name='${req.body.name}', productType='${req.body.productType}', price='${req.body.price}', description='${req.body.description}', SKU='${req.body.SKU}' WHERE productID = ${id}`;
-
-        const [rows] = await db.query(query); 
-        res.status(200).send();
-    } catch (error) {
-        console.error("Error executing queries:", error);
-
-        // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
-    }
-});
-
 
 app.post('/products', async function (req, res) {
     try {
@@ -264,6 +245,34 @@ app.post('/products', async function (req, res) {
 
     } catch (error) {
         console.error("Error executing productsCreate:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+app.put('/products/:id', async (req, res) => {
+
+    try {
+        const product = req.body;
+        const query1 = `CALL ${storedProcs["productsUpdate"]}(?, ?, ?, ?, ?, ?, ?);`;
+        const { id } = req.params;
+        console.log(id);
+
+        const params = [
+            id,
+            req.body.manufacturerID,
+            req.body.name,
+            req.body.productType,
+            req.body.price,
+            req.body.description,
+            req.body.SKU
+        ];
+
+        const [rows] = await db.query(query1, params); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });

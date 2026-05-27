@@ -259,25 +259,8 @@ DELIMITER ;
 */
 
 
--- Products Table Stored Procedures
-DELIMITER //
-CREATE PROCEDURE sp_ProductsCreate(
-    IN p_manufacturerID INT,
-    IN p_name VARCHAR(255),
-    IN p_productType VARCHAR(255),
-    IN p_price DECIMAL(10, 2),
-    IN p_description TEXT,
-    IN p_SKU VARCHAR(255),
-    OUT p_productID INT
-)
-BEGIN
-    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
-    VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
-    SET p_productID = LAST_INSERT_ID();
-END //
-DELIMITER ;
-
-
+-- Products Select Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ProductsSelect;
 DELIMITER //
 CREATE PROCEDURE sp_ProductsSelect()
 BEGIN
@@ -297,13 +280,61 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Products Update Stored Procedures
+DROP PROCEDURE IF EXISTS sp_ProductsUpdate;
 DELIMITER //
-CREATE PROCEDURE sp_Product(
-    IN p_productID INT
+CREATE PROCEDURE sp_ProductsUpdate(
+    IN p_productID INT,
+    IN p_manufacturerID INT,
+    IN p_name VARCHAR(255),
+    IN p_productType VARCHAR(255),
+    IN p_price DECIMAL(10, 2),
+    IN p_description TEXT,
+    IN p_SKU VARCHAR(255)
 )
+BEGIN
+    UPDATE Products
+    SET
+        manufacturerID = p_manufacturerID,
+        name = p_name,
+        productType = p_productType,
+        price = p_price,
+        description = p_description,
+        SKU = p_SKU
+    WHERE productID = p_productID;
+END //
+DELIMITER ;
 
+
+-- Products Create Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ProductsCreate;
 DELIMITER //
+CREATE PROCEDURE sp_ProductsCreate(
+    IN p_manufacturerID INT,
+    IN p_name VARCHAR(255),
+    IN p_productType VARCHAR(255),
+    IN p_price DECIMAL(10, 2),
+    IN p_description TEXT,
+    IN p_SKU VARCHAR(255),
+    OUT p_productID INT
+)
+BEGIN
+    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
+    VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
+    SET p_productID = LAST_INSERT_ID();
+END //
+DELIMITER ;
+
+-- Products Delete Stored Procedure
+
+
+
+
+
+
+
 -- Database Reset Stored Procedure
+DELIMITER //
 CREATE PROCEDURE DatabaseReset()
 
 BEGIN
