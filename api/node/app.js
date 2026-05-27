@@ -280,14 +280,20 @@ app.delete('/products/:id', async function (req, res) {
         const { id } = req.params;
         const query1 = `CALL ${storedProcs["productsDelete"]}(?);`;
 
-        const [rows] = await db.query(query1, [id]);
+        await db.query(query1, [id]);
         res.status(200).send();
-        res.redirect('/products');
+        // res.redirect('/products');
+
     } catch (error) {
         console.error("Error executing queries:", error);
-
+        if (error.errno === 1451) {
+            return res.status(400).json({ 
+                error: "ForeignKeyConstraintError", 
+                message: "Cannot delete product because it is referenced by an order. Please delete the associated OrderProduct item first."});
+        }
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        
+        res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries." });
     }
 });  
 

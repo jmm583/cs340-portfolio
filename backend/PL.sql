@@ -325,6 +325,7 @@ BEGIN
 END //
 DELIMITER ;
 
+
 -- Products Delete Stored Procedure
 DROP PROCEDURE IF EXISTS sp_ProductsDelete;
 DELIMITER //

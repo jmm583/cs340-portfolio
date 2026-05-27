@@ -77,26 +77,40 @@ const getDataIDByTable = async (target) => {
         console.log(error);
     }
 };
-// Get the data from the database
+// Delete data from the database
+// const deleteData = async (target) => {
+//     //target example {table: "customers", id: {} }
+//     const fullURL = `${backendURL}/${target.table}/${target.ID}`;
+
+//     try {
+//         // Make a GET request to the backend
+//         const response = await fetch(fullURL, {method: 'DELETE'});
+        
+//         // Convert the response into JSON format
+//         return await response.json();
+        
+//         // Update the message state with the response data
+//         //return(JSON.stringify(rows));
+        
+//     } catch (error) {
+//         // If the API call fails, print the error to the console
+//         console.log(error);
+//     }
+// };
+
 const deleteData = async (target) => {
     //target example {table: "customers", id: {} }
     const fullURL = `${backendURL}/${target.table}/${target.ID}`;
 
-    try {
-        // Make a GET request to the backend
-        const response = await fetch(fullURL, {method: 'DELETE'});
-        
-        // Convert the response into JSON format
-        return await response.json();
-        
-        // Update the message state with the response data
-        //return(JSON.stringify(rows));
-        
-    } catch (error) {
-        // If the API call fails, print the error to the console
-        console.log(error);
+    const response = await fetch(fullURL, {method: 'DELETE'});
+    if (response.status) {
+        const errorData = await response.json();
+        window.alert(errorData.message);
     }
+    return await response.json();
 };
+
+
 // Get the data from the database
 const createData = async (target) => {
     //target example {table: "customers", item: {} }
@@ -151,13 +165,13 @@ async function getProducts() {
 };
 
 async function createProduct(item) {
-  const target = { table: "Products", item };
-  return await createData(target);
+    const target = { table: "Products", item };
+    return await createData(target);
 };
 
 async function deleteProduct(item) {
-  const target = { table: "Products", ID: item.productID };
-  return await deleteData(target);
+    const target = { table: "Products", ID: item.productID };
+    return await deleteData(target);     
 };
 
 // needs an universal updateData function to work, not yet implemented in backend

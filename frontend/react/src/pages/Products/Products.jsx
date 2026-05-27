@@ -25,7 +25,7 @@ function Products({setItemToEdit}) {
     };
     
     const onDelete = async (item) => {
-        await deleteProduct(item.productID);
+        await deleteProduct(item);
         loadProducts();
         console.log("deleted Product", item.productID)
     };
