@@ -18,6 +18,15 @@ function NavBar() {
                 <li><Link to="/orderproducts">OrderProducts</Link></li>
                 <li><Link to="/reset">Reset DB</Link></li>
                 
+                {/* Add a link for the DB reset */}
+                <li><a href="/dbreset" onClick={(e) => {
+                    e.preventDefault();
+                    fetch('http://localhost:3000/dbreset')
+                        .then(response => response.json())
+                        .then(data => { console.log(data.message); window.location.reload(); })
+                    .catch(error => { console.error("Error resetting database:", error); alert("An error occurred while resetting the database."); });
+                }}>DB Reset</a></li>
+
             </ul>
         </nav>
     );

@@ -286,8 +286,6 @@ app.post('/products', async function (req, res) {
 });
 
 
-
-
 app.delete('/products/:id', async function (req, res) {
     try {
  
@@ -397,6 +395,19 @@ app.delete('/orderproducts/:id', async function (req, res) {
  
         const { id } = req.params;
         const query = `CALL ${storedProcs["orderproductsDelete"]}(?);`;
+
+// DB Reset Route
+app.get('/dbreset', async function (req, res) {
+    try {
+        await db.query('CALL DatabaseReset()');
+        res.json({ message: "Database reset successfully" });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).json({ error: "An error occurred while executing the database queries." });
+    }
+});
 
 
         const [rows] = await db.query(query, [id]); 
