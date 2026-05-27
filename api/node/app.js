@@ -3,7 +3,7 @@
 // Citation for the following
 // Date: Apr 1 2026
 // Adapted from 
-// Source URL: https://canvas.oregonstate.edu/courses/2042369/assignments/10464646
+// Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-implementing-cud-operations-in-your-app
 //
 */
 
@@ -132,7 +132,7 @@ app.put('/customers/:id', async (req, res) => {
     }
 });
 app.get('/orders', async function (req, res) {
-    try {
+    try {``
         const query = `CALL ${storedProcs["ordersSelect"]}`;
         
         const [[rows]] = await db.query(query); 
@@ -228,25 +228,65 @@ app.put('/products/:id', async (req, res) => {
     }
 });
 
-app.post('/products', async function (req, res) {
-    try {
-        const { manufacturerID, name, productType, price, description, SKU } = req.body;
+// app.post('/products', async function (req, res) {
+//     try {
+//         const { manufacturerID, name, productType, price, description, SKU } = req.body;
 
-        console.log(req.body);
-        let query = `INSERT INTO Products (manufacturerID, name, productType, price, description, SKU) VALUES (?, ?, ?, ?, ?, ?)`;
+//         console.log(req.body);
+//         let query = `INSERT INTO Products (manufacturerID, name, productType, price, description, SKU) VALUES (?, ?, ?, ?, ?, ?)`;
 
         
-        const [rows] = await db.query(query, [manufacturerID, name, productType, price, description, SKU]);
-        res.status(201).json({ message: "Product created successfully" });
+//         const [rows] = await db.query(query, [manufacturerID, name, productType, price, description, SKU]);
+//         res.status(201).json({ message: "Product created successfully" });
+
+//     } catch (error) {
+//         console.error("Error executing queries:", error);
+
+//         // Send a generic error message to the browser
+//         res.status(500).send("An error occurred while executing the database queries.");
+//     }
+
+// });
+
+app.post('/products', async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.manufacturerID)))
+            data.manufacturerID = null;
+
+        if (isNaN(parseFloat(data.price)))
+            data.price = null;
+
+        const query1 = `CALL AddProduct(?, ?, ?, ?, ?, ?, @new_id);`;
+
+        const [rows] = await db.query(query1, [
+            data.manufacturerID,
+            data.name,
+            data.productType,
+            data.price,
+            data.description,
+            data.SKU
+        ]);
+
+        console.log(
+            `CREATE product. ID: ${rows.new_id} ` +
+            `Name: ${data.name} | SKU: ${data.SKU}`
+        );
+
+        res.redirect('/products');
 
     } catch (error) {
-        console.error("Error executing queries:", error);
+        console.error("Error executing PL/SQL:", error);
 
-        // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).send(
+            "An error occurred while executing the database queries."
+        );
     }
-
 });
+
+
+
 
 app.delete('/products/:id', async function (req, res) {
     try {

@@ -247,5 +247,29 @@ BEGIN
     JOIN Products b ON b.productID = a.productID
     WHERE orderID = c_id;
 
+/*
+// Implementing CUD operations in your app using stored procedures
+// Citation for the following
+// Date: May 26, 2026
+// Adapted from 
+// Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-pl-slash-sql-part-2-stored-procedures-for-cud
+//
+*/
+
+
+DELIMITER //
+CREATE PROCEDURE AddProduct(
+    IN p_manufacturerID INT,
+    IN p_name VARCHAR(255),
+    IN p_productType VARCHAR(255),
+    IN p_price DECIMAL(10, 2),
+    IN p_description TEXT,
+    IN p_SKU VARCHAR(255),
+    OUT p_productID INT
+)
+BEGIN
+    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
+    VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
+    SET p_productID = LAST_INSERT_ID();
 END //
 DELIMITER ;
