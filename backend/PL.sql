@@ -330,7 +330,7 @@ CREATE PROCEDURE sp_ProductsCreate(
     OUT p_productID INT
 )
 BEGIN
-    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
+    INSERT INTO Products (manufacturerID, name, productType, price, description, SKU)
     VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
     SET p_productID = LAST_INSERT_ID();
 END //
