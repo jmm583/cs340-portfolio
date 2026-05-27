@@ -1,3 +1,14 @@
+/*
+// Using react select component for manufacturer dropdown in product create form
+// Unless a prepopulated value is actually clicked the default value of form field is undefined
+// Adding and option creates a component in the form that updates the state when the user selects an option.
+// Citation for the following
+// Date: May 26, 2026
+// Adapted from 
+// Source URL: https://react.dev/reference/react-dom/components/select
+//
+*/
+
 
 import { useState, useEffect } from "react";
 import { getManufacturers, createProduct } from "../../components/apiClient";
@@ -14,7 +25,6 @@ function ProductsCreate() {
     const [SKU, setSKU] = useState("");
 
 
-    // const manufacturers = getManufacturers();
     const [manufacturers, setManufacturers] = useState([]);
     
     useEffect(() => {
