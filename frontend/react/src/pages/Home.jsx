@@ -23,8 +23,8 @@ function Home() {
                     <h2>Step 4 Draft</h2>
                     <ul>
                         
-                        <li>Updated Orders/Customers to use "SELECT" stored procedure calls from the API.</li>
-                        <li>Updated Orders/Customers to use "DELETE" stored procedure calls from the API.</li>
+                        <li>Updated Orders/Customers/Manufacturers/Products/OrderProducts to use "SELECT" stored procedure calls from the API.</li>
+                        <li>Updated Orders/Customers/Manufacturers/Products/OrderProducts to use "DELETE" stored procedure calls from the API.</li>
                         <li>Updated Reset DB navigation option and page to reset backend database.</li>
                     </ul>
  

@@ -172,6 +172,17 @@ DELIMITER ;
 -- #############################
 -- OrderProducts 
 -- #############################
+-- #####################
+-- OrderProducts SELECT
+-- #####################
+DROP PROCEDURE IF EXISTS sp_OrderProductsSelect;
+DELIMITER //
+CREATE PROCEDURE sp_OrderProductsSelect()
+BEGIN
+SELECT orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID
+ORDER BY OrderProducts.orderProductsID ASC;
+END //
+DELIMITER ;
 -- #############################
 -- OrderProducts Create 
 -- #############################
@@ -319,7 +330,7 @@ CREATE PROCEDURE sp_ProductsCreate(
     OUT p_productID INT
 )
 BEGIN
-    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
+    INSERT INTO Products (manufacturerID, name, productType, price, description, SKU)
     VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
     SET p_productID = LAST_INSERT_ID();
 END //
@@ -331,6 +342,7 @@ DROP PROCEDURE IF EXISTS sp_ProductsDelete;
 DELIMITER //
 CREATE PROCEDURE sp_ProductsDelete(IN p_productID INT)
 BEGIN
+    DECLARE error_message VARCHAR(255);
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         -- Roll back the transaction on any error
