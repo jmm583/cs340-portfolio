@@ -1,18 +1,11 @@
 
 import { useState, useEffect } from "react";
 import { getManufacturers } from "../../components/apiClient";
+import { useNavigate } from 'react-router';
 
 function ProductsEdit({itemToEdit}) {
 
-    // const [productID, setProductID] = useState(itemToEdit.productID);
-    // // drop down for manufacturer
-    // const [manufacturerID, setManufacturerID] = useState(itemToEdit.manufacturerID); 
-    // const [name, setName] = useState(itemToEdit.name);
-    // const [productType, setProductType] = useState(itemToEdit.productType);
-    // const [price, setPrice] = useState(itemToEdit.price);
-    // const [description, setDescription] = useState(itemToEdit.description);
-    // const [SKU, setSKU] = useState(itemToEdit.SKU);
-
+    // use itemToEdit's value if available otherwise return empty string
     const [productID, setProductID] = useState(itemToEdit?.productID || '');
     const [manufacturerID, setManufacturerID] = useState(itemToEdit?.manufacturerID || '');
     const [name, setName] = useState(itemToEdit?.name || '');
@@ -35,9 +28,11 @@ function ProductsEdit({itemToEdit}) {
         setManufacturerID(e.target.value);
     }
 
-    const onSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const onSubmit = async(e) => {
         e.preventDefault();
-        
+
         const updatedProduct = {
             productID,
             manufacturerID,
@@ -48,26 +43,30 @@ function ProductsEdit({itemToEdit}) {
             SKU
         };
         console.log("updated product", updatedProduct);
-        try {
-            fetch(`http://localhost:3000/products/${productID}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedProduct),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+
+        try { 
+            const response = await fetch(
+                `http://localhost:3000/products/${productID}`, 
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedProduct),
                 }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
+            );
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            navigate('/products');
+
         } catch (error) {
             console.error("Error updating product:", error);
         }       
-    }
+    };
+
     return (
         <div className='main'>
             <h1>Edit Products</h1>
@@ -89,7 +88,7 @@ function ProductsEdit({itemToEdit}) {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="productType">productType:</label>
+                    <label htmlFor="productType">Product Type:</label>
                     <input name="productType" type="text" value={productType} onChange={e => setProductType(e.target.value)} />
 
                 </div>
