@@ -112,7 +112,6 @@ const createData = async (target) => {
             }
 
         );
-        
 
         return await response.json();
         
@@ -121,6 +120,14 @@ const createData = async (target) => {
         console.log(error);
     }
 };
+
+const updateData = async (target) => { 
+    //target example {table: "customers", item: {} }
+
+
+}
+ 
+
 const performReset = async function() {
 
     const fullURL = `${backendURL}/reset`;
@@ -137,34 +144,28 @@ const performReset = async function() {
         console.log(error);
     }
 }
+
 // Product Functions
 async function getProducts() {
-    const response = await fetch("http://localhost:3000/products");
-    return await response.json();
+    return await getDataByTable("Products");
 };
 
-async function deleteProduct(productID) {
-    const response = await fetch(`http://localhost:3000/products/${productID}`, {
-        method: 'DELETE',
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
+async function createProduct(item) {
+  const target = { table: "Products", item };
+  return await createData(target);
 };
 
-async function createProduct(product) {
-    const response = await fetch("http://localhost:3000/products", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product),
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return await response.json();
+async function deleteProduct(item) {
+  const target = { table: "Products", ID: item.productID };
+  return await deleteData(target);
 };
+
+// needs an universal updateData function to work, not yet implemented in backend
+async function updateProduct(item) {
+    const target = { table: "Products", item };
+    return await updateData(target);
+};
+
 
 
 
@@ -186,31 +187,17 @@ async function createCustomer(item) {
 
 // Manufacturer Functions
 async function getManufacturers() {
-    const response = await fetch("http://localhost:3000/manufacturers");
-    return await response.json();
-}
-
-async function deleteManufacturer(manufacturerID) {
-    const response = await fetch(`http://localhost:3000/manufacturers/${manufacturerID}`, {
-        method: 'DELETE',
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
+    return await getDataByTable("Manufacturers");
 };
 
 async function createManufacturer(item) {
-    const response = await fetch("http://localhost:3000/manufacturers", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(item),
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return await response.json();
+    const target = {"table":"Manufacturers", "item": item};
+    return await createData(target);
+};
+
+async function deleteManufacturer(item) {
+    const target = {"table":"Manufacturers", "ID": item.manufacturerID};
+    return await deleteData(target);
 };
 
 
@@ -273,5 +260,6 @@ export {
     getProducts, 
     deleteProduct,
     createProduct,
+    updateProduct
 
 };

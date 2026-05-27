@@ -326,6 +326,35 @@ END //
 DELIMITER ;
 
 -- Products Delete Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ProductsDelete;
+DELIMITER //
+CREATE PROCEDURE sp_ProductsDelete(IN p_productID INT)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Roll back the transaction on any error
+        ROLLBACK;
+        -- Propogate the custom error message to the caller
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+    
+        DELETE FROM Products WHERE productID = p_productID;
+
+        -- ROW_COUNT() returns the number of rows affected by the preceding statement.
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('No matching record found in Products for id: ', p_productID);
+            -- trigger custom error, invoke EXIT HANDLER
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+END //
+DELIMITER ;
+
+
+
 
 
 -- MANUFACTURER STORED PROCEDURES

@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
-import { getManufacturers } from "../../components/apiClient";
+import { getManufacturers, updateProduct } from "../../components/apiClient";
 import { useNavigate } from 'react-router';
+
 
 function ProductsEdit({itemToEdit}) {
     // use itemToEdit's value if available otherwise return empty string
@@ -44,25 +45,12 @@ function ProductsEdit({itemToEdit}) {
         console.log("updated product", updatedProduct);
 
         try { 
-            const response = await fetch(
-                `http://localhost:3000/products/${productID}`, 
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(updatedProduct),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
+            await updateProduct(updatedProduct);
             navigate('/products');
 
         } catch (error) {
-            console.error("Error updating product:", error);
+            console.error("Error updating product:", error)
+            alert("An error occurred while updating the product. Please try again.");
         }       
     };
 

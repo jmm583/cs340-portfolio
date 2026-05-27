@@ -237,11 +237,11 @@ app.post('/products', async function (req, res) {
 
         const [rows] = await db.query(query, params);
 
-        res.json(rows);
+        res._status(201).json({ message: "Product created successfully." });
 
     } catch (error) {
         console.error("Error executing productsCreate:", error);
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries." });
     }
 });
 
@@ -264,12 +264,12 @@ app.put('/products/:id', async (req, res) => {
         ];
 
         const [rows] = await db.query(query1, params); 
-        res.status(200).send();
+        res.status(200).json({ message: "Product updated successfully." });
     } catch (error) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json({ error: "DatabaseError", message: "An error occurred while executing the database queries." });
     }
 });
 
@@ -277,17 +277,17 @@ app.put('/products/:id', async (req, res) => {
 app.delete('/products/:id', async function (req, res) {
     try {
  
-        const {id} = req.params;
-        console.log(id);
+        const { id } = req.params;
+        const query1 = `CALL ${storedProcs["productsDelete"]}(?);`;
 
-        let query = `DELETE FROM Products WHERE productID= ?`;
-        const [rows] = await db.query(query, [id]); 
-
-        res.status(200).send("Product deleted successfully");
+        const [rows] = await db.query(query1, [id]);
+        res.status(200).send();
+        res.redirect('/products');
     } catch (error) {
-        console.error("Error executing queries:", error.sqlMessage);
+        console.error("Error executing queries:", error);
+
         // Send a generic error message to the browser
-        res.status(500).json({ error: error.sqlMessage });
+        res.status(500).send("An error occurred while executing the database queries.");
     }
 });  
 

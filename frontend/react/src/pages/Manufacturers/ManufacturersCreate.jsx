@@ -21,28 +21,14 @@ function ManufacturersCreate() {
             contactPhone
         };
         console.log("created manufacturer", newManufacturer); 
+        
         try {
-            const response = await fetch(
-                `http://localhost:3000/manufacturers`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newManufacturer),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
+            await createManufacturer(newManufacturer);
             navigate('/manufacturers');
         } catch (error) {
             console.error("Error creating manufacturer:", error);
             alert("An error occurred while creating the manufacturer. Please try again.");
         }  
-
     }
     return (
         <div className='main'>
