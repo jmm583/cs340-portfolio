@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router';
 
 function ManufacturersEdit({itemToEdit}) {
+    // use itemToEdit's value if available otherwise return empty string
     const [manufacturerID, setmanufacturerID] = useState(itemToEdit?.manufacturerID || "");
     const [brandName, setbrandName] = useState(itemToEdit?.brandName || "");
     const [country, setcountry] = useState(itemToEdit?.country || "");

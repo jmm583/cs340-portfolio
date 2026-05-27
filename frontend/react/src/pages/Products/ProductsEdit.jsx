@@ -4,7 +4,6 @@ import { getManufacturers } from "../../components/apiClient";
 import { useNavigate } from 'react-router';
 
 function ProductsEdit({itemToEdit}) {
-
     // use itemToEdit's value if available otherwise return empty string
     const [productID, setProductID] = useState(itemToEdit?.productID || '');
     const [manufacturerID, setManufacturerID] = useState(itemToEdit?.manufacturerID || '');

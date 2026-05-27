@@ -199,8 +199,18 @@ async function deleteManufacturer(manufacturerID) {
     }
 };
 
-function createManufacturer(item) {
-    sampleData["Manufacturers"].push(item);
+async function createManufacturer(item) {
+    const response = await fetch("http://localhost:3000/manufacturers", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item),
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return await response.json();
 };
 
 

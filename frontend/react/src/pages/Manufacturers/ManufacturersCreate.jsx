@@ -10,12 +10,37 @@ function ManufacturersCreate() {
     const [contactEmail, setContactEmail] = useState();
     const [contactPhone, setContactPhone] = useState();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const ID = -1;
-        const manufacturer = {ID, brandName, country, contactEmail, contactPhone}
-        createManufacturer(manufacturer);
-        navigate("/manufacturers")
+        const newManufacturer = {
+            manufacturerID, 
+            brandName, 
+            country, 
+            contactEmail, 
+            contactPhone
+        };
+        console.log("created manufacturer", newManufacturer); 
+        try {
+            const response = await fetch(
+                `http://localhost:3000/manufacturers`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newManufacturer),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            navigate('/manufacturers');
+        } catch (error) {
+            console.error("Error creating manufacturer:", error);
+            alert("An error occurred while creating the manufacturer. Please try again.");
+        }  
 
     }
     return (

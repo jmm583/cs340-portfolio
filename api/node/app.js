@@ -209,7 +209,6 @@ app.get('/products', async function (req, res) {
     }
 });
 
-// update product route
 app.put('/products/:id', async (req, res) => {
 
     try {
@@ -267,7 +266,7 @@ app.delete('/products/:id', async function (req, res) {
 });  
 
 
-
+// Manufacturers routes
 app.get('/manufacturers', async function (req, res) {
     try {
         const query = 'SELECT Manufacturers.manufacturerID, Manufacturers.brandName, Manufacturers.country, Manufacturers.contactEmail, Manufacturers.contactPhone FROM Manufacturers';
@@ -319,6 +318,27 @@ app.delete('/manufacturers/:id', async function (req, res) {
     }
 });
 
+app.post('/manufacturers', async function (req, res) {
+    try {
+        const { brandName, country, contactEmail, contactPhone } = req.body;
+
+        console.log(req.body);
+        let query = `INSERT INTO Manufacturers (brandName, country, contactEmail, contactPhone) VALUES (?, ?, ?, ?)`;
+
+        
+        const [rows] = await db.query(query, [brandName, country, contactEmail, contactPhone]);
+        res.status(201).json({ message: "Manufacturer created successfully" });
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+
+// orderProducts route
 app.get('/orderproducts', async function (req, res) {
     try {
         const query = 'SELECT OrderProducts.orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID';
