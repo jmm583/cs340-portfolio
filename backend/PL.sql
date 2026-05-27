@@ -330,6 +330,7 @@ DROP PROCEDURE IF EXISTS sp_ProductsDelete;
 DELIMITER //
 CREATE PROCEDURE sp_ProductsDelete(IN p_productID INT)
 BEGIN
+    DECLARE error_message VARCHAR(255);
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         -- Roll back the transaction on any error
