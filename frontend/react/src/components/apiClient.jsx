@@ -1,45 +1,18 @@
-const sampleData = {
-    "Customers":[
-        {"customerID":"1","firstName":"Luke","lastName":"Skywalker","email":"lukeskywalker@jedi.com","phone":"0000000000"},
-        {"customerID":"2","firstName":"Ben","lastName":"Kenobi","email":"obiwan@jedi.com","phone":"0000000000"},
-        {"customerID":"3","firstName":"Leia","lastName":"Skywalker","email":"leiaskywalker@rebels.com","phone":"0000000000"}
-    ],
-    "Manufacturers": [
-        {"manufacturerID":"1","brandName":"Santa Cruz Skateboards","country":"USA","contactEmail":"sales@santacruzskateboards.com","contactPhone":"831-555-4827"},
-        {"manufacturerID":"2","brandName":"Powell Peralta","country":"USA","contactEmail":"info@powell-peralta.com","contactPhone":"805-555-7391"},
-        {"manufacturerID":"3","brandName":"Independent Truck Company","country":"USA","contactEmail":"info@independenttrucks.com","contactPhone":"510-555-6032"},
-        {"manufacturerID":"4","brandName":"Mob Grip","country":"USA","contactEmail":"support@mobgrip.com","contactPhone":"310-555-7824"},
-        {"manufacturerID":"5","brandName":"Bones Bearings ","country":"USA","contactEmail":"info@bonesbearings.com","contactPhone":"415-555-2648"}
-    ],
-    "OrderProducts":
-    [
-        {"orderProductsID":"1","orderID":"1", "Customer":"Leia Skywalker","productID":"1", "productName":"Classic Dot Deck 8.25","quantity":"2"},
-        {"orderProductsID":"2","orderID":"3", "Customer":"Luke Skywalker","productID":"2", "productName":"Dragon Formula Wheels 54mm", "quantity":"4"},
-        {"orderProductsID":"3","orderID":"2", "Customer":"Ben Kenobi","productID":"3", "productName":"Stage 11 Standard Trucks", "quantity":"1"}
-    ],
-    
-    "Orders":
-    [
-        {"orderID":"1","customerID":"3", "fullName":"Leia Skywalker", "customerEmail": "leiaskywalker@rebels.com","complete":"1","totalCost":"64.99","statusName":"completed","statusDate":'2026-01-01 10:30:00'},
-        {"orderID":"2","customerID":"2", "fullName":"Ben Kenobi", "customerEmail":"obiwan@jedi.com","complete":"0","totalCost":"42.99","statusName":"pending","statusDate":'2026-01-01 10:30:00'},
-        {"orderID":"3","customerID":"1", "fullName":"Luke Skywalker","customerEmail":"lukeskywalker@jedi.com", "complete":"0","totalCost":"59.99","statusName":"pending","statusDate":'2026-01-01 10:30:00'}
-    ],
+// ==========================================
+// API CLIENT Functions
+// Performs all fetch operations for the app.
+// ==========================================
 
-    
-    "Products": [
-        {"productID":"1","manufacturerID":"1","brandName":"Santa Cruz Skateboards","productType":"deck", "name":"Classic Dot Deck 8.25","price":"64.99","description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
-        {"productID":"2","manufacturerID":"2","brandName":"Powell Peralta", "productType":"wheels", "name":"Dragon Formula Wheels 54mm","price":"42.99","description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
-        {"productID":"3","manufacturerID":"3","brandName":"Independent Truck Company", "productType":"trucks","name":"Stage 11 Standard Trucks","price":"59.99","description":"Independent Stage 11 trucks","SKU":"412659Z"},
-        {"productID":"4","manufacturerID":"2","brandName":"Powell Peralta","productType":"bearings", "name":"Bones Reds Bearings","price":"21.99","description":"Bones Reds skateboard bearings","SKU":"638204T"},
-        {"productID":"5","manufacturerID":"4","brandName":"Mob Grip", "productType":"griptape", "name":"Mob Black Griptape","price":"11.99","description":"Mob black skateboard griptape","SKU":"748213M"}
-    ]
-};
 // Define the backend port and URL for API requests
 const backendPort = import.meta.env.VITE_API_PORT;  // Use the port you assigned to the backend server, this would normally go in .env file
 const backendURL = `http://${import.meta.env.VITE_API_BASE_URL}:${backendPort}`;
 
-
-// Get the data from the database
+// ==========================================
+// General Fetch Operations
+// ==========================================
+// ==========================================
+// Get Data By Table
+// ==========================================
 const getDataByTable = async (target) => {
     const fullURL = `${backendURL}/${target}`;
     try {
@@ -58,7 +31,9 @@ const getDataByTable = async (target) => {
         console.log(error);
     }
 };
-// Get the data from the database
+// ==========================================
+// Get Data By ID
+// ==========================================
 const getDataIDByTable = async (target) => {
     const fullURL = `${backendURL}/${target.table}/${target.ID}`;
     try {
@@ -77,7 +52,9 @@ const getDataIDByTable = async (target) => {
         console.log(error);
     }
 };
-// Get the data from the database
+// ==========================================
+// Delete Data 
+// ==========================================
 const deleteData = async (target) => {
     //target example {table: "customers", id: {} }
     const fullURL = `${backendURL}/${target.table}/${target.ID}`;
@@ -97,7 +74,9 @@ const deleteData = async (target) => {
         console.log(error);
     }
 };
-// Get the data from the database
+// ==========================================
+// Create Data 
+// ==========================================
 const createData = async (target) => {
     //target example {table: "customers", item: {} }
     const fullURL = `${backendURL}/${target.table}`;
@@ -120,14 +99,19 @@ const createData = async (target) => {
         console.log(error);
     }
 };
-
+// ==========================================
+// Update Data
+// -- Not Implemented 
+// ==========================================
 const updateData = async (target) => { 
     //target example {table: "customers", item: {} }
 
 
 }
  
-
+// ==========================================
+// Reset Functions
+// ==========================================
 const performReset = async function() {
 
     const fullURL = `${backendURL}/reset`;
@@ -145,21 +129,33 @@ const performReset = async function() {
     }
 }
 
+
+// ==========================================
 // Product Functions
+// ==========================================
+// ==========================================
+// Get ALL
+// ==========================================
 async function getProducts() {
     return await getDataByTable("Products");
 };
-
+// ==========================================
+// Create Product 
+// ==========================================
 async function createProduct(item) {
   const target = { table: "Products", item };
   return await createData(target);
 };
-
+// ==========================================
+// Delete Product 
+// ==========================================
 async function deleteProduct(item) {
   const target = { table: "Products", ID: item.productID };
   return await deleteData(target);
 };
-
+// ==========================================
+// Update Product 
+// ==========================================
 // needs an universal updateData function to work, not yet implemented in backend
 async function updateProduct(item) {
     const target = { table: "Products", item };
@@ -167,60 +163,94 @@ async function updateProduct(item) {
 };
 
 
-
-
-// Customer Fuctions
+// ==========================================
+// Customer Functions
+// ==========================================
+// ==========================================
+// Get ALL Customers
+// ==========================================
 async function getCustomers() {
     return await getDataByTable("customers")
 };
+// ==========================================
+// Delete Customer 
+// ==========================================
 async function deleteCustomer(item) {
     const target = {"table":"Customers", "ID": item.customerID};
     return await deleteData(target);
 
 };
+// ==========================================
+// Create Customer 
+// ==========================================
 async function createCustomer(item) {
     const target = {"table":"Customers", "item": item};
     return await createData(target)
 };
 
 
-
-// Manufacturer Functions
+// ==========================================
+// Manufacturer Functions 
+// ==========================================
+// ==========================================
+// Get ALL Manufacturers 
+// ==========================================
 async function getManufacturers() {
     return await getDataByTable("Manufacturers");
 };
-
+// ==========================================
+// Create Manufacturer 
+// ==========================================
 async function createManufacturer(item) {
     const target = {"table":"Manufacturers", "item": item};
     return await createData(target);
 };
-
+// ==========================================
+// Delete Manufacturer 
+// ==========================================
 async function deleteManufacturer(item) {
     const target = {"table":"Manufacturers", "ID": item.manufacturerID};
     return await deleteData(target);
 };
 
 
-
-// Order Functions
+// ==========================================
+// Orders Functions 
+// ==========================================
+// ==========================================
+// Order Get ALL 
+// ==========================================
 async function getOrders() {
     return await getDataByTable("Orders");
 };
+// ==========================================
+// Order Delete 
+// ==========================================
 async function deleteOrder(item) {
     const target = {"table":"Orders", "ID": item.orderID};
     return await deleteData(target);
 };
+// ==========================================
+// Order Create 
+// ==========================================
 async function createOrder(item) {
     const target = {"table":"Orders", "item": item};
     return await createData(target)
 };
 
 
-
-// OrderProducts Functions
+// ==========================================
+// OrderProducts Functions 
+// ==========================================
+// ==========================================
+// OrderProducts Get ALL 
+// ==========================================
 async function getOrderProducts() {
     return await getDataByTable("OrderProducts");
 };
+// ==========================================
+// OrderProducts Get By orderID 
+// ==========================================
 async function getOrderProductsByOrder(orderID) {
 
     const fullURL = `${backendURL}/Orders/OrderProducts/${orderID}`;
@@ -240,10 +270,16 @@ async function getOrderProductsByOrder(orderID) {
         console.log(error);
     }
 };
+// ==========================================
+// OrderProducts Delete
+// ==========================================
 async function deleteOrderProduct(item) {
     const target = {"table":"OrderProducts", "ID": item.orderProductsID};
     return await deleteData(target);
 };
+// ==========================================
+// OrderProducts Create
+// ==========================================
 async function createOrderProduct(item) {
     const target = {"table":"OrderProducts", "item": item};
     return await createData(target);
