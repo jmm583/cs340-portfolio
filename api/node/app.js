@@ -229,6 +229,25 @@ app.put('/products/:id', async (req, res) => {
     }
 });
 
+app.delete('/products/:id', async function (req, res) {
+    try {
+ 
+        const {id} = req.params;
+        console.log(id);
+
+        let query = `DELETE FROM Products WHERE productID= ?`;
+        const [rows] = await db.query(query, [id]); 
+
+        res.status(200).send("Product deleted successfully");
+    } catch (error) {
+        console.error("Error executing queries:", error.sqlMessage);
+        // Send a generic error message to the browser
+        res.status(500).json({ error: error.sqlMessage });
+    }
+});  
+
+
+
 app.get('/manufacturers', async function (req, res) {
     try {
         const query = 'SELECT Manufacturers.manufacturerID, Manufacturers.brandName, Manufacturers.country, Manufacturers.contactEmail, Manufacturers.contactPhone FROM Manufacturers';
@@ -240,6 +259,43 @@ app.get('/manufacturers', async function (req, res) {
 
         // Send a generic error message to the browser
         res.status(500).json({ error: 'An error occurred while executing the database queries.' });
+    }
+});
+
+app.put('/manufacturers/:id', async (req, res) => {
+
+    try {
+        const manufacturer = req.body;
+        const { id } = req.params;
+        console.log(id);
+
+        let query = `UPDATE Manufacturers SET brandName = '${req.body.brandName}', country='${req.body.country}', contactEmail='${req.body.contactEmail}', contactPhone='${req.body.contactPhone}' WHERE manufacturerID = ${id}`;
+
+        const [rows] = await db.query(query); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+app.delete('/manufacturers/:id', async function (req, res) {
+    try {
+ 
+        const { id } = req.params;
+        console.log(id);
+
+        let query = `DELETE FROM Manufacturers WHERE manufacturerID=${id}`;
+
+        const [rows] = await db.query(query); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
     }
 });
 

@@ -27,11 +27,13 @@ function Manufacturers({setItemToEdit}) {
         navigate("/manufacturers/edit");
 
     };
-    const onDelete = (item) => {
+    const onDelete = async (item) => {
 
-        deleteManufacturer(item);
+        await deleteManufacturer(item.manufacturerID);
         loadManufacturers();
+        console.log("deleted Manufacturer", item.manufacturerID)
     };
+
     useEffect(() => {
         loadManufacturers();
         

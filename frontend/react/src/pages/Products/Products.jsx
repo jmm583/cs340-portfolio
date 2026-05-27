@@ -20,17 +20,16 @@ function Products({setItemToEdit}) {
     };
 
     const onEdit = (item) =>{
-
         setItemToEdit(item);
         navigate('/products/edit');
     };
-
-    const onDelete = (item) => {
-        setProducts(deleteProduct(item));
- 
+    
+    const onDelete = async (item) => {
+        await deleteProduct(item.productID);
+        loadProducts();
         console.log("deleted Product", item.productID)
-
     };
+
     useEffect(() => {
         loadProducts();
         

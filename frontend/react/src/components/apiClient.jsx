@@ -147,12 +147,15 @@ async function getProducts() {
     return await response.json();
 };
 
-function deleteProduct(item) {
-    const filtered =sampleData["Products"].filter(product => product.productID !== item.productID);
-    sampleData["Products"] = filtered;
-    
-    return sampleData["Products"];
+async function deleteProduct(productID) {
+    const response = await fetch(`http://localhost:3000/products/${productID}`, {
+        method: 'DELETE',
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
 };
+
 function createProduct(customer) {
     sampleData["Products"].push(customer);
 };
@@ -181,12 +184,16 @@ async function getManufacturers() {
     return await response.json();
 }
 
-function deleteManufacturer(item) {
-    const filtered = sampleData["Manufacturers"].filter(manufacturer => manufacturer.manufacturerID !== item.manufacturerID);
-
-    sampleData["Manufacturers"] = filtered;
-    return sampleData["Manufacturers"];
+async function deleteManufacturer(manufacturerID) {
+    const response = await fetch(`http://localhost:3000/manufacturers/${manufacturerID}`, {
+        method: 'DELETE',
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
 };
+
+
 function createManufacturer(item) {
     sampleData["Manufacturers"].push(item);
 };
