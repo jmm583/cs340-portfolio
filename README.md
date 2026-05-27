@@ -1,3 +1,6 @@
+# CS 340 Project Spring 2026
+Contributors: Joshua York, Jonathan Marchand
+
 # NobleGoldfish
 NobleGoldfish is a project web app that connects to a database.  
 
@@ -6,11 +9,12 @@ NobleGoldfish is a project web app that connects to a database.
 git clone the repo
 
 Fronted code exists at frontend/react. See the README.md in that folder for further details.
+
 Backend or database code exists under the backend folder. See the README.md in that folder for further details.
+
 API code exists at api/node. See the README.md in that folder for further details.
 
-# CS 340 Project Spring 2026
-Contributors: Joshua York, Jonathan Marchand
+
 
 # Citations
 Some code may be adapted from starter code from the CS340 course.
