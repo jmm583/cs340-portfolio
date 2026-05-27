@@ -246,6 +246,8 @@ BEGIN
     
     JOIN Products b ON b.productID = a.productID
     WHERE orderID = c_id;
+END //
+DELIMITER ;
 
 /*
 // Implementing CUD operations in your app using stored procedures
@@ -256,7 +258,52 @@ BEGIN
 //
 */
 
+
+-- Products Table Stored Procedures
 DELIMITER //
+CREATE PROCEDURE sp_ProductsCreate(
+    IN p_manufacturerID INT,
+    IN p_name VARCHAR(255),
+    IN p_productType VARCHAR(255),
+    IN p_price DECIMAL(10, 2),
+    IN p_description TEXT,
+    IN p_SKU VARCHAR(255),
+    OUT p_productID INT
+)
+BEGIN
+    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
+    VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
+    SET p_productID = LAST_INSERT_ID();
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE sp_ProductsSelect()
+BEGIN
+    SELECT 
+        a.productID,
+        a.manufacturerID,
+        b.brandName,
+        a.productType,
+        a.name,
+        a.price,
+        a.description,
+        a.SKU
+    FROM Products a
+    JOIN Manufacturers b
+        ON a.manufacturerID = b.manufacturerID
+    ORDER BY a.productID ASC;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_Product(
+    IN p_productID INT
+)
+
+DELIMITER //
+-- Database Reset Stored Procedure
 CREATE PROCEDURE DatabaseReset()
 
 BEGIN
@@ -404,42 +451,3 @@ BEGIN
 
 END //
 DELIMITER ;
-
--- Products Table Stored Procedures
-DELIMITER //
-CREATE PROCEDURE AddProduct(
-    IN p_manufacturerID INT,
-    IN p_name VARCHAR(255),
-    IN p_productType VARCHAR(255),
-    IN p_price DECIMAL(10, 2),
-    IN p_description TEXT,
-    IN p_SKU VARCHAR(255),
-    OUT p_productID INT
-)
-BEGIN
-    INSERT INTO products (manufacturerID, name, productType, price, description, SKU)
-    VALUES (p_manufacturerID, p_name, p_productType, p_price, p_description, p_SKU);
-    SET p_productID = LAST_INSERT_ID();
-END //
-DELIMITER ;
-
-DELIMITER //
-
-CREATE PROCEDURE sp_ProductsSelect()
-BEGIN
-    SELECT 
-        a.productID,
-        a.manufacturerID,
-        b.brandName,
-        a.productType,
-        a.name,
-        a.price,
-        a.description,
-        a.SKU
-    FROM Products a
-    JOIN Manufacturers b
-        ON Products.manufacturerID = Manufacturers.manufacturerID
-    ORDER BY Products.productID ASC;
-END //
-
-DELIMITER //
