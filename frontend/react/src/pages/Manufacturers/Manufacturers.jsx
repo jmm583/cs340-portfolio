@@ -40,12 +40,12 @@ function Manufacturers({setItemToEdit}) {
     }, []);
 
     const tableHeaders = {
-        manufacturerID: "Manufacturer ID",
+        manufacturerID: "Manufacturer ID",
         brandName: "Manufactuer Name",
-        country: "Country",
-        contactEmail: "Contact Email",
-        contactPhone: "Contact Phone"
-        };
+        country: "Country",
+        contactEmail: "Contact Email",
+        contactPhone: "Contact Phone"
+    };
 
     return (
         <div className='main'>
