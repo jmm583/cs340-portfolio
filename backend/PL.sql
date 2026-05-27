@@ -328,6 +328,47 @@ DELIMITER ;
 -- Products Delete Stored Procedure
 
 
+-- MANUFACTURER STORED PROCEDURES
+
+-- Manufacturers Select Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ManufacturersSelect;
+DELIMITER //
+CREATE PROCEDURE sp_ManufacturersSelect()
+BEGIN
+    SELECT 
+        manufacturerID, 
+        brandName, 
+        country, 
+        contactEmail, 
+        contactPhone 
+    FROM Manufacturers
+    ORDER BY manufacturerID ASC;
+END //
+DELIMITER ;
+
+
+-- Manufacturers Update Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ManufacturersUpdate;
+DELIMITER //
+CREATE PROCEDURE sp_ManufacturersUpdate(
+    IN p_manufacturerID INT,
+    IN p_brandName VARCHAR(255),
+    IN p_country VARCHAR(255),
+    IN p_contactEmail VARCHAR(255),
+    IN p_contactPhone VARCHAR(255)
+)
+BEGIN
+    UPDATE Manufacturers
+    SET
+        brandName = p_brandName,
+        country = p_country,
+        contactEmail = p_contactEmail,
+        contactPhone = p_contactPhone
+    WHERE manufacturerID = p_manufacturerID;
+END //
+DELIMITER ;
+
+
 
 
 

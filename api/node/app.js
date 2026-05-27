@@ -299,28 +299,36 @@ app.delete('/products/:id', async function (req, res) {
 // Manufacturers routes
 app.get('/manufacturers', async function (req, res) {
     try {
-        const query = 'SELECT Manufacturers.manufacturerID, Manufacturers.brandName, Manufacturers.country, Manufacturers.contactEmail, Manufacturers.contactPhone FROM Manufacturers';
+        const manufacturer = req.body;
+        const query = `CALL ${storedProcs["manufacturersSelect"]}()`;
         
         const [rows] = await db.query(query); 
-        res.json(rows);
+        res.json(rows[0]);
     } catch (error) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).json({ error: 'An error occurred while executing the database queries.' });
-    }
+        res.status(500).send("An error occurred while executing the database queries.");
+    }   
 });
 
 app.put('/manufacturers/:id', async (req, res) => {
 
     try {
         const manufacturer = req.body;
+        const query1 = `CALL ${storedProcs["manufacturersUpdate"]}(?, ?, ?, ?, ?);`;
         const { id } = req.params;
         console.log(id);
 
-        let query = `UPDATE Manufacturers SET brandName = '${req.body.brandName}', country='${req.body.country}', contactEmail='${req.body.contactEmail}', contactPhone='${req.body.contactPhone}' WHERE manufacturerID = ${id}`;
+        const params = [
+            id,
+            req.body.brandName,
+            req.body.country,
+            req.body.contactEmail,
+            req.body.contactPhone
+        ];
 
-        const [rows] = await db.query(query); 
+        const [rows] = await db.query(query1, params); 
         res.status(200).send();
     } catch (error) {
         console.error("Error executing queries:", error);
