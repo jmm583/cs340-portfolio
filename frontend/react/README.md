@@ -22,7 +22,7 @@ TableRow.jsx - is used on Pages content to display results from select queries. 
 Navbar.jsx - contains to navigation component for the site.
 
 ## Citations
-This app is using starter code from CS 340 Week 1 Activity 2.
+This app is using starter code from CS 340 Spring 2026 Week 1 Activity 2.
 https://canvas.oregonstate.edu/courses/2042369/assignments/10464646?module_item_id=26640125
 
 
