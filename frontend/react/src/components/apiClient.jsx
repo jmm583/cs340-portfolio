@@ -222,8 +222,23 @@ async function getOrderProducts() {
     return await getDataByTable("OrderProducts");
 };
 async function getOrderProductsByOrder(orderID) {
-    const target = {"table":"OrderProducts", "ID": orderID};
-    return await getDataIDByTable(target);
+
+    const fullURL = `${backendURL}/Orders/OrderProducts/${orderID}`;
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL);
+        
+        // Convert the response into JSON format
+        const rows = await response.json();
+
+        //return rows;
+        // Update the message state with the response data
+        return(rows);
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
 };
 async function deleteOrderProduct(item) {
     const target = {"table":"OrderProducts", "ID": item.orderProductsID};

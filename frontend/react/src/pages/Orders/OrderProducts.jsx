@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getOrderProductsByOrder, deleteOrderProduct, getProducts} from "../../components/apiClient";
+import {getOrderProductsByOrder, deleteOrderProduct, getProducts, createOrderProduct} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 import { Link } from 'react-router';
 
@@ -9,13 +9,16 @@ function OrderProducts({itemToEdit}) {
     const [orderProducts, setOrderProducts] = useState([]);
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
-    const [addProduct, setAddProduct] = useState(); 
-    const loadProducts = () => {
-        setProducts(getProducts());
+    const [product, setProduct] = useState(); 
+    const [quantity, setQuantity] = useState();
+
+    const loadProducts = async () => {
+        const data = await getProducts();
+        setProducts(data);
 
     };
-    const loadOrderProducts = () => {
-        const data = getOrderProductsByOrder(itemToEdit.orderID);
+    const loadOrderProducts = async () => {
+        const data = await getOrderProductsByOrder(itemToEdit.orderID);
         setOrderProducts(data);
     };
     const onEdit= (orderProduct) => {
@@ -25,19 +28,21 @@ function OrderProducts({itemToEdit}) {
     };
 
 
-    const onSubmit=(e) => {
+    const onSubmit= async (e) => {
         e.preventDefault();
+        const orderID = itemToEdit.orderID;
+        const item = {orderID:orderID.orderID, product, quantity};
+        await createOrderProduct(item);
+
 
     }
-    const onDelete = (item) => {
-
-        deleteOrderProduct(item);
+    const onDelete = async (item) => {
+        await deleteOrderProduct(item);
         loadOrderProducts();
     };
     const tableHeaders = {
         orderProductsID: "Order Products ID",
         orderID: "Order ID",
-        Customer: "Customer",
         productID: "Product ID",
         productName: "Product Name",
         quantity: "Quantity"
@@ -55,13 +60,18 @@ function OrderProducts({itemToEdit}) {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label htmlFor="AddProduct">Product</label>
-                    <select name="AddProduct" onChange={setAddProduct}>
+                    <select name="AddProduct" onChange={setProduct}>
                         {products.map((product) => (
                             <option key={product.productID} value={product.productID}>
                             {product.name}
                             </option>
                         ))}
                     </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="quantity">Quantity</label>
+                    <input name='quantity' type='number' value={quantity} onChange={e => setQuantity(e.target.value)}></input>
+
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Add</button>

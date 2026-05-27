@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
 import { getCustomers } from "../../components/apiClient";
 function OrderEdit({order}){
@@ -9,10 +9,23 @@ function OrderEdit({order}){
     const [statusName, setStatusName] = useState(order.statusName);
     const [statusDate, setStatusDate] = useState(order.statusDate);
     const [totalCost, setTotalCost] = useState(order.totalCost);
-    const customers = getCustomers()
+    const [customers, setCustomers] = useState([]);
+
+    const loadCustomers = async () =>{
+        // Make a GET request to the backend
+        const rows = await getCustomers();
+        setCustomers(rows);
+
+    };
+ 
     const onSubmit = (e) => {
         e.preventDefault();
-    }
+        console.log(statusDate);
+    };
+    useEffect(() => {
+        loadCustomers();
+        
+    }, []);
     return (
         <div className='main'>
             <h1>Edit Order</h1>
