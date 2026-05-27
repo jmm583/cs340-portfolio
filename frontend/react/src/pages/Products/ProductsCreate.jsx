@@ -75,7 +75,7 @@ function ProductsCreate() {
     return (
         <div className='main'>
             <h1>Add Product</h1>
-            <form onSubmit={onSubmit}>
+            <form action="/products" method="POST" onSubmit={onSubmit}>
                 {/* <label htmlFor="productID">productID:</label>
                 <input name="productID" type="number" value={productID} onChange={setProductID} /> */}
                

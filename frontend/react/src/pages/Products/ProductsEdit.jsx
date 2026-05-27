@@ -69,7 +69,7 @@ function ProductsEdit({itemToEdit}) {
     return (
         <div className='main'>
             <h1>Edit Products</h1>
-            <form onSubmit={onSubmit}>
+            <form action={`/products/${productID}`} method="POST" onSubmit={onSubmit}>
                 
                 {/* <div className="form-group">
                     <label htmlFor="productID">productID:</label>

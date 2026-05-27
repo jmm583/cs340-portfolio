@@ -48,7 +48,7 @@ function ManufacturersEdit({itemToEdit}) {
     return (
         <div className='main'>
             <h1>Edit Manufacturer</h1>
-            <form onSubmit={onSubmit}>
+            <form action={`/manufacturers/${manufacturerID}`} method="POST" onSubmit={onSubmit}>
                 {/* <div className="form-group">
                     <label htmlFor="manufacturerID">manufacturerID:</label>
                     <input name="manufacturerID" type="number" value={manufacturerID} onChange={setmanufacturerID} />
