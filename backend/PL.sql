@@ -172,6 +172,17 @@ DELIMITER ;
 -- #############################
 -- OrderProducts 
 -- #############################
+-- #####################
+-- OrderProducts SELECT
+-- #####################
+DROP PROCEDURE IF EXISTS sp_OrderProductsSelect;
+DELIMITER //
+CREATE PROCEDURE sp_OrderProductsSelect()
+BEGIN
+SELECT orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID
+ORDER BY OrderProducts.orderProductsID ASC;
+END //
+DELIMITER ;
 -- #############################
 -- OrderProducts Create 
 -- #############################

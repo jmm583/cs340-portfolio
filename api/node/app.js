@@ -385,9 +385,9 @@ app.post('/manufacturers', async function (req, res) {
 // orderProducts route
 app.get('/orderproducts', async function (req, res) {
     try {
-        const query = 'SELECT OrderProducts.orderProductsID, orderID, OrderProducts.productID, Products.name, quantity, Products.price FROM OrderProducts JOIN Products ON OrderProducts.productID = Products.productID';
+        const query = `CALL ${storedProcs["orderproductsSelect"]}`;
         
-        const [rows] = await db.query(query); 
+        const [[rows]] = await db.query(query); 
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
