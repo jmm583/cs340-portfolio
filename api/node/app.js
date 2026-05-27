@@ -358,22 +358,32 @@ app.delete('/manufacturers/:id', async function (req, res) {
 
 app.post('/manufacturers', async function (req, res) {
     try {
-        const { brandName, country, contactEmail, contactPhone } = req.body;
+        const data = req.body;
 
-        console.log(req.body);
-        let query = `INSERT INTO Manufacturers (brandName, country, contactEmail, contactPhone) VALUES (?, ?, ?, ?)`;
+        console.log(data);
 
-        
-        const [rows] = await db.query(query, [brandName, country, contactEmail, contactPhone]);
-        res.status(201).json({ message: "Manufacturer created successfully" });
+        const query = `CALL ${storedProcs["manufacturersCreate"]}(?, ?, ?, ?, @new_id);`;
 
-    } catch (error) {
+        const params = [
+            data.brandName,
+            data.country,
+            data.contactEmail,
+            data.contactPhone
+        ];
+
+        console.log(params);
+
+        const [rows] = await db.query(query, params);
+        res.json(rows);
+    }
+    catch (error) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+
 
 
 // orderProducts route

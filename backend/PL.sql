@@ -368,6 +368,23 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Manufacturers Create Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ManufacturersCreate;
+DELIMITER //
+CREATE PROCEDURE sp_ManufacturersCreate(
+    IN p_brandName VARCHAR(255),
+    IN p_country VARCHAR(255),
+    IN p_contactEmail VARCHAR(255),
+    IN p_contactPhone VARCHAR(255),
+    OUT p_manufacturerID INT
+)
+BEGIN
+    INSERT INTO Manufacturers (brandName, country, contactEmail, contactPhone)
+    VALUES (p_brandName, p_country, p_contactEmail, p_contactPhone);
+    SET p_manufacturerID = LAST_INSERT_ID();
+END //
+DELIMITER ; 
+
 
 
 
