@@ -229,6 +229,26 @@ app.put('/products/:id', async (req, res) => {
     }
 });
 
+app.post('/products', async function (req, res) {
+    try {
+        const { manufacturerID, name, productType, price, description, SKU } = req.body;
+
+        console.log(req.body);
+        let query = `INSERT INTO Products (manufacturerID, name, productType, price, description, SKU) VALUES (?, ?, ?, ?, ?, ?)`;
+
+        
+        const [rows] = await db.query(query, [manufacturerID, name, productType, price, description, SKU]);
+        res.status(201).json({ message: "Product created successfully" });
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+
+});
+
 app.delete('/products/:id', async function (req, res) {
     try {
  

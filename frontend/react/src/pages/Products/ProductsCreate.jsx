@@ -4,14 +4,14 @@ import { getManufacturers, createProduct } from "../../components/apiClient";
 import { useNavigate } from "react-router";
 
 function ProductsCreate() {
-    const navigate = useNavigate();
-    const [productID, setProductID] = useState();
-    const [manufacturerID, setManufacturerID] = useState();
-    const [name, setName] = useState();
-    const [productType, setProductType] = useState();
-    const [price, setPrice] = useState();
-    const [description, setDescription] = useState();
-    const [SKU, setSKU] = useState();
+    const navigate = useNavigate("");
+    const [productID, setProductID] = useState("");
+    const [manufacturerID, setManufacturerID] = useState("");
+    const [name, setName] = useState("");
+    const [productType, setProductType] = useState("");
+    const [price, setPrice] = useState("");
+    const [description, setDescription] = useState("");
+    const [SKU, setSKU] = useState("");
 
 
     // const manufacturers = getManufacturers();
@@ -28,12 +28,39 @@ function ProductsCreate() {
     const setManufacturer = (e) => {
         setManufacturerID(e.target.value);
     }
-    const onSubmit = (e) => {
-        const ID = -1;
-        e.preventDefault();
-        createProduct(ID, manufacturerID, name, productType, price, SKU );
-        navigate("/products")
 
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const newProduct = {
+            manufacturerID, 
+            name, 
+            productType, 
+            price, 
+            description, 
+            SKU
+        };
+        console.log("created product", newProduct); 
+        try {
+            const response = await fetch(
+                `http://localhost:3000/products`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newProduct),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            navigate('/products');
+        } catch (error) {
+            console.error("Error creating product:", error);
+            alert("An error occurred while creating the product. Please try again.");
+        }   
     }
     return (
         <div className='main'>
@@ -45,7 +72,8 @@ function ProductsCreate() {
                 <div className="form-group">
                     <label htmlFor="manufacturerID">Manufacturer:</label>
                     {/* <input name="manufacturerID" type="number" value={manufacturerID} onChange={setManufacturerID} /> */}
-                    <select onChange={setManufacturer}>
+                    <select value={manufacturerID} onChange={setManufacturer}>
+                        <option value="">select a manufacturer</option>
                         {manufacturers.map((manufacturer) => (
                             <option key={manufacturer.manufacturerID} value={manufacturer.manufacturerID}>
                             {manufacturer.brandName}

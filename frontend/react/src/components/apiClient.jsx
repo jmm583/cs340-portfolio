@@ -138,10 +138,6 @@ const performReset = async function() {
     }
 }
 // Product Functions
-// function getProducts() {
-//     return sampleData["Products"];
-// };
-
 async function getProducts() {
     const response = await fetch("http://localhost:3000/products");
     return await response.json();
@@ -156,9 +152,21 @@ async function deleteProduct(productID) {
     }
 };
 
-function createProduct(customer) {
-    sampleData["Products"].push(customer);
+async function createProduct(product) {
+    const response = await fetch("http://localhost:3000/products", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return await response.json();
 };
+
+
 
 // Customer Fuctions
 async function getCustomers() {
@@ -174,11 +182,9 @@ async function createCustomer(item) {
     return await createData(target)
 };
 
-// Manufacturer Functions
-// function getManufacturers() {
-//     return sampleData["Manufacturers"];
-// };
 
+
+// Manufacturer Functions
 async function getManufacturers() {
     const response = await fetch("http://localhost:3000/manufacturers");
     return await response.json();
@@ -192,7 +198,6 @@ async function deleteManufacturer(manufacturerID) {
         throw new Error('Network response was not ok');
     }
 };
-
 
 function createManufacturer(item) {
     sampleData["Manufacturers"].push(item);
