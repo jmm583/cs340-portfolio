@@ -140,9 +140,14 @@ app.delete('/customers/:id', async function (req, res) {
         res.status(200).send();
     } catch (error) {
         console.error("Error executing queries:", error);
-
-        // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        if (error.errno == 1451) {
+        return res.status(400).json({ 
+            error: "ForeignKeyConstraintError", 
+            message: "Cannot delete due to FK reference."});
+        } else {
+            // Send a generic error message to the browser
+            res.status(500).send("An error occurred while executing the database queries.");
+        }
     }
 });
 // ==========================================
@@ -235,7 +240,7 @@ app.delete('/orders/:id', async function (req, res) {
         res.status(200).send();
     } catch (error) {
         console.error("Error executing queries:", error);
-
+        
         // Send a generic error message to the browser
         res.status(500).send("An error occurred while executing the database queries.");
     }
