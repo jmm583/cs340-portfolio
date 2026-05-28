@@ -414,7 +414,7 @@ app.delete('/manufacturers/:id', async function (req, res) {
 
         let query = `CALL ${storedProcs["manufacturersDelete"]}(?)`;
 
-        const [rows] = await db.query(query); 
+        const [rows] = await db.query(query, [id]); 
         res.status(200).send();
     } catch (error) {
         console.error("Error executing queries:", error);
