@@ -207,7 +207,7 @@ async function createManufacturer(item) {
 // Delete Manufacturer 
 // ==========================================
 async function deleteManufacturer(item) {
-    const target = {"table":"Manufacturers", "ID": item};
+    const target = {"table":"Manufacturers", "ID": item.manufacturerID};
     return await deleteData(target);
 };
 
