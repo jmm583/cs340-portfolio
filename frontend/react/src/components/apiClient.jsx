@@ -58,13 +58,21 @@ const getDataIDByTable = async (target) => {
 const deleteData = async (target) => {
     //target example {table: "customers", id: {} }
     const fullURL = `${backendURL}/${target.table}/${target.ID}`;
+    try {
+        const response = await fetch(fullURL, {method: 'DELETE'});
+        if (response.status == 400) {
 
-    const response = await fetch(fullURL, {method: 'DELETE'});
-    if (response.status) {
-        const errorData = await response.json();
-        window.alert(errorData.message);
+            const body = await response.json();
+            alert(body.message);
+        } else {
+            return await response.json();
+        }
+
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
     }
-    return await response.json();
+
 };
 // Get the data from the database
 const createData = async (target) => {
