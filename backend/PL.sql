@@ -428,3 +428,28 @@ END //
 DELIMITER ; 
 
 
+-- Manufacturers Delete Stored Procedure
+DROP PROCEDURE IF EXISTS sp_ManufacturersDelete;
+DELIMITER //
+CREATE PROCEDURE sp_ManufacturersDelete(IN p_manufacturerID INT)
+BEGIN
+    DECLARE error_message VARCHAR(255);
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        DELETE FROM Manufacturers WHERE manufacturerID = p_manufacturerID;
+        
+        IF ROW_COUNT() = 0 THEN
+            SET error_message = CONCAT(
+                'No matching record found in Manufacturers for id: ', p_manufacturerID);
+            SIGNAL SQLSTATE '45000' 
+            SET MESSAGE_TEXT = error_message;
+        END IF;
+    COMMIT;
+END
+
+
