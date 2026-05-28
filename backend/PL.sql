@@ -450,6 +450,5 @@ BEGIN
             SET MESSAGE_TEXT = error_message;
         END IF;
     COMMIT;
-END
-
-
+END //
+DELIMITER ;
