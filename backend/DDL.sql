@@ -153,9 +153,10 @@ BEGIN
 
     -- End Sample Seed Data 
     COMMIT;
-    END //
-    DELIMITER ;
     SET FOREIGN_KEY_CHECKS = 1;
     SET autocommit = 1;
+    END //
+    DELIMITER ;
+
 
 
