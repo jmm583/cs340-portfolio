@@ -29,7 +29,7 @@ function Manufacturers({setItemToEdit}) {
     };
     const onDelete = async (item) => {
 
-        await deleteManufacturer(item.manufacturerID);
+        await deleteManufacturer(item);
         loadManufacturers();
         console.log("deleted Manufacturer", item.manufacturerID)
     };
