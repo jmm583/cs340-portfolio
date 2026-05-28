@@ -26,7 +26,8 @@ function Orders({setItemToEdit}){
     const tableHeaders = {
         orderID: "Order ID",
         customerID: "Customer ID",
-        fullName: "Customer",
+        firstName: "Customer First Name",
+        lastName: "Customer Last Name",
         customerEmail: "Customer Email",
         complete: "Complete",
         totalCost: "Total Cost",
