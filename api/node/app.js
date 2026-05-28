@@ -412,7 +412,7 @@ app.delete('/manufacturers/:id', async function (req, res) {
         const { id } = req.params;
         console.log(id);
 
-        let query = `DELETE FROM Manufacturers WHERE manufacturerID=${id}`;
+        let query = `CALL ${storedProcs["manufacturersDelete"]}(?)`;
 
         const [rows] = await db.query(query); 
         res.status(200).send();
