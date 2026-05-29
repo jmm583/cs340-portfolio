@@ -68,7 +68,7 @@ function ProductsCreate() {
                 <div className="form-group">
                     <label htmlFor="manufacturerID">Manufacturer:</label>
                     {/* <input name="manufacturerID" type="number" value={manufacturerID} onChange={setManufacturerID} /> */}
-                    <select value={manufacturerID} onChange={setManufacturer}>
+                    <select required value={manufacturerID} onChange={setManufacturer}>
                         <option value="">select a manufacturer</option>
                         {manufacturers.map((manufacturer) => (
                             <option key={manufacturer.manufacturerID} value={manufacturer.manufacturerID}>

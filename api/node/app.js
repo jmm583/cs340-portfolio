@@ -290,7 +290,7 @@ app.post('/products', async function (req, res) {
 
         const [rows] = await db.query(query, params);
 
-        res._status(201).json({ message: "Product created successfully." });
+        res.status(201).json({ message: "Product created successfully." });
 
     } catch (error) {
         console.error("Error executing productsCreate:", error);
