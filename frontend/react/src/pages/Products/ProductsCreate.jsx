@@ -79,25 +79,25 @@ function ProductsCreate() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="productType">Type:</label>
-                    <input name="productType" type="text" value={productType} onChange={e=> setProductType(e.target.value)}   />
+                    <input name="productType" type="text" required value={productType} onChange={e=> setProductType(e.target.value)}   />
 
                 
                 </div>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" value={name} onChange={e => setName(e.target.value)}/>
+                    <input type="text" name="name" required value={name} onChange={e => setName(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="price">Price:</label>
-                    <input name="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
+                    <input name="price" type="number" required value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description:</label>
-                    <input type="text" name="description" value={description} onChange={e => setDescription(e.target.value)} />
+                    <input type="text" name="description" required value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="SKU">SKU:</label>
-                    <input name="SKU" type="text" value={SKU} onChange={e => setSKU(e.target.value)} />
+                    <input name="SKU" type="text" required value={SKU} onChange={e => setSKU(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button>
