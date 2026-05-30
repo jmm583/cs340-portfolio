@@ -117,6 +117,7 @@ app.post('/customers', async function (req, res) {
     try {
         const customer = req.body;
         const query= `CALL ${storedProcs["customersCreate"]}(?, ?, ?, ?, @new_id);`;
+
         const [rows] = await db.query(query, [customer.firstName, customer.lastName, customer.email, customer.phone]); 
         res.json(rows);
     } catch (error) {
@@ -153,16 +154,16 @@ app.delete('/customers/:id', async function (req, res) {
 // ==========================================
 // Customer Update Route
 // ==========================================
-app.put('/customers/:id', async (req, res) => {
+app.put('/customers/:email', async (req, res) => {
 
     try {
         const customer = req.body;
-        const { id } = req.params;
+        const { email } = req.params;
 
-        let query = `UPDATE Customers SET firstName = '${req.body.firstName}', lastName='${req.body.lastName}', email='${req.body.email}', phone='${req.body.phone}' WHERE email = @email`;
+        const query = `CALL ${storedProcs["customersUpdate"]}(?, ?, ?, ?, ?);`;
 
-         
-        const [rows] = await db.query(query); 
+        const [rows] = await db.query(query, [email, customer.firstName, customer.lastName, customer.email, customer.phone]); 
+
         res.status(200).send();
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -213,10 +214,10 @@ app.get('/orders/:id', async function (req, res) {
 app.post('/orders', async function (req, res) {
     try {
         const order = req.body;
-
-        const query = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, ?, @new_id);`;
-
-        const [rows] = await db.query(query, [...order ]); 
+        console.log('order',order);
+        const query = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, @orderID);`;
+    
+        const [rows] = await db.query(query, [order.customerID, order.complete, order.totalCost, order.statusDate, order.statusName ]); 
         res.json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -245,7 +246,27 @@ app.delete('/orders/:id', async function (req, res) {
         res.status(500).send("An error occurred while executing the database queries.");
     }
 });
+// ==========================================
+// Order Update Route
+// ==========================================
+app.put('/orders/:id', async (req, res) => {
 
+    try {
+        const order = req.body;
+        const { id } = req.params;
+
+        const query = `CALL ${storedProcs["ordersUpdate"]}(?, ?, ?, ?, ?, ?);`;
+
+        const [rows] = await db.query(query, [id, order.customerID, order.complete, order.totalCost, order.statusDate, order.statusName]); 
+
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
 // ==========================================
 // Product Routes
 // ==========================================
@@ -520,6 +541,27 @@ app.delete('/orderproducts/:id', async function (req, res) {
 
 
         const [rows] = await db.query(query, [id]); 
+        res.status(200).send();
+    } catch (error) {
+        console.error("Error executing queries:", error);
+
+        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+// ==========================================
+// OrderProducts Update Route
+// ==========================================
+app.put('/orderproducts/:id', async (req, res) => {
+
+    try {
+        const orderproduct = req.body;
+        const { id } = req.params;
+
+        const query = `CALL ${storedProcs["orderproductsUpdate"]}(?, ?, ?, ?);`;
+
+        const [rows] = await db.query(query, [id, orderproduct.orderID, orderproduct.productID, orderproduct.quantity]); 
+
         res.status(200).send();
     } catch (error) {
         console.error("Error executing queries:", error);

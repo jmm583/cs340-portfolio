@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
-import { getCustomers } from "../../components/apiClient";
+import { getCustomers, updateOrder } from "../../components/apiClient";
 function OrderEdit({order}){
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
@@ -12,15 +12,16 @@ function OrderEdit({order}){
     const [customers, setCustomers] = useState([]);
 
     const loadCustomers = async () =>{
-        // Make a GET request to the backend
         const rows = await getCustomers();
         setCustomers(rows);
 
     };
  
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(statusDate);
+        const order = {orderID, customerID, complete, totalCost, statusDate, statusName};
+        await updateOrder(order);
+
     };
     useEffect(() => {
         loadCustomers();
@@ -38,7 +39,7 @@ function OrderEdit({order}){
                 </div>
                 <div className="form-group">
                     <label htmlFor="customerID">Customer Email</label>
-                    <select onChange={setCustomerID} value={customerID}>
+                    <select onChange={e => setCustomerID(e.target.value)} value={customerID}>
                         {customers.map((customer) => (
                             <option key={customer.customerID} value={customer.customerID}>
                             {customer.email}

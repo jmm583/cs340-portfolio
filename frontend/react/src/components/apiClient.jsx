@@ -95,16 +95,34 @@ const createData = async (target) => {
     } catch (error) {
         // If the API call fails, print the error to the console
         console.log(error);
+
     }
 };
 // ==========================================
 // Update Data
-// -- Not Implemented 
 // ==========================================
 const updateData = async (target) => { 
     //target example {table: "customers", item: {} }
+    const fullURL = `${backendURL}/${target.table}`;
 
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL, 
+            {
+                method: 'PUT',
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(target.item)
+            }
 
+        );
+
+        return await response.json();
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+        throw error;
+    }
 }
  
 // ==========================================
@@ -185,7 +203,13 @@ async function createCustomer(item) {
     const target = {"table":"Customers", "item": item};
     return await createData(target)
 };
-
+// ==========================================
+// Create Customer 
+// ==========================================
+async function updateCustomer(item) {
+    const target = {"table":"Customers", "item": item};
+    return await updateData(target)
+};
 
 // ==========================================
 // Manufacturer Functions 
@@ -235,6 +259,13 @@ async function createOrder(item) {
     const target = {"table":"Orders", "item": item};
     return await createData(target)
 };
+// ==========================================
+// Order Update 
+// ==========================================
+async function updateOrder(item) {
+    const target = {"table":"Orders", "item": item};
+    return await updateData(target)
+};
 
 
 // ==========================================
@@ -282,7 +313,13 @@ async function createOrderProduct(item) {
     const target = {"table":"OrderProducts", "item": item};
     return await createData(target);
 };
-
+// ==========================================
+// OrderProducts Update
+// ==========================================
+async function updateOrderProduct(item) {
+    const target = {"table":"OrderProducts", "item": item};
+    return await updateData(target);
+};
 
 export default getDataByTable;
 export { 
@@ -292,6 +329,7 @@ export {
     getCustomers, 
     deleteCustomer, 
     createCustomer,
+    updateCustomer,
 
     getManufacturers, 
     deleteManufacturer,
@@ -301,10 +339,12 @@ export {
     getOrderProducts, 
     deleteOrderProduct, 
     createOrderProduct, 
+    updateOrderProduct,
 
     getOrders,
     deleteOrder,
     createOrder, 
+    updateOrder,
 
     getProducts, 
     deleteProduct,

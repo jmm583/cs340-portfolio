@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getOrderProductsByOrder, deleteOrderProduct, getProducts, createOrderProduct} from "../../components/apiClient";
+import {getOrderProductsByOrder, deleteOrderProduct, getProducts, createOrderProduct, getOrderProducts} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 import { Link } from 'react-router';
 
@@ -28,11 +28,15 @@ function OrderProducts({itemToEdit}) {
     };
 
 
-    const onSubmit= async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const orderID = itemToEdit.orderID;
-        const item = {orderID:orderID.orderID, product, quantity};
+
+        const item = {orderID:itemToEdit.orderID, productID:product, quantity};
+        console.log("waht", item);
+        
         await createOrderProduct(item);
+        loadOrderProducts();
+
 
 
     }
@@ -60,7 +64,7 @@ function OrderProducts({itemToEdit}) {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label htmlFor="AddProduct">Product</label>
-                    <select name="AddProduct" onChange={setProduct}>
+                    <select name="AddProduct" onChange={e => setProduct(e.target.value)}>
                         {products.map((product) => (
                             <option key={product.productID} value={product.productID}>
                             {product.name}

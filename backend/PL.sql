@@ -43,6 +43,45 @@ DELIMITER ;
 -- #############################
 -- Customers Update 
 -- #############################
+DROP PROCEDURE IF EXISTS sp_CustomersUpdate;
+DELIMITER //
+
+CREATE PROCEDURE sp_CustomersUpdate (
+    IN p_customerID VARCHAR(254), 
+    IN p_firstName VARCHAR(50), 
+    IN p_lastName VARCHAR(50), 
+    IN p_new_email VARCHAR(254), 
+    IN p_phone VARCHAR(20)
+    
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Error occurred. Transaction rolled back.' AS message;
+    END;
+
+    START TRANSACTION;
+
+    UPDATE Customers
+    SET 
+        firstName = p_firstName,
+        lastName = p_lastName,
+        email = p_new_email,
+        phone = p_phone
+    WHERE customerID = p_customerID;
+
+    IF ROW_COUNT() = 0 THEN
+        ROLLBACK;
+        SELECT 'No customer found. No changes made.' AS message;
+    ELSE
+        COMMIT;
+        SELECT 'Customer updated successfully.' AS message;
+    END IF;
+
+END //
+
+DELIMITER ;
 -- #############################
 -- Customers DELETE 
 -- #############################
@@ -103,14 +142,16 @@ DROP PROCEDURE IF EXISTS sp_OrdersCreate;
 DELIMITER
     //
 CREATE PROCEDURE sp_OrdersCreate(
-    IN p_orderID INT,
+
     IN p_customerID INT,
     IN p_complete BOOLEAN,
     IN p_totalCost DECIMAL(12, 2),
     IN p_statusDate DATETIME,
-    IN p_statusName VARCHAR(50)
+    IN p_statusName VARCHAR(50),
+    OUT p_orderID INT
 )
 BEGIN
+
     INSERT INTO Orders(
         customerID,
         complete,
@@ -124,16 +165,57 @@ VALUES(
     p_totalCost,
     p_statusDate,
     p_statusName
-) ;
--- Optional: return the newly created ID
-SELECT
-    LAST_INSERT_ID() AS orderID ;
+    );
+    
+    -- Display the ID of the last inserted person.
+    SELECT LAST_INSERT_ID() INTO p_orderID;
     END //
-DELIMITER
-    ;
+DELIMITER ;
 -- #####################
 -- Orders UPDATE
 -- #####################
+DROP PROCEDURE IF EXISTS sp_OrdersUpdate;
+
+DELIMITER //
+CREATE PROCEDURE sp_OrdersUpdate(
+    IN p_orderID INT,
+    IN p_customerID INT,
+    IN p_complete BOOLEAN,
+    IN p_totalCost DECIMAL(12, 2),
+    IN p_statusDate DATETIME,
+    IN p_statusName VARCHAR(50)
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Error occurred. Transaction rolled back.' AS message;
+    END;
+
+    START TRANSACTION;
+    
+    UPDATE Orders
+    SET
+ 
+        complete = p_complete,
+        totalCost = p_totalCost,
+        statusDate = p_statusDate,
+        statusName = p_statusName
+    WHERE orderID = p_orderID;
+    
+    IF ROW_COUNT() = 0 THEN
+        ROLLBACK;
+        SELECT 'No order found. No changes made.' AS message;
+    ELSE
+        COMMIT;
+        SELECT 'Order updated successfully.' AS message;
+    END IF;
+
+END //
+
+DELIMITER ;
+
 -- #####################
 -- Orders DELETE
 -- #####################
@@ -195,7 +277,7 @@ CREATE PROCEDURE sp_OrderProductsCreate(
     IN p_orderID INT(11), 
     IN p_productID INT(11), 
     IN p_quantity INT(11), 
-    OUT o_id INT)
+    OUT op_id INT)
 BEGIN
     DECLARE orderProductsID INT;
     INSERT INTO OrderProducts (orderID, productID, quantity) 
@@ -208,6 +290,46 @@ BEGIN
 
 END //
 DELIMITER ;
+-- #############################
+-- OrderProducts UPDATE 
+-- #############################
+DROP PROCEDURE IF EXISTS sp_OrderProductsUpdate;
+
+DELIMITER //
+CREATE PROCEDURE sp_OrderProductsUpdate(
+    IN p_orderProductsID INT(11), 
+    IN p_orderID INT(11), 
+    IN p_productID INT(11), 
+    IN p_quantity INT(11)
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Error occurred. Transaction rolled back.' AS message;
+    END;
+
+    START TRANSACTION;
+    
+    UPDATE OrderProducts
+    SET
+        productID = p_productID,
+        quantity = p_quantity
+    WHERE orderProductsID = p_orderProductsID;
+    
+    IF ROW_COUNT() = 0 THEN
+        ROLLBACK;
+        SELECT 'No orderproduct found. No changes made.' AS message;
+    ELSE
+        COMMIT;
+        SELECT 'OrderProducts updated successfully.' AS message;
+    END IF;
+
+END //
+
+DELIMITER ;
+
 -- #############################
 -- OrderProducts DELETE 
 -- #############################

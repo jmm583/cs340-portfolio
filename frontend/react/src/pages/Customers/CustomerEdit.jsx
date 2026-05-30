@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { updateCustomer } from "../../components/apiClient";
 
 function CustomerEdit({customer}) {
     const [customerID, setCustomerID] = useState([customer.customerID]);
@@ -7,8 +8,11 @@ function CustomerEdit({customer}) {
     const [lastName, setlastName] = useState([customer.lastName]);
     const [email, setEmail] = useState([customer.email]);
     const [phone, setPhone] = useState([customer.phone]);
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
+        const customer = {customerID, firstName, lastName, email, phone};
+        await updateCustomer(customer);
+
     }
     return (
         <div className='main'>
