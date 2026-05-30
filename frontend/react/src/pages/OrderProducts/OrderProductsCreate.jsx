@@ -12,12 +12,14 @@ function OrderProductsCreate() {
     const [quantity, setQuantity] = useState();
     const navigate = useNavigate();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const ID = -1;
-        const orderproduct = {ID, orderID, productID, quantity};
-        createOrderProduct(orderproduct);
+
+        const orderproduct = {orderID, productID, quantity};
+      
+        await createOrderProduct(orderproduct);
         navigate("/orderproducts");
+        
 
     }
 

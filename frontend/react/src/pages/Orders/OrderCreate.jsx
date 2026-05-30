@@ -4,7 +4,7 @@ import { createOrder, getCustomers } from "../../components/apiClient";
 
 function OrderCreate(){
     const [orderID, setOrderID] = useState();
-    const [customerID, setCustomerID] = useState("-1");
+    const [customerID, setCustomerID] = useState();
     const [complete, setComplete] = useState("false");
     const [totalCost, setTotalCost] = useState();
     const [statusName, setStatusName] = useState();
@@ -15,21 +15,23 @@ function OrderCreate(){
 
 
     const loadCustomers = async () =>{
-        // Make a GET request to the backend
         const rows = await getCustomers();
-
         setCustomers(rows);
 
     };
+
     const onSubmit = async (e) => {
         e.preventDefault();
-        const ID = -1;
-        console.log("customerID" , customerID);
-        console.log("complete", complete);
-        const order = {ID, customerID, complete, totalCost, statusDate, statusName}
+        let intComplete = 0;
+        if (complete) {
+            intComplete = 1;
+        }
+        
+        const order = {"customerID":customerID, "complete":intComplete, "totalCost":totalCost, "statusDate":statusDate, "statusName":statusName};
+        
         await createOrder(order);
-        navigate("/orders")
-
+        navigate("/orders");
+        
     }
 
     useEffect(() => {
@@ -45,7 +47,7 @@ function OrderCreate(){
                 
                 <div className="form-group">
                     <label htmlFor="customerID">Customer</label>
-                    <select onChange={setCustomerID}>
+                    <select onChange={e => setCustomerID(e.target.value)}>
                         {customers.map((customer) => (
                             <option key={customer.customerID} value={customer.customerID}>
                             {customer.email}
