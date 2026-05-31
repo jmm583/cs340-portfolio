@@ -88,7 +88,7 @@ app.get('/customers', async function (req, res) {
 
         const [[rows]] = await db.query(query); 
 
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -104,7 +104,7 @@ app.get('/customers/:id', async function (req, res) {
         const query = `CALL ${storedProcs["customersSelect"]}`;
         const [rows] = await db.query(query, [id]); 
 
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -185,7 +185,7 @@ app.get('/orders', async function (req, res) {
         const query = `CALL ${storedProcs["ordersSelect"]}`;
         
         const [[rows]] = await db.query(query); 
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -201,7 +201,7 @@ app.get('/orders/:id', async function (req, res) {
         const query = `CALL ${storedProcs["ordersSelect"]}`;
         const id = req.body.orderID;
         const [[rows]] = await db.query(query, [id]); 
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -260,7 +260,7 @@ app.put('/orders/:id', async (req, res) => {
 
         const [rows] = await db.query(query, [id, order.customerID, order.complete, order.totalCost, order.statusDate, order.statusName]); 
 
-        res.status(200).send();
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -489,7 +489,7 @@ app.get('/orderproducts', async function (req, res) {
         const query = `CALL ${storedProcs["orderproductsSelect"]}`;
         
         const [[rows]] = await db.query(query); 
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -505,7 +505,7 @@ app.get('/orders/orderproducts/:id', async function (req, res) {
         const query = `CALL ${storedProcs["orderproductsSelectByOrderID"]}(?);`;
         const { id } = req.params;
         const [[rows]] = await db.query(query, [id]); 
-        res.json(rows);
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -563,7 +563,7 @@ app.put('/orderproducts/:id', async (req, res) => {
 
         const [rows] = await db.query(query, [id, orderproduct.orderID, orderproduct.productID, orderproduct.quantity]); 
 
-        res.status(200).send();
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 

@@ -2,14 +2,26 @@ import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
 import { getCustomers, updateOrder } from "../../components/apiClient";
 function OrderEdit({order}){
+    const formatLocalDateTime = (date) => {
+        const year = date.getFullYear();
+        // Months are zero-indexed, pad with leading zero
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        console.log(`${year}-${month}-${day}T${hours}:${minutes}`);
+        console.log(date);
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    };
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
     const [customerEmail, setCustomerEmail] = useState(order.customerEmail);
     const [complete, setComplete] = useState(order.complete);
     const [statusName, setStatusName] = useState(order.statusName);
-    const [statusDate, setStatusDate] = useState(order.statusDate);
+    const [statusDate, setStatusDate] = useState(formatLocalDateTime(new Date(order.statusDate)));
     const [totalCost, setTotalCost] = useState(order.totalCost);
     const [customers, setCustomers] = useState([]);
+
 
     const loadCustomers = async () =>{
         const rows = await getCustomers();
