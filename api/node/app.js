@@ -21,6 +21,8 @@ const PORT = process.env.PORT;     // Set a port number
 const cors = require('cors');
 app.use(cors()); 
 
+//Constant Error messages
+DB_ERROR = {error: "An error occurred while executing the database queries."};
 // Database 
 const db = require('./db-connector');
 
@@ -69,7 +71,7 @@ app.get('/reset', async function( req, res) {
     } catch (error) {
         console.error("Error executing queries:", error);
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 
@@ -91,7 +93,7 @@ app.get('/customers', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -107,7 +109,7 @@ app.get('/customers/:id', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -124,7 +126,7 @@ app.post('/customers', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 
 });
@@ -147,29 +149,28 @@ app.delete('/customers/:id', async function (req, res) {
             message: "Cannot delete due to FK reference."});
         } else {
             // Send a generic error message to the browser
-            res.status(500).send("An error occurred while executing the database queries.");
+            res.status(500).json(DB_ERROR);
         }
     }
 });
 // ==========================================
 // Customer Update Route
 // ==========================================
-app.put('/customers/:email', async (req, res) => {
+app.put('/customers/:customerID', async (req, res) => {
 
     try {
         const customer = req.body;
-        const { email } = req.params;
+        const { customerID } = req.params;
 
         const query = `CALL ${storedProcs["customersUpdate"]}(?, ?, ?, ?, ?);`;
+        const [[[rows]]] = await db.query(query, [customerID, customer.firstName, customer.lastName, customer.email, customer.phone]); 
 
-        const [rows] = await db.query(query, [email, customer.firstName, customer.lastName, customer.email, customer.phone]); 
-
-        res.status(200).send();
+        res.status(200).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 
@@ -189,7 +190,7 @@ app.get('/orders', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -205,7 +206,7 @@ app.get('/orders/:id', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -223,7 +224,7 @@ app.post('/orders', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 
 });
@@ -243,7 +244,7 @@ app.delete('/orders/:id', async function (req, res) {
         console.error("Error executing queries:", error);
         
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -264,7 +265,7 @@ app.put('/orders/:id', async (req, res) => {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -493,7 +494,7 @@ app.get('/orderproducts', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -509,7 +510,7 @@ app.get('/orders/orderproducts/:id', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -526,7 +527,7 @@ app.post('/orderproducts', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 
 });
@@ -546,7 +547,7 @@ app.delete('/orderproducts/:id', async function (req, res) {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 // ==========================================
@@ -567,7 +568,7 @@ app.put('/orderproducts/:id', async (req, res) => {
         console.error("Error executing queries:", error);
 
         // Send a generic error message to the browser
-        res.status(500).send("An error occurred while executing the database queries.");
+        res.status(500).json(DB_ERROR);
     }
 });
 

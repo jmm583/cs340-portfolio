@@ -13,9 +13,7 @@ function Orders({setItemToEdit}){
         setOrders(data);
     }
     const onEdit = (item) =>{
- 
         setItemToEdit(item);
-        console.log("orderEdit ");
         navigate('/orders/edit');
     };
     const onDelete = async (item) => {

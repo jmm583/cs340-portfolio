@@ -32,8 +32,7 @@ function OrderProducts({itemToEdit}) {
         e.preventDefault();
 
         const item = {orderID:itemToEdit.orderID, productID:product, quantity};
-        console.log("waht", item);
-        
+
         await createOrderProduct(item);
         loadOrderProducts();
 

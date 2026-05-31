@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { updateCustomer } from "../../components/apiClient";
+import { useNavigate } from "react-router";
 
 function CustomerEdit({customer}) {
     const [customerID, setCustomerID] = useState([customer.customerID]);
@@ -8,10 +9,12 @@ function CustomerEdit({customer}) {
     const [lastName, setlastName] = useState([customer.lastName]);
     const [email, setEmail] = useState([customer.email]);
     const [phone, setPhone] = useState([customer.phone]);
+    const navigate = useNavigate();
     const onSubmit = async (e) => {
         e.preventDefault();
         const customer = {customerID, firstName, lastName, email, phone};
         await updateCustomer(customer);
+        navigate("/customers");
 
     }
     return (

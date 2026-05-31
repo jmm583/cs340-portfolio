@@ -65,7 +65,7 @@ const deleteData = async (target) => {
             const body = await response.json();
             alert(body.message);
         } else {
-            return await response.json();
+            return;
         }
 
     } catch (error) {
@@ -101,9 +101,8 @@ const createData = async (target) => {
 // ==========================================
 // Update Data
 // ==========================================
-const updateData = async (target) => { 
-    //target example {table: "customers", item: {} }
-    const fullURL = `${backendURL}/${target.table}`;
+const updateData = async (table, id, item) => { 
+    const fullURL = `${backendURL}/${table}/${id}`;
 
     try {
         // Make a GET request to the backend
@@ -111,7 +110,7 @@ const updateData = async (target) => {
             {
                 method: 'PUT',
                 headers: {"Content-type": "application/json"},
-                body: JSON.stringify(target.item)
+                body: JSON.stringify(item)
             }
 
         );
@@ -121,7 +120,6 @@ const updateData = async (target) => {
     } catch (error) {
         // If the API call fails, print the error to the console
         console.log(error);
-        throw error;
     }
 }
  
@@ -204,11 +202,10 @@ async function createCustomer(item) {
     return await createData(target)
 };
 // ==========================================
-// Create Customer 
+// Update Customer 
 // ==========================================
 async function updateCustomer(item) {
-    const target = {"table":"Customers", "item": item};
-    return await updateData(target)
+    return await updateData("customers", item.customerID, item)
 };
 
 // ==========================================
@@ -263,8 +260,7 @@ async function createOrder(item) {
 // Order Update 
 // ==========================================
 async function updateOrder(item) {
-    const target = {"table":"Orders", "item": item};
-    return await updateData(target)
+    return await updateData("orders", item.orderID, item)
 };
 
 
@@ -317,8 +313,7 @@ async function createOrderProduct(item) {
 // OrderProducts Update
 // ==========================================
 async function updateOrderProduct(item) {
-    const target = {"table":"OrderProducts", "item": item};
-    return await updateData(target);
+    return await updateData("orderproducts", item.orderProductsID, item);
 };
 
 export default getDataByTable;

@@ -23,7 +23,7 @@ function Customers({setItemToEdit}) {
         navigate('/customers/edit');
     };
     const onDelete = async (item) => {
-        const deleteOK = await deleteCustomer(item);
+        await deleteCustomer(item);
 
         return await loadCustomers();
     };
