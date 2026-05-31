@@ -9,8 +9,7 @@ function OrderEdit({order}){
         const day = String(date.getDate()).padStart(2, '0');
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
-        console.log(`${year}-${month}-${day}T${hours}:${minutes}`);
-        console.log(date);
+
         return `${year}-${month}-${day}T${hours}:${minutes}`;
     };
     const [orderID, setOrderID] = useState(order.orderID);
