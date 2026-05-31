@@ -121,7 +121,7 @@ app.post('/customers', async function (req, res) {
         const query= `CALL ${storedProcs["customersCreate"]}(?, ?, ?, ?, @new_id);`;
 
         const [rows] = await db.query(query, [customer.firstName, customer.lastName, customer.email, customer.phone]); 
-        res.json(rows);
+        res.status(201).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -140,7 +140,7 @@ app.delete('/customers/:id', async function (req, res) {
         const query = `CALL ${storedProcs["customersDelete"]}(?);`;
 
         const [rows] = await db.query(query, [id]); 
-        res.status(200).send();
+        res.status(204).send();
     } catch (error) {
         console.error("Error executing queries:", error);
         if (error.errno == 1451) {
@@ -219,7 +219,7 @@ app.post('/orders', async function (req, res) {
         const query = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, @orderID);`;
     
         const [rows] = await db.query(query, [order.customerID, order.complete, order.totalCost, order.statusDate, order.statusName ]); 
-        res.json(rows);
+        res.status(201).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -239,7 +239,7 @@ app.delete('/orders/:id', async function (req, res) {
 
 
         const [rows] = await db.query(query, [id]); 
-        res.status(200).send();
+        res.status(204).send();
     } catch (error) {
         console.error("Error executing queries:", error);
         
@@ -522,7 +522,7 @@ app.post('/orderproducts', async function (req, res) {
         const query = `CALL ${storedProcs["orderproductsCreate"]}(?, ?, ?, @new_id);`;
 
         const [rows] = await db.query(query, [orderProduct.orderID, orderProduct.productID, orderProduct.quantity]); 
-        res.json(rows);
+        res.status(201).json(rows);
     } catch (error) {
         console.error("Error executing queries:", error);
 
@@ -542,7 +542,7 @@ app.delete('/orderproducts/:id', async function (req, res) {
 
 
         const [rows] = await db.query(query, [id]); 
-        res.status(200).send();
+        res.status(204).send();
     } catch (error) {
         console.error("Error executing queries:", error);
 
