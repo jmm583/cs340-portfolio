@@ -128,7 +128,7 @@ DROP PROCEDURE IF EXISTS sp_OrdersSelect;
 DELIMITER //
 CREATE PROCEDURE sp_OrdersSelect()
 BEGIN
-SELECT orderID, Orders.customerID, firstName, lastName, complete, totalCost, statusName, statusDate 
+SELECT orderID, Orders.customerID, firstName, lastName, email, complete, totalCost, statusName, statusDate 
 FROM Orders 
 JOIN Customers ON Orders.customerID = Customers.customerID 
 ORDER BY statusDate DESC;
