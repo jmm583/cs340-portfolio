@@ -47,7 +47,10 @@ function OrderCreate(){
                 
                 <div className="form-group">
                     <label htmlFor="customerID">Customer</label>
-                    <select onChange={e => setCustomerID(e.target.value)}>
+                    <select required onChange={e => setCustomerID(e.target.value)}>
+                        <option value="" hidden>
+                            -- Please choose an Customer --
+                        </option>
                         {customers.map((customer) => (
                             <option key={customer.customerID} value={customer.customerID}>
                             {customer.email}
