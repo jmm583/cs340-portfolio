@@ -26,6 +26,7 @@ function Orders({setItemToEdit}){
         customerID: "Customer ID",
         firstName: "Customer First Name",
         lastName: "Customer Last Name",
+        email: "Email",
         customerEmail: "Customer Email",
         complete: "Complete",
         totalCost: "Total Cost",

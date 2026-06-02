@@ -58,7 +58,7 @@ function OrderProductsEdit({itemToEdit}) {
                         {/* <option value="-1" key="-1">Select a Product</option> */}
                         {orders.map((order) => (
                             <option key={order.orderID} value={order.orderID}>
-                            {order.orderID}: {order.firstName} {order.lastName}
+                            {order.orderID}: {order.email}, {order.firstName}, {order.lastName}
                             </option>
                         ))}
                     </select>
@@ -75,7 +75,7 @@ function OrderProductsEdit({itemToEdit}) {
                         </option>
                         {products.map((product) => (
                             <option key={product.productID} value={product.productID}>
-                            {product.productID}: {product.name}
+                            {product.SKU}: {product.name}
                             </option>
                         ))}
                     </select>

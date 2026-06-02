@@ -70,7 +70,7 @@ function OrderProducts({itemToEdit, setItemToEdit}) {
                         </option>
                         {products.map((product) => (
                             <option key={product.productID} value={product.productID}>
-                            {product.name}
+                            {product.SKU}: {product.name}
                             </option>
                         ))}
                     </select>
