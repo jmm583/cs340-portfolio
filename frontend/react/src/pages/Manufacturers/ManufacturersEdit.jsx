@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { updateManufacturer } from "../../components/apiClient";
 import { useNavigate } from 'react-router';
 
 function ManufacturersEdit({itemToEdit}) {
@@ -24,22 +25,9 @@ function ManufacturersEdit({itemToEdit}) {
         console.log("updated manufacturer", updatedManufacturer);
 
         try {
-            const response = await fetch(
-                `http://localhost:3000/manufacturers/${manufacturerID}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(updatedManufacturer),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
+            await updateManufacturer(updatedManufacturer);
             navigate('/manufacturers');
+
         } catch (error) {
             console.error("Error updating manufacturer:", error);
             alert("An error occurred while updating the manufacturer. Please try again.");

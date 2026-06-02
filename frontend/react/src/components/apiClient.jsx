@@ -221,9 +221,16 @@ async function getManufacturers() {
 // Create Manufacturer 
 // ==========================================
 async function createManufacturer(item) {
-    const target = {"table":"Manufacturers", "item": item};
+    const target = {"table":"manufacturers", "item": item};
     return await createData(target);
 };
+// ==========================================
+// Update Manufacturer 
+// ==========================================
+async function updateManufacturer(item) {
+    return await updateData("manufacturers", item.manufacturerID, item);
+}
+
 // ==========================================
 // Delete Manufacturer 
 // ==========================================
@@ -329,6 +336,7 @@ export {
     getManufacturers, 
     deleteManufacturer,
     createManufacturer,
+    updateManufacturer,
 
     getOrderProductsByOrder,
     getOrderProducts, 
