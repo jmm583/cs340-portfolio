@@ -341,7 +341,9 @@ app.put('/products/:id', async (req, res) => {
         ];
 
         const [rows] = await db.query(query1, params); 
+
         res.status(200).json({ message: "Product updated successfully." });
+        
     } catch (error) {
         console.error("Error executing queries:", error);
 

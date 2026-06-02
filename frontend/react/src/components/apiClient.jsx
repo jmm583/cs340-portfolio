@@ -172,8 +172,8 @@ async function deleteProduct(item) {
 // ==========================================
 // needs an universal updateData function to work, not yet implemented in backend
 async function updateProduct(item) {
-    const target = { table: "Products", item };
-    return await updateData(target);
+    // const target = { table: "Products", item };
+    return await updateData("Products", item.productID, item);
 };
 
 
