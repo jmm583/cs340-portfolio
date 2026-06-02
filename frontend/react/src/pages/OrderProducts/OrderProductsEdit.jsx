@@ -71,7 +71,7 @@ function OrderProductsEdit({itemToEdit}) {
                     <label htmlFor="productID">Product</label>
                     <select name="productID" required onChange={e => setProductID(e.target.value)} value={productID}>
                         <option value="" hidden>
-                            -- Please choose an Product --
+                            -- Please choose a Product --
                         </option>
                         {products.map((product) => (
                             <option key={product.productID} value={product.productID}>
