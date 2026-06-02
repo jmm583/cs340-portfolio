@@ -35,7 +35,7 @@ BEGIN
         statusDate datetime,
         statusName varchar(50),
         PRIMARY KEY(OrderID),
-        FOREIGN KEY(customerID) REFERENCES Customers(customerID)
+        FOREIGN KEY(customerID) REFERENCES Customers(customerID) ON DELETE CASCADE
     );
 
     CREATE TABLE Manufacturers(
@@ -58,7 +58,7 @@ BEGIN
         description varchar(100) NOT NULL,
         SKU varchar(50) UNIQUE,
         PRIMARY KEY (productID),
-        FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID)
+        FOREIGN KEY (manufacturerID) REFERENCES Manufacturers(manufacturerID) ON DELETE CASCADE
 
     );
     CREATE TABLE OrderProducts(
@@ -68,7 +68,7 @@ BEGIN
         quantity int,
         PRIMARY KEY(orderProductsID),
         FOREIGN KEY(orderID) REFERENCES Orders(orderID) ON DELETE CASCADE,
-        FOREIGN KEY(productID) REFERENCES Products(productID)
+        FOREIGN KEY(productID) REFERENCES Products(productID) ON DELETE CASCADE
     );
     -- End Table Creation
     -- Sample Seed Data
