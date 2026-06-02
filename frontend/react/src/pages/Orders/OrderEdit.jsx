@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
+import { useNavigate } from "react-router";
 import { getCustomers, updateOrder } from "../../components/apiClient";
 function OrderEdit({order, setItemToEdit}){
     const parseDateFromDateTime= (datetime) => {
@@ -22,7 +23,7 @@ function OrderEdit({order, setItemToEdit}){
     const [tempDate, setTempDate] = useState(parseDateFromDateTime(order.statusDate));
     const [tempTime, setTempTime]= useState(parseTimeFromDateTime(order.statusDate));
 
-
+    const navigate = useNavigate();
     const loadCustomers = async () =>{
         const rows = await getCustomers();
         setCustomers(rows);
@@ -40,6 +41,7 @@ function OrderEdit({order, setItemToEdit}){
 
         const order = {orderID, customerID, complete, totalCost, statusDate: formatDatetime(), statusName};
         await updateOrder(order);
+        navigate("/orders");
 
     };
     useEffect(() => {
