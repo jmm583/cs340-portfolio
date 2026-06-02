@@ -10,7 +10,8 @@ function OrderCreate(){
     const [statusName, setStatusName] = useState();
     const [statusDate, setStatusDate] = useState();
     const [customers, setCustomers] = useState([]);
-
+    const [tempDate, setTempDate] = useState();
+    const [tempTime, setTempTime]= useState();
     const navigate = useNavigate();
 
 
@@ -19,7 +20,9 @@ function OrderCreate(){
         setCustomers(rows);
 
     };
-
+    const formatDatetime = () => {
+        return `${tempDate} ${tempTime}`;
+    };
     const onSubmit = async (e) => {
         e.preventDefault();
         let intComplete = 0;
@@ -27,7 +30,7 @@ function OrderCreate(){
             intComplete = 1;
         }
         
-        const order = {"customerID":customerID, "complete":intComplete, "totalCost":totalCost, "statusDate":statusDate, "statusName":statusName};
+        const order = {"customerID":customerID, "complete":intComplete, "totalCost":totalCost, "statusDate":formatDatetime(), "statusName":statusName};
         
         await createOrder(order);
         navigate("/orders");
@@ -74,7 +77,8 @@ function OrderCreate(){
                 </div>
                 <div className="form-group">
                     <label htmlFor="statusDate">Status Date</label>
-                    <input name="statusDate" type="datetime-local" value={statusDate} onChange={e => setStatusDate(e.target.value)} />
+                    <input name="statusDatedt" type="date" value={tempDate} onChange={ e => setTempDate(e.target.value)} />
+                    <input name="statusDatedt" type="time" value={tempTime} onChange={ e => setTempTime(e.target.value)} />
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button>
