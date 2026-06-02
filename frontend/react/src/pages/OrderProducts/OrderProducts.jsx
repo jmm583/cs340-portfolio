@@ -28,7 +28,8 @@ function OrderProducts({setItemToEdit}) {
         Customer: "Customer",
         productID: "Product ID",
         name: "Product Name",
-        quantity: "Quantity"
+        quantity: "Quantity",
+        price: "Unit Price"
     };
     					
 
