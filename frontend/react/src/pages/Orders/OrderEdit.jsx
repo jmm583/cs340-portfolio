@@ -34,9 +34,6 @@ function OrderEdit({order, setItemToEdit}){
     return `${tempDate} ${tempTime}`;
     };
     const onSubmit = async (e) => {
-        console.log("tempDate", tempDate);
-        console.log("tempTime", tempTime);
-        console.log("formatted datetime", formatDatetime());
         e.preventDefault();
 
         const order = {orderID, customerID, complete, totalCost, statusDate: formatDatetime(), statusName};
