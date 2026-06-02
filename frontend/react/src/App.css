@@ -320,7 +320,7 @@ form {
 /* Form rows */
 .form-group {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 160px 1fr auto;
   gap: 1rem;
   align-items: start;
   margin-bottom: 1.4rem;

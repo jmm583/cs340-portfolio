@@ -2,25 +2,25 @@ import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
 import { getCustomers, updateOrder } from "../../components/apiClient";
 function OrderEdit({order, setItemToEdit}){
-    const formatLocalDateTime = (date) => {
-        const year = date.getFullYear();
-        // Months are zero-indexed, pad with leading zero
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-
-        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    const parseDateFromDateTime= (datetime) => {
+        const parts = datetime.split("T");
+        return parts[0];
     };
-
+    const parseTimeFromDateTime= (datetime) => {
+        const parts = datetime.split("T");
+        return parts[1].slice(0,5);
+    };
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
     const [customerEmail, setCustomerEmail] = useState(order.customerEmail);
     const [complete, setComplete] = useState(order.complete);
     const [statusName, setStatusName] = useState(order.statusName);
-    const [statusDate, setStatusDate] = useState(formatLocalDateTime(new Date(order.statusDate)));
+    const [statusDate, setStatusDate] = useState();
     const [totalCost, setTotalCost] = useState(order.totalCost);
     const [customers, setCustomers] = useState([]);
+
+    const [tempDate, setTempDate] = useState(parseDateFromDateTime(order.statusDate));
+    const [tempTime, setTempTime]= useState(parseTimeFromDateTime(order.statusDate));
 
 
     const loadCustomers = async () =>{
@@ -28,18 +28,17 @@ function OrderEdit({order, setItemToEdit}){
         setCustomers(rows);
 
     };
-    const formatDatetime = (date) => {
-    //2026-05-30 20:53:00
-    console.log(date)
-    const jsDate = new Date(date);
-    const mysqlDatetime = jsDate.toISOString().slice(0, 19).replace('T', ' ');
+    const formatDatetime = () => {
 
-    return mysqlDatetime;
+    return `${tempDate} ${tempTime}`;
     };
     const onSubmit = async (e) => {
+        console.log("tempDate", tempDate);
+        console.log("tempTime", tempTime);
+        console.log("formatted datetime", formatDatetime());
         e.preventDefault();
-        formatDatetime(statusDate);
-        const order = {orderID, customerID, complete, totalCost, statusDate: formatDatetime(statusDate), statusName};
+
+        const order = {orderID, customerID, complete, totalCost, statusDate: formatDatetime(), statusName};
         await updateOrder(order);
 
     };
@@ -83,7 +82,9 @@ function OrderEdit({order, setItemToEdit}){
                 </div>
                 <div className="form-group">
                     <label htmlFor="statusDate">Status Date</label>
-                    <input name="statusDate" type="datetime-local" value={statusDate} onChange={e => setStatusDate(e.target.value)} />
+                    <input name="statusDatedt" type="date" value={tempDate} onChange={ e => setTempDate(e.target.value)} />
+                    <input name="statusDatedt" type="time" value={tempTime} onChange={ e => setTempTime(e.target.value)} />
+                    
                 </div>
                 <div className="form-group actions">
                     <button type="submit">Save</button> 
