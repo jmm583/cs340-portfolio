@@ -1,11 +1,11 @@
 
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from "react";
-import {getOrderProductsByOrder, deleteOrderProduct, getProducts, createOrderProduct, getOrderProducts} from "../../components/apiClient";
+import {getOrderProductsByOrder, deleteOrderProduct, getProducts, createOrderProduct} from "../../components/apiClient";
 import TableRow from '../../components/TableRow';
 import { Link } from 'react-router';
 
-function OrderProducts({itemToEdit}) {
+function OrderProducts({itemToEdit, setItemToEdit}) {
     const [orderProducts, setOrderProducts] = useState([]);
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -15,14 +15,14 @@ function OrderProducts({itemToEdit}) {
     const loadProducts = async () => {
         const data = await getProducts();
         setProducts(data);
-
     };
     const loadOrderProducts = async () => {
         const data = await getOrderProductsByOrder(itemToEdit.orderID);
         setOrderProducts(data);
     };
     const onEdit= (orderProduct) => {
-   
+        setItemToEdit(orderProduct);
+        navigate('/orderproducts/edit');
         
 
     };
@@ -48,7 +48,8 @@ function OrderProducts({itemToEdit}) {
         orderID: "Order ID",
         productID: "Product ID",
         productName: "Product Name",
-        quantity: "Quantity"
+        quantity: "Quantity",
+        price: "Price"
     };
 
     useEffect(() => {
@@ -63,7 +64,10 @@ function OrderProducts({itemToEdit}) {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label htmlFor="AddProduct">Product</label>
-                    <select name="AddProduct" onChange={e => setProduct(e.target.value)}>
+                    <select name="AddProduct" required onChange={e => setProduct(e.target.value)}>
+                        <option value="" hidden>
+                            -- Please choose an Product --
+                        </option>
                         {products.map((product) => (
                             <option key={product.productID} value={product.productID}>
                             {product.name}
@@ -73,7 +77,7 @@ function OrderProducts({itemToEdit}) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="quantity">Quantity</label>
-                    <input name='quantity' type='number' value={quantity} onChange={e => setQuantity(e.target.value)}></input>
+                    <input name='quantity' type='number' required value={quantity} onChange={e => setQuantity(e.target.value)}></input>
 
                 </div>
                 <div className="form-group actions">

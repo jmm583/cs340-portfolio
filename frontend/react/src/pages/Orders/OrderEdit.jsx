@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
 import { getCustomers, updateOrder } from "../../components/apiClient";
-function OrderEdit({order}){
+function OrderEdit({order, setItemToEdit}){
     const formatLocalDateTime = (date) => {
         const year = date.getFullYear();
         // Months are zero-indexed, pad with leading zero
@@ -12,6 +12,7 @@ function OrderEdit({order}){
 
         return `${year}-${month}-${day}T${hours}:${minutes}`;
     };
+
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
     const [customerEmail, setCustomerEmail] = useState(order.customerEmail);
@@ -27,10 +28,18 @@ function OrderEdit({order}){
         setCustomers(rows);
 
     };
- 
+    const formatDatetime = (date) => {
+    //2026-05-30 20:53:00
+    console.log(date)
+    const jsDate = new Date(date);
+    const mysqlDatetime = jsDate.toISOString().slice(0, 19).replace('T', ' ');
+
+    return mysqlDatetime;
+    };
     const onSubmit = async (e) => {
         e.preventDefault();
-        const order = {orderID, customerID, complete, totalCost, statusDate, statusName};
+        formatDatetime(statusDate);
+        const order = {orderID, customerID, complete, totalCost, statusDate: formatDatetime(statusDate), statusName};
         await updateOrder(order);
 
     };
@@ -50,7 +59,7 @@ function OrderEdit({order}){
                 </div>
                 <div className="form-group">
                     <label htmlFor="customerID">Customer Email</label>
-                    <select onChange={e => setCustomerID(e.target.value)} value={customerID}>
+                    <select required onChange={e => setCustomerID(e.target.value)} value={customerID}>
                         {customers.map((customer) => (
                             <option key={customer.customerID} value={customer.customerID}>
                             {customer.email}
@@ -80,7 +89,7 @@ function OrderEdit({order}){
                     <button type="submit">Save</button> 
                 </div>
             </form>
-            <OrderProducts itemToEdit={order}/>
+            <OrderProducts itemToEdit={order} setItemToEdit={setItemToEdit}/>
         </div>
     )
 }

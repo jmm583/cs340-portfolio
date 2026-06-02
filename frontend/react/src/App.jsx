@@ -96,7 +96,7 @@ function App() {
               <Route path="/producttypes/create" element={<ProductTypesCreate />}></Route> */}
 
               <Route path="/orders" element={<Orders setItemToEdit={setItemToEdit}/>}></Route>
-              <Route path="/orders/edit" element={<OrderEdit order={itemToEdit}/>}></Route>
+              <Route path="/orders/edit" element={<OrderEdit order={itemToEdit} setItemToEdit={setItemToEdit}/>}></Route>
               <Route path="/orders/create" element={<OrderCreate />}></Route>
 
               {/* <Route path="/ordersstatuses" element={<OrderStatuses setItemToEdit={setItemToEdit}/>}></Route>

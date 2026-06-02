@@ -314,6 +314,7 @@ BEGIN
     
     UPDATE OrderProducts
     SET
+        orderID = p_orderID,
         productID = p_productID,
         quantity = p_quantity
     WHERE orderProductsID = p_orderProductsID;
