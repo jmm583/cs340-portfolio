@@ -19,14 +19,13 @@ function Home() {
                     <li>OrderProducts - M:N table, Admin for direct OrderProducts Table</li>
                 </ul>
                 <div>
-                    <h1>Change log</h1>
-                    <h2>Step 4 Draft</h2>
+                    <h1>Step 5 Final Feature Description</h1>
                     <ul>
                         
-                        <li>Updated Orders/Customers/Manufacturers/Products/OrderProducts to use "SELECT" stored procedure calls from the API.</li>
-                        <li>Updated Orders/Customers/Manufacturers/Products/OrderProducts to use "DELETE" stored procedure calls from the API.</li>
-                        <li>Updated Manufacturers/Products to use "CREATE" stored procedure calls from the API.</li>
-                        <li>Updated Reset DB navigation option and page to reset backend database.</li>
+                        <li>Orders/Customers/Manufacturers/Products/OrderProducts all CRUD actions work and use stored procedure calls from the API.</li>
+                        <li>The application has been tested with the Browers (FireFox) and confirm to work as expected.</li>
+                        <li>The react state is rudimentary and the back button is not guaranteed to work as expected. Navigating backwords using the navigation is best.</li>
+                        <li>Reset DB navigation option to navigate to the reset the backend database.</li>
                     </ul>
  
                 </div>
