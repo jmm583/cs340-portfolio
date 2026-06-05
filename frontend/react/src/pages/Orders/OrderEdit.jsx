@@ -4,12 +4,17 @@ import { useNavigate } from "react-router";
 import { getCustomers, updateOrder } from "../../components/apiClient";
 function OrderEdit({order, setItemToEdit}){
     const parseDateFromDateTime= (datetime) => {
-        const parts = datetime.split("T");
-        return parts[0];
+        if (datetime) {
+            const parts = datetime.split("T");
+            return parts[0];
+        }
+
     };
     const parseTimeFromDateTime= (datetime) => {
-        const parts = datetime.split("T");
-        return parts[1].slice(0,5);
+        if (datetime) {
+            const parts = datetime.split("T");
+            return parts[1].slice(0,5);
+        }
     };
     const [orderID, setOrderID] = useState(order.orderID);
     const [customerID, setCustomerID] = useState(order.customerID);
