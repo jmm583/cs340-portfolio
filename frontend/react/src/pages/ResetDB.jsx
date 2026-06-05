@@ -11,7 +11,6 @@ function ResetDB() {
             await performReset();
             alert("Completed Reset"); 
             setConfirm("");
-            console.log("reset");
         }
     };
     return (
