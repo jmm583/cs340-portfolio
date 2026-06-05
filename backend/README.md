@@ -6,7 +6,7 @@ The required sql code can be imported from the following:
 
 DDl.sql -- Provides sample data and the load function which also acts as the reset sql.
 
-PL.sql -- Provides all the CRUD sql stored procedures
+PL.sql -- Provides all the CRUD sql stored procedures including the DDL.sql stored procedure.
 
 Other sql files and purpose.
 

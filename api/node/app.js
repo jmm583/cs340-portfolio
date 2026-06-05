@@ -20,6 +20,7 @@ const PORT = process.env.PORT;     // Set a port number
 
 const cors = require('cors');
 app.use(cors()); 
+// End Citation area
 
 //Constant Error messages
 DB_ERROR = {error: "An error occurred while executing the database queries."};
@@ -62,7 +63,6 @@ const storedProcs = {
 // ==========================================
 
 app.get('/reset', async function( req, res) {
-    console.log("reset");
     try {
         const query = `CALL ${storedProcs["reset"]}`;
         
@@ -215,7 +215,6 @@ app.get('/orders/:id', async function (req, res) {
 app.post('/orders', async function (req, res) {
     try {
         const order = req.body;
-        console.log('order',order);
         const query = `CALL ${storedProcs["ordersCreate"]}(?, ?, ?, ?, ?, @orderID);`;
     
         const [rows] = await db.query(query, [order.customerID, order.complete, order.totalCost, order.statusDate, order.statusName ]); 
@@ -295,7 +294,7 @@ app.post('/products', async function (req, res) {
     try {
         const data = req.body;
 
-        console.log("Incoming product:", data);
+        //console.log("Incoming product:", data);
 
         const query = `CALL ${storedProcs["productsCreate"]}(?, ?, ?, ?, ?, ?, @new_id);`;
 
@@ -308,7 +307,7 @@ app.post('/products', async function (req, res) {
             data.SKU
         ];
 
-        console.log(params);
+        //console.log(params);
 
         const [rows] = await db.query(query, params);
 
@@ -328,7 +327,7 @@ app.put('/products/:id', async (req, res) => {
         const product = req.body;
         const query1 = `CALL ${storedProcs["productsUpdate"]}(?, ?, ?, ?, ?, ?, ?);`;
         const { id } = req.params;
-        console.log(id);
+        //console.log(id);
 
         const params = [
             id,
@@ -408,7 +407,7 @@ app.put('/manufacturers/:id', async (req, res) => {
         const manufacturer = req.body;
         const query1 = `CALL ${storedProcs["manufacturersUpdate"]}(?, ?, ?, ?, ?);`;
         const { id } = req.params;
-        console.log(id);
+        //console.log(id);
 
         const params = [
             id,
@@ -434,7 +433,7 @@ app.delete('/manufacturers/:id', async function (req, res) {
     try {
  
         const { id } = req.params;
-        console.log(id);
+        //console.log(id);
 
         let query = `CALL ${storedProcs["manufacturersDelete"]}(?)`;
 
@@ -454,7 +453,7 @@ app.post('/manufacturers', async function (req, res) {
     try {
         const data = req.body;
 
-        console.log(data);
+        //console.log(data);
 
         const query = `CALL ${storedProcs["manufacturersCreate"]}(?, ?, ?, ?, @new_id);`;
 
@@ -465,7 +464,7 @@ app.post('/manufacturers', async function (req, res) {
             data.contactPhone
         ];
 
-        console.log(params);
+        //console.log(params);
 
         const [rows] = await db.query(query, params);
         res.json(rows);

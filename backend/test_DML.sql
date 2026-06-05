@@ -1,3 +1,9 @@
+-- Project: NobleGoldFish
+-- Group 13 -LuckyNumber13
+-- Group Members Jon Marchand, Joshua York  
+-- Date: Apr 30 2026
+-- Description: Test scripts for the DML.sql file. Not required for the applicaton.
+
 -- Test Scripts
 
 

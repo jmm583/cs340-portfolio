@@ -1,4 +1,8 @@
-
+-- Project: NobleGoldFish
+-- Group 13 -LuckyNumber13
+-- Group Members Jon Marchand, Joshua York  
+-- Date: Apr 30 2026
+-- Description: Data manipulation queries.
 
 --Customers Table
 -- Select
