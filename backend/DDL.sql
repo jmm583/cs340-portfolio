@@ -3,6 +3,8 @@
 -- Group Members Jon Marchand, Joshua York  
 -- Date: Apr 30 2026
 -- Description: Step 2 Initial table creation and sample seed data.
+-- This file corresponds to the CS340 Portfolio Project deliverables.
+-- Maria DB SQL SCRIPTS.
 DROP PROCEDURE  IF EXISTS sp_load_nb_skateshopdb;
 DELIMITER //
 CREATE PROCEDURE sp_load_nb_skateshopdb()
