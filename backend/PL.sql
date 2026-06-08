@@ -13,6 +13,8 @@
 // Adapted from 
 // Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-pl-slash-sql-part-2-stored-procedures-for-cud
 //
+// Procedure scripts are based on the course starter code. Table and column names were updated appropriately. 
+// Some Error Messages/Rollback terminology my be unchanged. 
 */
 
 -- #####################

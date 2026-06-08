@@ -9,6 +9,7 @@
 // Adapted from 
 // Source URL: https://canvas.oregonstate.edu/courses/2042369/assignments/10464646
 //
+// Updated to used dotenv variables, all other code is from the starter code.
 */
 
 

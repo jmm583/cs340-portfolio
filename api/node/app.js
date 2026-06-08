@@ -5,6 +5,7 @@
 // Adapted from 
 // Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-implementing-cud-operations-in-your-app
 //
+// Setup is adapted from the course content. The PORT was changed and dotenv was added. 
 */
 
 /*
