@@ -21,10 +21,7 @@ function CustomerEdit({customer}) {
         <div className='main'>
             <h1>Edit Customer</h1>
             <form onSubmit={onSubmit}>
-                {/* <div className="form-group">
-                    <label htmlFor="customerID">customerID</label>
-                    <input name="customerID" type="text" value={customerID} onChange={setCustomerID}/>
-                </div> */}
+
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
                     <input name="firstName" type="text" required value={firstName} onChange={e => setfirstName(e.target.value)}/>

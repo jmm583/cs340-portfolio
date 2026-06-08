@@ -45,8 +45,7 @@ function OrderCreate(){
         <div className='main'>
             <h1>Add Order</h1>
             <form onSubmit={onSubmit}>
-                {/* <label htmlFor="orderID">orderID</label>
-                <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/> */}
+
                 
                 <div className="form-group">
                     <label htmlFor="customerID">Customer</label>
@@ -60,7 +59,7 @@ function OrderCreate(){
                             </option>
                         ))}
                     </select>
-                    {/* <input name="customerID" type="number" value={customerID} onChange={e => setCustomerID(e.target.value)} /> */}
+
                 </div>
 
                 <div className="form-group">

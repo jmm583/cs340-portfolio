@@ -43,19 +43,16 @@ function OrderProductsEdit({itemToEdit}) {
                 <div className="form-group">
                     <label htmlFor="orderProductsID">orderProductsID</label>
                     {orderProductsID}
-                    {/* <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} /> */}
+    
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="orderID">OrderID</label>
-                    <input name="orderID" type="number" required value={orderID} onChange={e => setOrderID(e.target.value)} />
-                </div> */}
+  
                 <div className="form-group">
                     <label htmlFor="orderID">Order</label>
                     <select name="orderID" required onChange={e => setOrderID(e.target.value)} value={orderID}>
                         <option value="" hidden>
                             -- Please choose an order --
                         </option>
-                        {/* <option value="-1" key="-1">Select a Product</option> */}
+  
                         {orders.map((order) => (
                             <option key={order.orderID} value={order.orderID}>
                             {order.orderID}: {order.email}, {order.firstName}, {order.lastName}
@@ -63,10 +60,7 @@ function OrderProductsEdit({itemToEdit}) {
                         ))}
                     </select>
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="productID">ProductID</label>
-                    <input name="productID" type="number" required value={productID} onChange={e => setProductID(e.target.value)} />
-                </div> */}
+
                 <div className="form-group">
                     <label htmlFor="productID">Product</label>
                     <select name="productID" required onChange={e => setProductID(e.target.value)} value={productID}>

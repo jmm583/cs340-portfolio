@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import OrderProducts from "./OrderProducts";
 import { useNavigate } from "react-router";
 import { getCustomers, updateOrder } from "../../components/apiClient";
+
 function OrderEdit({order, setItemToEdit}){
     const parseDateFromDateTime= (datetime) => {
         if (datetime) {
@@ -58,7 +59,7 @@ function OrderEdit({order, setItemToEdit}){
                 <div className="form-group">
                     <label htmlFor="orderID">Order ID</label>
                     <div>{orderID}</div>
-                    {/* <input name="orderID" type="number" value={orderID}  onChange={setOrderID}/> */}
+
                 </div>
                 <div className="form-group">
                     <label htmlFor="customerID">Customer Email</label>
@@ -69,7 +70,7 @@ function OrderEdit({order, setItemToEdit}){
                             </option>
                         ))}
                     </select>
-                    {/*<input name="customerEmail" type="text" value={customerEmail} onChange={setCustomerEmail} /> */}
+
                 </div>
 
                 <div className="form-group">

@@ -41,12 +41,7 @@ function OrderProductsCreate() {
         <div className='main'>
             <h1>Add OrderProducts</h1>
             <form onSubmit={onSubmit}>
-                {/* <label htmlFor="orderProductsID">orderProductsID</label>
-                <input name="orderProductsID" type="number" value={orderProductsID} onChange={setOrderProductsID} /> */}
-                {/* <div className="form-group">
-                    <label htmlFor="orderID">Order ID</label>
-                    <input name="orderID" type="number" required value={orderID} onChange={e => setOrderID(e.target.value)} />
-                </div> */}
+
                 <div className="form-group">
                     <label htmlFor="orderID">Order</label>
                     <select name="orderID" required onChange={e => setOrderID(e.target.value)}>
@@ -60,10 +55,7 @@ function OrderProductsCreate() {
                         ))}
                     </select>
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="productID">Product ID</label>
-                    <input name="productID" type="number" required value={productID} onChange={e => setProductID(e.target.value)} />
-                </div> */}
+
                 <div className="form-group">
                     <label htmlFor="productID">Product</label>
                     <select name="productID" required onChange={e => setProductID(e.target.value)}>
