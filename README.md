@@ -25,7 +25,7 @@ Frontend - node.jS/React/CSS
 # Getting Started
 git clone the repo
 
-Fronted code exists at frontend/react. See the README.md in that folder for further details.
+Frontend code exists at frontend/react. See the README.md in that folder for further details.
 
 Backend or database code exists under the backend folder. See the README.md in that folder for further details.
 
