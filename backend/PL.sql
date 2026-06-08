@@ -4,6 +4,7 @@
 -- Date: Apr 30 2026
 -- Description: PL SQL commands for all stored procedures. 
 -- Maria DB was used.
+-- No AI was used to generate this file.
 
 /*
 // Implementing CUD operations in your app using stored procedures

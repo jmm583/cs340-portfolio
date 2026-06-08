@@ -3,6 +3,7 @@
 -- Group Members Jon Marchand, Joshua York  
 -- Date: Apr 30 2026
 -- Description: Data manipulation queries.
+-- No AI was used for this file.
 
 --Customers Table
 -- Select

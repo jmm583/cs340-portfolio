@@ -5,6 +5,8 @@
 -- Description: Step 2 Initial table creation and sample seed data.
 -- This file corresponds to the CS340 Portfolio Project deliverables.
 -- Maria DB SQL SCRIPTS.
+-- NO AI was used for this script.
+
 DROP PROCEDURE  IF EXISTS sp_load_nb_skateshopdb;
 DELIMITER //
 CREATE PROCEDURE sp_load_nb_skateshopdb()
