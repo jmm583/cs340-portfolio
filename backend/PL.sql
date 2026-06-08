@@ -4,6 +4,15 @@
 -- Date: Apr 30 2026
 -- Description: PL SQL commands for all stored procedures. 
 
+/*
+// Implementing CUD operations in your app using stored procedures
+// Citation for the following
+// Date: May 26, 2026
+// Adapted from 
+// Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-pl-slash-sql-part-2-stored-procedures-for-cud
+//
+*/
+
 -- #####################
 -- Customers
 -- #####################
@@ -388,15 +397,6 @@ BEGIN
     WHERE orderID = c_id;
 END //
 DELIMITER ;
-
-/*
-// Implementing CUD operations in your app using stored procedures
-// Citation for the following
-// Date: May 26, 2026
-// Adapted from 
-// Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-pl-slash-sql-part-2-stored-procedures-for-cud
-//
-*/
 
 
 -- Products Select Stored Procedure
