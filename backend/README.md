@@ -15,3 +15,12 @@ initial.sql -- Initial sql required to build the database from earlier steps. No
 DML.sql -- Proposed CRUD queries from earlier steps. Not required for the app.
 
 test_DML.sql -- Test scripts to ensure the DML.sql was correct. Not required for the app.
+
+# Citations
+
+Implementing CUD operations in your app using stored procedures
+Citation for the following
+Date: May 26, 2026
+Adapted from 
+Source URL: https://canvas.oregonstate.edu/courses/2042369/pages/exploration-pl-slash-sql-part-2-stored-procedures-for-cud
+
