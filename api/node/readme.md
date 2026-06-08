@@ -22,6 +22,7 @@ Uses .env file to store communication details for the backend database. Required
     DB_PASSWORD = ''
     DB_Database = 'project'
     DB_PORT = 3306
+    PORT = 6113
 
 
 ## Citations
