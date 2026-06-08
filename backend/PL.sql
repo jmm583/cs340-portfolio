@@ -3,6 +3,7 @@
 -- Group Members Jon Marchand, Joshua York  
 -- Date: Apr 30 2026
 -- Description: PL SQL commands for all stored procedures. 
+-- Maria DB was used.
 
 /*
 // Implementing CUD operations in your app using stored procedures
