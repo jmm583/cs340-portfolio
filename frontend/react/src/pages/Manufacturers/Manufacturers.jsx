@@ -11,32 +11,41 @@ import { Link } from 'react-router';
 function Manufacturers({setItemToEdit}) {
     const [manufacturers, setManufacturers] = useState([]);
     const navigate = useNavigate();
-    const loadManufacturers = () => {
-        const data = getManufacturers();
+
+    // const loadManufacturers = () => {
+    //     const data = getManufacturers();
+    //     setManufacturers(data);
+    // }
+
+    const loadManufacturers = async () => {
+        const data = await getManufacturers();
         setManufacturers(data);
-    }
+    };
+
     const onEdit= (orderProduct) => {
         setItemToEdit(orderProduct);
         navigate("/manufacturers/edit");
 
     };
-    const onDelete = (item) => {
+    const onDelete = async (item) => {
 
-        deleteManufacturer(item);
+        await deleteManufacturer(item);
         loadManufacturers();
+        console.log("deleted Manufacturer", item.manufacturerID)
     };
+
     useEffect(() => {
         loadManufacturers();
         
     }, []);
 
     const tableHeaders = {
-        manufacturerID: "Manufacturer ID",
+        manufacturerID: "Manufacturer ID",
         brandName: "Manufactuer Name",
-        country: "Country",
-        contactEmail: "Contact Email",
-        contactPhone: "Contact Phone"
-        };
+        country: "Country",
+        contactEmail: "Contact Email",
+        contactPhone: "Contact Phone"
+    };
 
     return (
         <div className='main'>

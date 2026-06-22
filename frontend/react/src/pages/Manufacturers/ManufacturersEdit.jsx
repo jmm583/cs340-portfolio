@@ -1,18 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { updateManufacturer } from "../../components/apiClient";
+import { useNavigate } from 'react-router';
 
 function ManufacturersEdit({itemToEdit}) {
-    const [manufacturerID, setmanufacturerID] = useState(itemToEdit.manufacturerID);
-    const [brandName, setbrandName] = useState(itemToEdit.brandName);
-    const [country, setcountry] = useState(itemToEdit.country);
-    const [contactEmail, setcontactEmail] = useState(itemToEdit.contactEmail);
-    const [contactPhone, setcontactPhone] = useState(itemToEdit.contactPhone);
-    const onSubmit = (e) => {
+    // use itemToEdit's value if available otherwise return empty string
+    const [manufacturerID, setmanufacturerID] = useState(itemToEdit?.manufacturerID || "");
+    const [brandName, setbrandName] = useState(itemToEdit?.brandName || "");
+    const [country, setcountry] = useState(itemToEdit?.country || "");
+    const [contactEmail, setcontactEmail] = useState(itemToEdit?.contactEmail || "");
+    const [contactPhone, setcontactPhone] = useState(itemToEdit?.contactPhone || "");
+    const navigate = useNavigate();
+    
+    
+    const onSubmit = async (e) => {
         e.preventDefault();
+
+        const updatedManufacturer = {
+            manufacturerID,
+            brandName,
+            country,
+            contactEmail,
+            contactPhone
+        };
+        console.log("updated manufacturer", updatedManufacturer);
+
+        try {
+            await updateManufacturer(updatedManufacturer);
+            navigate('/manufacturers');
+
+        } catch (error) {
+            console.error("Error updating manufacturer:", error);
+            alert("An error occurred while updating the manufacturer. Please try again.");
+        }
     }
     return (
         <div className='main'>
             <h1>Edit Manufacturer</h1>
-            <form onSubmit={onSubmit}>
+            <form action={`/manufacturers/${manufacturerID}`} method="POST" onSubmit={onSubmit}>
                 {/* <div className="form-group">
                     <label htmlFor="manufacturerID">manufacturerID:</label>
                     <input name="manufacturerID" type="number" value={manufacturerID} onChange={setmanufacturerID} />

@@ -9,19 +9,23 @@ function Customers({setItemToEdit}) {
     const [customers, setCustomers] = useState([]);
     const navigate = useNavigate();
 
-    const loadCustomers = () => {
-        const data = getCustomers();
-        setCustomers(data);
+
+    const loadCustomers = async () =>{
+        // Make a GET request to the backend
+        const rows = await getCustomers();
+
+        setCustomers(rows);
+
     };
     const onEdit = (item) =>{
  
         setItemToEdit(item);
         navigate('/customers/edit');
     };
-    const onDelete = (item) => {
+    const onDelete = async (item) => {
+        await deleteCustomer(item);
 
-        deleteCustomer(item);
-        loadCustomers();
+        return await loadCustomers();
     };
     const tableHeaders = {
         customerID: "Customer ID",

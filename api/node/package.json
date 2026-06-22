@@ -5,6 +5,7 @@
     "stop_production": "npx forever stop app.js"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.0",
     "express": "^5.2.1",
     "forever": "^4.0.3",

@@ -8,25 +8,25 @@ import { Link } from 'react-router';
 function Orders({setItemToEdit}){
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
-    const loadOrders = () => {
-        const data = getOrders();
+    const loadOrders = async () => {
+        const data = await getOrders();
         setOrders(data);
     }
     const onEdit = (item) =>{
- 
         setItemToEdit(item);
-        console.log("orderEdit ");
         navigate('/orders/edit');
     };
-    const onDelete = (item) => {
+    const onDelete = async (item) => {
 
-        deleteOrder(item);
-        loadOrders();
+        await deleteOrder(item);
+        return await loadOrders();
     };
     const tableHeaders = {
         orderID: "Order ID",
         customerID: "Customer ID",
-        fullName: "Customer",
+        firstName: "Customer First Name",
+        lastName: "Customer Last Name",
+        email: "Customer Email",
         customerEmail: "Customer Email",
         complete: "Complete",
         totalCost: "Total Cost",

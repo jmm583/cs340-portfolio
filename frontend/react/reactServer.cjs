@@ -1,3 +1,9 @@
+// Citation
+// Date: May 5, 2026
+// This file is adapted from the course content CS 340
+// https://canvas.oregonstate.edu/courses/2042369/pages/exploration-web-application-technology-2?module_item_id=26640188
+// Port was updated, all other code is from the starter code.
+//
 // reactServer.cjs
 // Uses common JavaScript to serve the React build folder (/dist)
 

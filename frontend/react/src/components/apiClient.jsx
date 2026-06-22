@@ -1,161 +1,357 @@
-const sampleData = {
-    "Customers":[
-        {"customerID":"1","firstName":"Luke","lastName":"Skywalker","email":"lukeskywalker@jedi.com","phone":"0000000000"},
-        {"customerID":"2","firstName":"Ben","lastName":"Kenobi","email":"obiwan@jedi.com","phone":"0000000000"},
-        {"customerID":"3","firstName":"Leia","lastName":"Skywalker","email":"leiaskywalker@rebels.com","phone":"0000000000"}
-    ],
-    "Manufacturers": [
-        {"manufacturerID":"1","brandName":"Santa Cruz Skateboards","country":"USA","contactEmail":"sales@santacruzskateboards.com","contactPhone":"831-555-4827"},
-        {"manufacturerID":"2","brandName":"Powell Peralta","country":"USA","contactEmail":"info@powell-peralta.com","contactPhone":"805-555-7391"},
-        {"manufacturerID":"3","brandName":"Independent Truck Company","country":"USA","contactEmail":"info@independenttrucks.com","contactPhone":"510-555-6032"},
-        {"manufacturerID":"4","brandName":"Mob Grip","country":"USA","contactEmail":"support@mobgrip.com","contactPhone":"310-555-7824"},
-        {"manufacturerID":"5","brandName":"Bones Bearings ","country":"USA","contactEmail":"info@bonesbearings.com","contactPhone":"415-555-2648"}
-    ],
-    "OrderProducts":
-    [
-        {"orderProductsID":"1","orderID":"1", "Customer":"Leia Skywalker","productID":"1", "productName":"Classic Dot Deck 8.25","quantity":"2"},
-        {"orderProductsID":"2","orderID":"3", "Customer":"Luke Skywalker","productID":"2", "productName":"Dragon Formula Wheels 54mm", "quantity":"4"},
-        {"orderProductsID":"3","orderID":"2", "Customer":"Ben Kenobi","productID":"3", "productName":"Stage 11 Standard Trucks", "quantity":"1"}
-    ],
-    
-    "Orders":
-    [
-        {"orderID":"1","customerID":"3", "fullName":"Leia Skywalker", "customerEmail": "leiaskywalker@rebels.com","complete":"1","totalCost":"64.99","statusName":"completed","statusDate":'2026-01-01 10:30:00'},
-        {"orderID":"2","customerID":"2", "fullName":"Ben Kenobi", "customerEmail":"obiwan@jedi.com","complete":"0","totalCost":"42.99","statusName":"pending","statusDate":'2026-01-01 10:30:00'},
-        {"orderID":"3","customerID":"1", "fullName":"Luke Skywalker","customerEmail":"lukeskywalker@jedi.com", "complete":"0","totalCost":"59.99","statusName":"pending","statusDate":'2026-01-01 10:30:00'}
-    ],
+// ==========================================
+// API CLIENT Functions
+// Performs all fetch operations for the app.
+// ==========================================
 
-    
-    "Products": [
-        {"productID":"1","manufacturerID":"1","brandName":"Santa Cruz Skateboards","productType":"deck", "name":"Classic Dot Deck 8.25","price":"64.99","description":"Santa Cruz Classic Dot deck","SKU":"825471K"},
-        {"productID":"2","manufacturerID":"2","brandName":"Powell Peralta", "productType":"wheels", "name":"Dragon Formula Wheels 54mm","price":"42.99","description":"Powell Peralta Dragon Wheels","SKU":"194362Q"},
-        {"productID":"3","manufacturerID":"3","brandName":"Independent Truck Company", "productType":"trucks","name":"Stage 11 Standard Trucks","price":"59.99","description":"Independent Stage 11 trucks","SKU":"412659Z"},
-        {"productID":"4","manufacturerID":"2","brandName":"Powell Peralta","productType":"bearings", "name":"Bones Reds Bearings","price":"21.99","description":"Bones Reds skateboard bearings","SKU":"638204T"},
-        {"productID":"5","manufacturerID":"4","brandName":"Mob Grip", "productType":"griptape", "name":"Mob Black Griptape","price":"11.99","description":"Mob black skateboard griptape","SKU":"748213M"}
-    ]
-};
 // Define the backend port and URL for API requests
-const backendPort = import.meta.env.VITE_APP_API_PORT;  // Use the port you assigned to the backend server, this would normally go in .env file
-const backendURL = `${import.meta.env.VITE_APP_API_BASE_URL}:${backendPort}/`;
+const backendPort = import.meta.env.VITE_API_PORT;  // Use the port you assigned to the backend server, this would normally go in .env file
+const backendURL = `http://${import.meta.env.VITE_API_BASE_URL}:${backendPort}`;
 
-// Get the data from the database
-const getData = async function () {
-
+// ==========================================
+// General Fetch Operations
+// ==========================================
+// ==========================================
+// Get Data By Table
+// ==========================================
+const getDataByTable = async (target) => {
+    const fullURL = `${backendURL}/${target}`;
     try {
         // Make a GET request to the backend
-        const response = await fetch(backendURL);
+        const response = await fetch(fullURL);
         
         // Convert the response into JSON format
         const rows = await response.json();
-        
+
+        //return rows;
         // Update the message state with the response data
-        return(JSON.stringify(rows));
+        return(rows);
         
     } catch (error) {
         // If the API call fails, print the error to the console
         console.log(error);
     }
 };
+// ==========================================
+// Get Data By ID
+// ==========================================
+const getDataIDByTable = async (target) => {
+    const fullURL = `${backendURL}/${target.table}/${target.ID}`;
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL);
+        
+        // Convert the response into JSON format
+        const rows = await response.json();
 
+        //return rows;
+        // Update the message state with the response data
+        return(rows);
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+};
+// ==========================================
+// Delete Data 
+// ==========================================
+const deleteData = async (target) => {
+    //target example {table: "customers", id: {} }
+    const fullURL = `${backendURL}/${target.table}/${target.ID}`;
+    try {
+        const response = await fetch(fullURL, {method: 'DELETE'});
+        if (response.status == 400) {
+
+            const body = await response.json();
+            alert(body.message);
+        } else {
+            return;
+        }
+
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+
+};
+// Get the data from the database
+const createData = async (target) => {
+    //target example {table: "customers", item: {} }
+    const fullURL = `${backendURL}/${target.table}`;
+
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL, 
+            {
+                method: 'POST',
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(target.item)
+            }
+
+        );
+
+        return await response.json();
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+
+    }
+};
+// ==========================================
+// Update Data
+// ==========================================
+const updateData = async (table, id, item) => { 
+    const fullURL = `${backendURL}/${table}/${id}`;
+
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL, 
+            {
+                method: 'PUT',
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(item)
+            }
+
+        );
+
+        return await response.json();
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+}
+ 
+// ==========================================
+// Reset Functions
+// ==========================================
+const performReset = async function() {
+
+    const fullURL = `${backendURL}/reset`;
+
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL);
+        
+        // Convert the response into JSON format
+        return await response.json();
+
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+}
+
+
+// ==========================================
 // Product Functions
-function getProducts() {
-    return sampleData["Products"];
+// ==========================================
+// ==========================================
+// Get ALL
+// ==========================================
+async function getProducts() {
+    return await getDataByTable("Products");
 };
-function deleteProduct(item) {
-    const filtered =sampleData["Products"].filter(product => product.productID !== item.productID);
-    sampleData["Products"] = filtered;
-    
-    return sampleData["Products"];
+// ==========================================
+// Create Product 
+// ==========================================
+async function createProduct(item) {
+    const target = { table: "Products", item };
+    return await createData(target);
 };
-function createProduct(customer) {
-    sampleData["Products"].push(customer);
+// ==========================================
+// Delete Product 
+// ==========================================
+async function deleteProduct(item) {
+    const target = { table: "Products", ID: item.productID };
+    return await deleteData(target);     
 };
-
-// Customer Fuctions
-function getCustomers() {
-    return sampleData["Customers"];
-};
-function deleteCustomer(item) {
-    const filtered = sampleData["Customers"].filter(customer => customer.customerID !==item.customerID);
-    sampleData["Customers"] = filtered;
-
-    return sampleData["Customers"];
-};
-function createCustomer(customer) {
-    sampleData["Customers"].push(customer);
-};
-
-// Manufacturer Functions
-function getManufacturers() {
-    return sampleData["Manufacturers"];
-};
-function deleteManufacturer(item) {
-    const filtered = sampleData["Manufacturers"].filter(manufacturer => manufacturer.manufacturerID !== item.manufacturerID);
-
-    sampleData["Manufacturers"] = filtered;
-    return sampleData["Manufacturers"];
-};
-function createManufacturer(item) {
-    sampleData["Manufacturers"].push(item);
+// ==========================================
+// Update Product 
+// ==========================================
+// needs an universal updateData function to work, not yet implemented in backend
+async function updateProduct(item) {
+    // const target = { table: "Products", item };
+    return await updateData("Products", item.productID, item);
 };
 
 
-
-// Order Functions
-function getOrders() {
-    return sampleData["Orders"];
+// ==========================================
+// Customer Functions
+// ==========================================
+// ==========================================
+// Get ALL Customers
+// ==========================================
+async function getCustomers() {
+    return await getDataByTable("customers")
 };
-function deleteOrder(item) {
-    const filtered = sampleData["Orders"].filter(order => order.orderID !== item.orderID);
+// ==========================================
+// Delete Customer 
+// ==========================================
+async function deleteCustomer(item) {
+    const target = {"table":"Customers", "ID": item.customerID};
+    return await deleteData(target);
 
-    sampleData["Orders"] = filtered;
-    return sampleData["Orders"];
 };
-function createOrder(item) {
-    sampleData["Orders"].push(item);
+// ==========================================
+// Create Customer 
+// ==========================================
+async function createCustomer(item) {
+    const target = {"table":"Customers", "item": item};
+    return await createData(target)
 };
-
-
-
-// OrderProducts Functions
-function getOrderProducts() {
-    return sampleData["OrderProducts"];
-};
-function getOrderProductsByOrder(orderID) {
-    return sampleData["OrderProducts"].filter(order => order.orderID === orderID);
-};
-function deleteOrderProduct(item) {
-    const filtered = sampleData["OrderProducts"].filter(orderProduct => orderProduct.orderProductsID !== item.orderProductsID);
-
-    sampleData["OrderProducts"] = filtered;
-    return sampleData["OrderProducts"];
-};
-function createOrderProduct(item) {
-    sampleData["OrderProducts"].push(item);
+// ==========================================
+// Update Customer 
+// ==========================================
+async function updateCustomer(item) {
+    return await updateData("customers", item.customerID, item)
 };
 
+// ==========================================
+// Manufacturer Functions 
+// ==========================================
+// ==========================================
+// Get ALL Manufacturers 
+// ==========================================
+async function getManufacturers() {
+    return await getDataByTable("Manufacturers");
+};
+// ==========================================
+// Create Manufacturer 
+// ==========================================
+async function createManufacturer(item) {
+    const target = {"table":"manufacturers", "item": item};
+    return await createData(target);
+};
+// ==========================================
+// Update Manufacturer 
+// ==========================================
+async function updateManufacturer(item) {
+    return await updateData("manufacturers", item.manufacturerID, item);
+}
 
-export default getData;
+// ==========================================
+// Delete Manufacturer 
+// ==========================================
+async function deleteManufacturer(item) {
+    const target = {"table":"Manufacturers", "ID": item.manufacturerID};
+    return await deleteData(target);
+};
+
+
+// ==========================================
+// Orders Functions 
+// ==========================================
+// ==========================================
+// Order Get ALL 
+// ==========================================
+async function getOrders() {
+    return await getDataByTable("Orders");
+};
+// ==========================================
+// Order Delete 
+// ==========================================
+async function deleteOrder(item) {
+    const target = {"table":"Orders", "ID": item.orderID};
+    return await deleteData(target);
+};
+// ==========================================
+// Order Create 
+// ==========================================
+async function createOrder(item) {
+    const target = {"table":"Orders", "item": item};
+    return await createData(target)
+};
+// ==========================================
+// Order Update 
+// ==========================================
+async function updateOrder(item) {
+    return await updateData("orders", item.orderID, item)
+};
+
+
+// ==========================================
+// OrderProducts Functions 
+// ==========================================
+// ==========================================
+// OrderProducts Get ALL 
+// ==========================================
+async function getOrderProducts() {
+    return await getDataByTable("OrderProducts");
+};
+// ==========================================
+// OrderProducts Get By orderID 
+// ==========================================
+async function getOrderProductsByOrder(orderID) {
+
+    const fullURL = `${backendURL}/Orders/OrderProducts/${orderID}`;
+    try {
+        // Make a GET request to the backend
+        const response = await fetch(fullURL);
+        
+        // Convert the response into JSON format
+        const rows = await response.json();
+
+        //return rows;
+        // Update the message state with the response data
+        return(rows);
+        
+    } catch (error) {
+        // If the API call fails, print the error to the console
+        console.log(error);
+    }
+};
+// ==========================================
+// OrderProducts Delete
+// ==========================================
+async function deleteOrderProduct(item) {
+    const target = {"table":"OrderProducts", "ID": item.orderProductsID};
+    return await deleteData(target);
+};
+// ==========================================
+// OrderProducts Create
+// ==========================================
+async function createOrderProduct(item) {
+    const target = {"table":"OrderProducts", "item": item};
+    return await createData(target);
+};
+// ==========================================
+// OrderProducts Update
+// ==========================================
+async function updateOrderProduct(item) {
+    return await updateData("orderproducts", item.orderProductsID, item);
+};
+
+export default getDataByTable;
 export { 
+    performReset,
+    getDataIDByTable,
+    
     getCustomers, 
     deleteCustomer, 
     createCustomer,
+    updateCustomer,
 
     getManufacturers, 
     deleteManufacturer,
     createManufacturer,
+    updateManufacturer,
 
     getOrderProductsByOrder,
     getOrderProducts, 
     deleteOrderProduct, 
     createOrderProduct, 
+    updateOrderProduct,
 
     getOrders,
     deleteOrder,
     createOrder, 
+    updateOrder,
 
     getProducts, 
     deleteProduct,
     createProduct,
+    updateProduct
 
 };

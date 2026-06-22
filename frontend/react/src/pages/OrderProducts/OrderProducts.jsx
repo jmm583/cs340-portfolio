@@ -8,8 +8,8 @@ import { Link } from 'react-router';
 function OrderProducts({setItemToEdit}) {
     const [orderProducts, setOrderProducts] = useState([]);
     const navigate = useNavigate();
-    const loadOrderProducts = () => {
-        const data = getOrderProducts();
+    const loadOrderProducts = async () => {
+        const data = await getOrderProducts();
         setOrderProducts(data);
     }
     const onEdit= (orderProduct) => {
@@ -17,9 +17,9 @@ function OrderProducts({setItemToEdit}) {
         navigate("/orderproducts/edit");
 
     };
-    const onDelete = (item) => {
+    const onDelete = async (item) => {
 
-        deleteOrderProduct(item);
+        await deleteOrderProduct(item);
         loadOrderProducts();
     };
     const tableHeaders = {
@@ -27,8 +27,9 @@ function OrderProducts({setItemToEdit}) {
         orderID: "Order ID",
         Customer: "Customer",
         productID: "Product ID",
-        productName: "Product Name",
-        quantity: "Quantity"
+        name: "Product Name",
+        quantity: "Quantity",
+        price: "Unit Price"
     };
     					
 

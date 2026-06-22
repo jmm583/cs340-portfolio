@@ -1,4 +1,9 @@
-
+-- Project: NobleGoldFish
+-- Group 13 -LuckyNumber13
+-- Group Members Jon Marchand, Joshua York  
+-- Date: Apr 30 2026
+-- Description: Data manipulation queries.
+-- No AI was used for this file.
 
 --Customers Table
 -- Select
@@ -6,9 +11,9 @@ SELECT firstName, lastName, email, phone FROM Customers
 -- INSERT INTO
 INSERT INTO Customers (firstName, lastName, email, phone) VALUES (@firstName, @lastName, @email, @phone )
 --update
-UPDATE Customers SET firstName = @firstName, lastName=@lastName, email=@email, phone=@phone WHERE email = @email
+UPDATE Customers SET firstName = @firstName, lastName=@lastName, email=@email, phone=@phone WHERE customerID=@customerID
 --Delete
-DELETE FROM Customers WHERE email=@email
+DELETE FROM Customers WHERE customerID=@customerID
 
 --Orders Table
 -- select

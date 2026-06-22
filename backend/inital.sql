@@ -1,3 +1,9 @@
+-- Project: NobleGoldFish
+-- Group 13 -LuckyNumber13
+-- Group Members Jon Marchand, Joshua York  
+-- Date: Apr 30 2026
+-- Description: Initial mysql commands for table creations. Not required for application.
+
 CREATE OR REPLACE TABLE Customers (
     customerID int AUTO_INCREMENT,
     firstName varchar(50) NOT NULL,

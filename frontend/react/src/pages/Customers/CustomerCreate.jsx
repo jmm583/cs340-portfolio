@@ -10,13 +10,14 @@ function CustomerCreate() {
     const [phone, setPhone] = useState("");
     const navigate = useNavigate();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        const ID = -1;
-        const customer = {ID, firstName, lastName, email, phone}
-        createCustomer(customer);
-        navigate("/customers");
 
+        const customer = {firstName, lastName, email, phone}
+        
+        await createCustomer(customer);
+        navigate("/customers");
+        
     }
     return (
         <div className='main'>
